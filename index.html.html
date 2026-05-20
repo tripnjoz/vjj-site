@@ -368,11 +368,13 @@
     </div>
 
     <div id="capture-form-wrap">
-      <div class="capture-form">
-        <input class="capture-input" id="email-input" type="email" placeholder="your@email.com">
-        <button class="capture-btn" onclick="submitEmail()">Notify Me 🔥</button>
-      </div>
-      <div class="capture-note">Las Vegas locals only — no casinos, no algorithms, just real player data</div>
+      <form id="formspree-form" action="https://formspree.io/f/mlgvjlwb" method="POST" onsubmit="submitEmail(event)">
+        <div class="capture-form">
+          <input class="capture-input" id="email-input" name="email" type="email" placeholder="your@email.com" required>
+          <button class="capture-btn" type="submit">Notify Me 🔥</button>
+        </div>
+        <div class="capture-note">Las Vegas locals only — no casinos, no algorithms, just real player data</div>
+      </form>
     </div>
 
     <div class="capture-success" id="capture-success">
@@ -414,16 +416,30 @@
 </div>
 
 <script>
-function submitEmail() {
+async function submitEmail(e) {
+  e.preventDefault();
   const email = document.getElementById('email-input').value;
   if (!email || !email.includes('@')) {
     document.getElementById('email-input').style.borderColor = '#ff174444';
     return;
   }
-  document.getElementById('capture-form-wrap').style.display = 'none';
-  const success = document.getElementById('capture-success');
-  success.style.display = 'block';
-  success.style.animation = 'pop 0.4s ease-out';
+  try {
+    const response = await fetch('https://formspree.io/f/mlgvjlwb', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email: email })
+    });
+    if (response.ok) {
+      document.getElementById('capture-form-wrap').style.display = 'none';
+      const success = document.getElementById('capture-success');
+      success.style.display = 'block';
+      success.style.animation = 'pop 0.4s ease-out';
+    } else {
+      document.getElementById('email-input').style.borderColor = '#ff174444';
+    }
+  } catch(err) {
+    document.getElementById('email-input').style.borderColor = '#ff174444';
+  }
 }
 </script>
 
