@@ -519,15 +519,15 @@ window.restrictUser = async function(id) {
 
 // ── PROMOS ──
 async function loadPromos() {
-  const { data: pending } = await supabase.from('promos').select('*, venues(name)').eq('approved', false).eq('active', true)
-  const { data: active } = await supabase.from('promos').select('*, venues(name)').eq('approved', true).eq('active', true)
+  const { data: pending } = await supabase.from('promos').select('*').eq('approved', false).eq('active', true)
+const { data: active } = await supabase.from('promos').select('*').eq('approved', true).eq('active', true)
   const pel = document.getElementById('p-pending')
   if (pel) pel.innerHTML = (!pending || pending.length===0)
     ? '<div style="font-size:10px;color:#aaa;padding:10px 0">No pending promos ✓</div>'
     : pending.map(p => `
       <div class="card" style="border-color:#ffd70033">
         <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-          <div style="font-size:12px;color:#e8eaf0">${p.venues?.name||'Unknown'}</div>
+          <div style="font-size:12px;color:#e8eaf0">${venues.find(v => v.id === p.venue_id)?.name || 'Unknown'||'Unknown'}</div>
           <div class="badge bg">New</div>
         </div>
         <div style="font-size:14px;color:#ccc;margin-bottom:3px">${p.title}</div>
@@ -544,7 +544,7 @@ async function loadPromos() {
       <div class="row">
         <div style="font-size:20px">🎰</div>
         <div style="flex:1">
-          <div class="row-name">${p.venues?.name} — ${p.title}</div>
+          <div class="row-name">${venues.find(v => v.id === p.venue_id)?.name || 'Unknown'} — ${p.title}</div>
           <div class="row-detail">Active · ${p.type}</div>
         </div>
         <div style="font-size:13px;color:#aaa;cursor:pointer">✏</div>
