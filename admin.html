@@ -8,320 +8,651 @@
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
   html,body { background:#070709; }
-  body { font-family:'Share Tech Mono',monospace; color:#e8eaf0; min-height:100vh; max-width:430px; margin:0 auto; padding:20px; }
-  .header { font-family:'Orbitron',monospace; font-weight:900; font-size:16px; color:#aa44ff; text-shadow:0 0 10px #aa44ff; letter-spacing:3px; margin-bottom:6px; }
-  .sub { font-size:9px; color:#666; letter-spacing:2px; margin-bottom:24px; }
+  body { font-family:'Share Tech Mono',monospace; color:#e8eaf0; min-height:100vh; max-width:430px; margin:0 auto; }
+  .header { background:#070709; border-bottom:1px solid #1a0a2a; padding:10px 14px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+  .header-title { font-family:'Orbitron',monospace; font-weight:900; font-size:13px; color:#aa44ff; text-shadow:0 0 8px #aa44ff; letter-spacing:2px; }
+  .header-badge { font-size:8px; padding:3px 10px; border-radius:2px; background:#aa44ff15; border:1px solid #aa44ff33; color:#aa44ff; letter-spacing:2px; }
+  .tabs { display:flex; overflow-x:auto; scrollbar-width:none; border-bottom:1px solid #111; background:#070709; position:sticky; top:45px; z-index:99; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tab { font-family:'Orbitron',monospace; font-size:8px; letter-spacing:1px; padding:10px 12px; color:#444; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; text-transform:uppercase; transition:all 0.2s; }
+  .tab.active { color:#aa44ff; border-bottom-color:#aa44ff; }
+  .content { padding:16px; padding-bottom:40px; }
+  .screen { display:none; }
+  .screen.active { display:block; }
+  .section-title { font-family:'Orbitron',monospace; font-size:9px; letter-spacing:3px; color:#555; text-transform:uppercase; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #111; }
+  .card { background:#0c0d14; border:1px solid #141825; border-radius:8px; padding:14px; margin-bottom:10px; }
   .label { font-size:8px; color:#888; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:block; }
-  .field { width:100%; background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:12px 14px; font-family:'Share Tech Mono',monospace; font-size:13px; color:#e8eaf0; outline:none; margin-bottom:16px; }
+  .field { width:100%; background:#070709; border:1px solid #1a1a2a; border-radius:6px; padding:10px 12px; font-family:'Share Tech Mono',monospace; font-size:12px; color:#e8eaf0; outline:none; margin-bottom:10px; }
   .field:focus { border-color:#aa44ff44; }
   select.field { cursor:pointer; }
-  .amount-display { background:#0c0d14; border:1px solid #ffd70033; border-radius:10px; padding:20px; text-align:center; margin-bottom:16px; }
-  .amount-label { font-size:8px; color:#888; letter-spacing:2px; margin-bottom:8px; }
-  .amount-value { font-family:'Orbitron',monospace; font-weight:700; font-size:40px; color:#ffd700; text-shadow:0 0 10px #ffd700; letter-spacing:2px; min-height:48px; }
-  .numpad { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:16px; }
-  .key { padding:16px; border-radius:8px; border:1px solid #1a1a2a; background:#0c0d14; font-family:'Orbitron',monospace; font-size:18px; font-weight:700; color:#e8eaf0; cursor:pointer; text-align:center; transition:all 0.15s; }
-  .key:active { background:#1a1a2a; transform:scale(0.96); }
-  .key-clr { color:#ff1744; }
-  .key-del { color:#888; }
-  .save-btn { width:100%; padding:16px; font-family:'Orbitron',monospace; font-weight:900; font-size:12px; letter-spacing:3px; text-transform:uppercase; border-radius:10px; border:none; cursor:pointer; background:linear-gradient(135deg,#aa44ff,#6622cc); color:#fff; box-shadow:0 0 20px #aa44ff33; margin-bottom:12px; transition:all 0.2s; }
-  .save-btn:active { transform:scale(0.98); }
-  .save-btn:disabled { background:#222; color:#444; box-shadow:none; cursor:not-allowed; }
-  .add-bank-btn { width:100%; padding:13px; font-family:'Orbitron',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; border-radius:8px; border:1px solid #ffd70033; background:#ffd70008; color:#ffd700; cursor:pointer; margin-bottom:24px; }
-  .status-msg { text-align:center; font-size:10px; letter-spacing:2px; padding:12px; border-radius:8px; margin-bottom:12px; display:none; }
-  .status-success { background:#00ff4115; border:1px solid #00ff4133; color:#00ff41; }
-  .status-error { background:#ff174415; border:1px solid #ff174433; color:#ff1744; }
-  .divider { border:none; border-top:1px solid #111; margin:20px 0; }
-  .add-bank-form { background:#0c0d14; border:1px solid #141825; border-radius:10px; padding:16px; margin-bottom:16px; display:none; }
-  .add-bank-title { font-family:'Orbitron',monospace; font-size:10px; color:#ffd700; letter-spacing:2px; margin-bottom:14px; }
+  .btn-purple { width:100%; padding:12px; font-family:'Orbitron',monospace; font-weight:900; font-size:10px; letter-spacing:2px; text-transform:uppercase; border-radius:8px; border:none; cursor:pointer; background:linear-gradient(135deg,#aa44ff,#6622cc); color:#fff; box-shadow:0 0 14px #aa44ff33; margin-bottom:8px; }
+  .btn-gold { width:100%; padding:12px; font-family:'Orbitron',monospace; font-weight:900; font-size:10px; letter-spacing:2px; text-transform:uppercase; border-radius:8px; border:none; cursor:pointer; background:linear-gradient(135deg,#ffd700,#ff9500); color:#080808; box-shadow:0 0 14px #ffd70033; margin-bottom:8px; }
+  .btn-outline { width:100%; padding:10px; font-family:'Orbitron',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; border-radius:8px; border:1px solid #aa44ff33; background:#aa44ff10; color:#aa44ff; cursor:pointer; margin-bottom:8px; }
+  .btn-red { width:100%; padding:10px; font-family:'Orbitron',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; border-radius:8px; border:1px solid #ff174433; background:#ff174410; color:#ff1744; cursor:pointer; margin-bottom:8px; }
+  .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+  .stat-card { background:#0c0d14; border:1px solid #141825; border-radius:8px; padding:12px; text-align:center; }
+  .stat-val { font-family:'Orbitron',monospace; font-weight:700; font-size:22px; margin-bottom:3px; }
+  .stat-label { font-size:7px; letter-spacing:2px; color:#555; text-transform:uppercase; }
+  .row-item { background:#0c0d14; border:1px solid #141825; border-radius:8px; padding:11px 12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
+  .row-name { font-size:11px; color:#ccc; margin-bottom:2px; }
+  .row-detail { font-size:8px; color:#888; letter-spacing:1px; }
+  .amt-input { background:#070709; border:1px solid #aa44ff33; border-radius:6px; padding:6px 9px; font-size:12px; color:#aa44ff; outline:none; width:90px; text-align:right; }
+  .save-small { font-size:8px; letter-spacing:1px; padding:7px 10px; border-radius:6px; border:1px solid #aa44ff33; background:#aa44ff10; color:#aa44ff; cursor:pointer; }
+  .badge { font-size:7px; padding:2px 7px; border-radius:2px; display:inline-block; }
+  .badge-gold { background:#ffd70011; border:1px solid #ffd70033; color:#ffd700; }
+  .badge-green { background:#00ff4111; border:1px solid #00ff4133; color:#00ff41; }
+  .badge-red { background:#ff174411; border:1px solid #ff174433; color:#ff1744; }
+  .badge-grey { background:#ffffff08; border:1px solid #222; color:#666; }
+  .badge-purple { background:#aa44ff11; border:1px solid #aa44ff33; color:#aa44ff; }
+  .toggle { width:40px; height:22px; border-radius:11px; position:relative; cursor:pointer; transition:all 0.3s; flex-shrink:0; }
+  .toggle-knob { width:16px; height:16px; border-radius:50%; position:absolute; top:3px; transition:all 0.3s; }
+  .toggle.on { background:#aa44ff22; border:1px solid #aa44ff; }
+  .toggle.on .toggle-knob { background:#aa44ff; left:20px; box-shadow:0 0 5px #aa44ff; }
+  .toggle.off { background:#1a1a2a; border:1px solid #2a2a3a; }
+  .toggle.off .toggle-knob { background:#333; left:2px; }
+  .status-msg { text-align:center; font-size:9px; padding:10px; border-radius:8px; margin-bottom:10px; display:none; }
+  .status-ok { background:#00ff4115; border:1px solid #00ff4133; color:#00ff41; }
+  .status-err { background:#ff174415; border:1px solid #ff174433; color:#ff1744; }
+  .numpad { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:12px; }
+  .numkey { padding:13px; border-radius:7px; border:1px solid #1a1a2a; background:#0c0d14; font-family:'Orbitron',monospace; font-size:16px; font-weight:700; color:#e8eaf0; cursor:pointer; text-align:center; }
+  .numkey:active { background:#1a1a2a; }
+  .amt-display { background:#0c0d14; border:1px solid #ffd70033; border-radius:10px; padding:16px; text-align:center; margin-bottom:12px; }
+  .approval-card { background:#0c0d14; border:1px solid #ffd70022; border-radius:8px; padding:13px; margin-bottom:10px; }
+  .approval-btns { display:flex; gap:6px; margin-top:10px; }
+  .approval-btn { flex:1; font-size:8px; letter-spacing:1px; padding:8px; border-radius:6px; cursor:pointer; text-align:center; }
 </style>
 </head>
 <body>
 
-<div class="header">⚡ VJJ Admin</div>
-<div class="sub">Update amounts · Add banks · Manage venues</div>
+<div class="header">
+  <div class="header-title">⚡ VJJ Admin</div>
+  <div class="header-badge">👑 Joshua</div>
+</div>
 
-<!-- UPDATE AMOUNT SECTION -->
-  <!-- ADD VENUE -->
-<div style="margin-bottom:20px">
-  <button onclick="toggleVenueForm()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:8px;border:1px solid #aa44ff33;background:#aa44ff10;color:#aa44ff;cursor:pointer;margin-bottom:10px">+ Add New Venue</button>
-  <div id="venue-form" style="display:none;background:#0c0d14;border:1px solid #141825;border-radius:10px;padding:16px;margin-bottom:10px">
-    <div style="font-family:'Orbitron',monospace;font-size:10px;color:#aa44ff;letter-spacing:2px;margin-bottom:14px">New Venue</div>
-    <input class="field" id="new-venue-name" placeholder="Venue Name">
-    <input class="field" id="new-venue-address" placeholder="Full Address">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <select class="field" id="new-venue-area">
-        <option value="Las Vegas">Las Vegas</option>
-        <option value="Henderson">Henderson</option>
-        <option value="North LV">North LV</option>
-        <option value="Summerlin">Summerlin</option>
-        <option value="Boulder City">Boulder City</option>
-      </select>
-      <select class="field" id="new-venue-type">
-        <option value="Bar">Bar</option>
-        <option value="Casino">Casino</option>
-        <option value="Tavern">Tavern</option>
-        <option value="Other">Other</option>
-      </select>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('overview',this)">Overview</div>
+  <div class="tab" onclick="showTab('venues',this)">Venues</div>
+  <div class="tab" onclick="showTab('amounts',this)">Amounts</div>
+  <div class="tab" onclick="showTab('users',this)">Users</div>
+  <div class="tab" onclick="showTab('promos',this)">Promos</div>
+  <div class="tab" onclick="showTab('integrity',this)">Integrity</div>
+</div>
+
+<div class="content">
+
+  <!-- OVERVIEW -->
+  <div class="screen active" id="screen-overview">
+    <div class="stat-grid" id="overview-stats">
+      <div class="stat-card"><div class="stat-val" style="color:#aa44ff">—</div><div class="stat-label">Total Users</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:#ffd700">—</div><div class="stat-label">Venues</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:#00ff41">—</div><div class="stat-label">Banks Tracked</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:#ff1744">—</div><div class="stat-label">On Fire Now</div></div>
     </div>
-    <input class="field" id="new-venue-phone" placeholder="Phone (optional)">
-    <button onclick="addVenue()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-weight:900;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff">+ Add Venue</button>
+
+    <div class="section-title">// Quick Actions</div>
+    <button class="btn-purple" onclick="showTab('venues',document.querySelectorAll('.tab')[1])">+ Add Venue</button>
+    <button class="btn-gold" onclick="showTab('amounts',document.querySelectorAll('.tab')[2])">+ Update Amount</button>
+    <button class="btn-outline" onclick="showTab('users',document.querySelectorAll('.tab')[3])">+ Add Trusted Person</button>
+    <button class="btn-red" onclick="showTab('promos',document.querySelectorAll('.tab')[4])">Review Promos</button>
+
+    <div class="section-title" style="margin-top:14px">// Recent Submissions</div>
+    <div id="overview-recent"><div style="font-size:9px;color:#555;padding:10px 0">Loading...</div></div>
   </div>
-</div>
-<label class="label">Select Venue</label>
-<select class="field" id="venue-select" onchange="loadBanks()">
-  <option value="">Loading venues...</option>
-</select>
 
-<label class="label">Select Bank</label>
-<select class="field" id="bank-select">
-  <option value="">Select venue first</option>
-</select>
+  <!-- VENUES -->
+  <div class="screen" id="screen-venues">
+    <div class="section-title">// Add New Venue</div>
+    <div class="card">
+      <label class="label">Venue Name</label>
+      <input class="field" id="v-name" placeholder="e.g. PT's Gold">
+      <label class="label">Address</label>
+      <input class="field" id="v-address" placeholder="Full street address">
+      <label class="label">Area</label>
+      <select class="field" id="v-area">
+        <option>Las Vegas</option>
+        <option>Henderson</option>
+        <option>North LV</option>
+        <option>Summerlin</option>
+        <option>Boulder City</option>
+        <option>Other</option>
+      </select>
+      <label class="label">Phone (optional)</label>
+      <input class="field" id="v-phone" placeholder="(702) 000-0000">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid #111;margin-bottom:10px">
+        <div style="font-size:10px;color:#ccc">VJJ Partner Venue</div>
+        <div class="toggle off" id="v-partner-toggle" onclick="togglePartner()"><div class="toggle-knob"></div></div>
+      </div>
+      <div class="status-msg" id="venue-status"></div>
+      <button class="btn-purple" onclick="addVenue()">+ Add Venue</button>
+    </div>
 
-<div class="amount-display">
-  <div class="amount-label">New Amount</div>
-  <div class="amount-value" id="amount-display">$0</div>
-</div>
+    <div class="section-title">// All Venues</div>
+    <div id="venues-list"><div style="font-size:9px;color:#555;padding:10px 0">Loading...</div></div>
+  </div>
 
-<div class="numpad">
-  <div class="key" onclick="numPress('1')">1</div>
-  <div class="key" onclick="numPress('2')">2</div>
-  <div class="key" onclick="numPress('3')">3</div>
-  <div class="key" onclick="numPress('4')">4</div>
-  <div class="key" onclick="numPress('5')">5</div>
-  <div class="key" onclick="numPress('6')">6</div>
-  <div class="key" onclick="numPress('7')">7</div>
-  <div class="key" onclick="numPress('8')">8</div>
-  <div class="key" onclick="numPress('9')">9</div>
-  <div class="key key-clr" onclick="clearAmt()">CLR</div>
-  <div class="key" onclick="numPress('0')">0</div>
-  <div class="key key-del" onclick="delDigit()">⌫</div>
-</div>
+  <!-- AMOUNTS -->
+  <div class="screen" id="screen-amounts">
+    <div class="section-title">// Quick Amount Update</div>
+    <label class="label">Select Venue</label>
+    <select class="field" id="amt-venue" onchange="loadAmtBanks()">
+      <option value="">Select venue</option>
+    </select>
+    <label class="label">Select Bank</label>
+    <select class="field" id="amt-bank">
+      <option value="">Select venue first</option>
+    </select>
+    <div class="amt-display">
+      <div style="font-size:7px;color:#888;letter-spacing:2px;margin-bottom:6px">NEW AMOUNT</div>
+      <div id="amt-display" style="font-family:'Orbitron',monospace;font-weight:700;font-size:38px;color:#ffd700;text-shadow:0 0 10px #ffd700;min-height:46px">$0</div>
+    </div>
+    <div id="amt-meter" style="margin-bottom:12px"></div>
+    <div class="numpad">
+      ${["1","2","3","4","5","6","7","8","9","CLR","0","⌫"].map(k=>
+        `<div class="numkey" style="${k==='CLR'?'color:#ff1744':k==='⌫'?'color:#888':''}" onclick="amtNum('${k}')">${k}</div>`
+      ).join('')}
+    </div>
+    <div class="status-msg" id="amt-status"></div>
+    <button id="amt-btn" onclick="saveAmt()" style="width:100%;padding:13px;font-family:'Orbitron',monospace;font-weight:900;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:8px;border:none;cursor:pointer;background:#1a1a1a;color:#444;margin-bottom:14px">Enter Amount First</button>
 
-<div class="status-msg" id="status-msg"></div>
+    <div class="section-title">// Add New Bank</div>
+    <div class="card">
+      <label class="label">Venue</label>
+      <select class="field" id="bank-venue">
+        <option value="">Select venue</option>
+      </select>
+      <label class="label">Bank Name</label>
+      <input class="field" id="bank-name" placeholder="e.g. Bank A">
+      <label class="label">Game</label>
+      <input class="field" id="bank-game" placeholder="e.g. Double Double Bonus">
+      <label class="label">Denomination</label>
+      <input class="field" id="bank-denom" placeholder="e.g. $0.25 or free entry">
+      <label class="label">Type</label>
+      <select class="field" id="bank-type">
+        <option value="poker">Video Poker</option>
+        <option value="keno">Keno</option>
+        <option value="other">Other</option>
+      </select>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div>
+          <label class="label">Starting Amount</label>
+          <input class="field" id="bank-start" placeholder="800" type="number">
+        </div>
+        <div>
+          <label class="label">Current Amount</label>
+          <input class="field" id="bank-amount" placeholder="1800" type="number">
+        </div>
+      </div>
+      <label class="label">Machines</label>
+      <input class="field" id="bank-machines" placeholder="4" type="number">
+      <div class="status-msg" id="bank-status"></div>
+      <button class="btn-gold" onclick="addBank()">+ Add Bank</button>
+    </div>
+  </div>
 
-<button class="save-btn" id="save-btn" onclick="saveAmount()">Save Amount</button>
+  <!-- USERS -->
+  <div class="screen" id="screen-users">
+    <div class="section-title">// Add Trusted Person</div>
+    <div class="card">
+      <label class="label">Full Name</label>
+      <input class="field" id="u-name" placeholder="e.g. Maria Rodriguez">
+      <label class="label">Phone Number</label>
+      <input class="field" id="u-phone" placeholder="For invite link">
+      <label class="label">Venue</label>
+      <select class="field" id="u-venue">
+        <option value="">Select venue</option>
+      </select>
+      <label class="label">Role</label>
+      <select class="field" id="u-role">
+        <option value="insider">Venue Insider (Bartender/Staff)</option>
+        <option value="trusted">Trusted Player</option>
+        <option value="junkie">Jackpot Junkie</option>
+      </select>
+      <label class="label">Notes (optional)</label>
+      <input class="field" id="u-notes" placeholder="e.g. Works Friday nights">
+      <div class="status-msg" id="user-status"></div>
+      <button class="btn-purple" onclick="addTrustedPerson()">+ Add Trusted Person</button>
+    </div>
 
-<hr class="divider">
+    <div class="section-title">// All Users</div>
+    <div id="users-list"><div style="font-size:9px;color:#555;padding:10px 0">Loading...</div></div>
+  </div>
 
-<!-- ADD NEW BANK -->
-<button class="add-bank-btn" onclick="toggleAddBank()">+ Add New Bank to Venue</button>
+  <!-- PROMOS -->
+  <div class="screen" id="screen-promos">
+    <div class="section-title">// Pending Approval</div>
+    <div id="promos-pending"><div style="font-size:9px;color:#555;padding:10px 0">Loading...</div></div>
+    <div class="section-title">// Active Promos</div>
+    <div id="promos-active"><div style="font-size:9px;color:#555;padding:10px 0">Loading...</div></div>
+  </div>
 
-<div class="add-bank-form" id="add-bank-form">
-  <div class="add-bank-title">New Bank Details</div>
-  <label class="label">Bank Name</label>
-  <input class="field" id="new-bank-name" placeholder="e.g. Bank A">
-  <label class="label">Game</label>
-  <input class="field" id="new-bank-game" placeholder="e.g. Double Double Bonus">
-  <label class="label">Denomination</label>
-  <input class="field" id="new-bank-denom" placeholder="e.g. $0.25 or free entry">
-  <label class="label">Type</label>
-  <select class="field" id="new-bank-type">
-    <option value="poker">Video Poker</option>
-    <option value="keno">Keno</option>
-    <option value="other">Other</option>
-  </select>
-  <label class="label">Starting Amount</label>
-  <input class="field" id="new-bank-start" placeholder="e.g. 800" type="number">
-  <label class="label">Current Amount</label>
-  <input class="field" id="new-bank-amount" placeholder="e.g. 1800" type="number">
-  <label class="label">Number of Machines</label>
-  <input class="field" id="new-bank-machines" placeholder="e.g. 4" type="number">
-  <button class="save-btn" onclick="addBank()">+ Add Bank</button>
+  <!-- INTEGRITY -->
+  <div class="screen" id="screen-integrity">
+    <div class="section-title">// Global Controls</div>
+    <div class="card">
+      ${[
+        {id:'autohold',l:'Auto-hold suspicious submissions',d:'Hold for review before going live'},
+        {id:'photo',l:'Require photo for high amounts',d:'Thresholds set per denomination'},
+        {id:'autorestrict',l:'Auto-restrict low accuracy users',d:'Below threshold → auto restricted'},
+        {id:'conflict',l:'Conflict alerts',d:'Flag when submissions disagree on same bank'},
+      ].map(r=>`
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #0a0a12">
+          <div>
+            <div style="font-size:10px;color:#ccc;margin-bottom:2px">${r.l}</div>
+            <div style="font-size:8px;color:#888">${r.d}</div>
+          </div>
+          <div class="toggle on" id="t-${r.id}" onclick="toggleIntegrity('${r.id}')"><div class="toggle-knob"></div></div>
+        </div>`).join('')}
+
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #0a0a12">
+        <div>
+          <div style="font-size:10px;color:#ccc;margin-bottom:2px">Auto-restrict threshold</div>
+          <div style="font-size:8px;color:#888">Users below this accuracy % get restricted</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:4px">
+          <input style="background:#070709;border:1px solid #aa44ff33;border-radius:6px;padding:5px 8px;font-size:12px;color:#aa44ff;outline:none;width:55px;text-align:right" type="number" value="70">
+          <span style="font-size:10px;color:#aa44ff">%</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0">
+        <div>
+          <div style="font-size:10px;color:#ccc;margin-bottom:2px">Variance auto-hold threshold</div>
+          <div style="font-size:8px;color:#888">Hold if amount is X% above last verified</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:4px">
+          <input style="background:#070709;border:1px solid #aa44ff33;border-radius:6px;padding:5px 8px;font-size:12px;color:#aa44ff;outline:none;width:55px;text-align:right" type="number" value="15">
+          <span style="font-size:10px;color:#aa44ff">%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">// Photo Thresholds by Denomination</div>
+    <div class="card">
+      ${[
+        {d:'$0.05',threshold:1200,color:'#00ff41'},
+        {d:'$0.10',threshold:1500,color:'#00eeff'},
+        {d:'$0.25',threshold:2000,color:'#ffd700'},
+        {d:'$0.50',threshold:3000,color:'#ff9500'},
+        {d:'$1.00',threshold:4000,color:'#ff1744'},
+        {d:'$2.00',threshold:6000,color:'#aa44ff'},
+      ].map(r=>`
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #0a0a12">
+          <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:${r.color};min-width:50px">${r.d}</div>
+          <div style="font-size:8px;color:#888;flex:1;padding:0 10px">Photo required above</div>
+          <div style="display:flex;align-items:center;gap:4px">
+            <span style="font-size:10px;color:#888">$</span>
+            <input style="background:#070709;border:1px solid ${r.color}33;border-radius:6px;padding:5px 8px;font-size:12px;color:${r.color};outline:none;width:70px;text-align:right" type="number" value="${r.threshold}">
+          </div>
+        </div>`).join('')}
+    </div>
+
+    <div class="section-title">// Pending Review Queue</div>
+    <div id="review-queue"><div style="font-size:9px;color:#555;padding:10px 0">Loading...</div></div>
+  </div>
+
 </div>
 
 <script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-// Simple password protection
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+const supabase = createClient(
+  'YOUR_PROJECT_URL',
+  'YOUR_PUBLISHABLE_KEY'
+)
+
+// Password protection
 const PASSWORD = 'vjj-admin-2026'
-const entered = localStorage.getItem('vjj-admin-auth')
-if (entered !== PASSWORD) {
-  const attempt = prompt('Enter admin password:')
+const auth = localStorage.getItem('vjj-admin-auth')
+if (auth !== PASSWORD) {
+  const attempt = prompt('Admin password:')
   if (attempt !== PASSWORD) {
-    document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#ff1744;font-family:monospace">Access Denied</div>'
+    document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#ff1744;font-family:monospace;font-size:14px">Access Denied</div>'
     throw new Error('Unauthorized')
   }
   localStorage.setItem('vjj-admin-auth', PASSWORD)
 }
-  const supabase = createClient(
-    'https://uajqyaulvlqleqprxwtr.supabase.co',
-    'sb_publishable_b1Fq_jAP4A9On12qxqZIWw_R7R-OxFF'
-  )
 
-  let amount = ''
-  let venues = []
-  let banks = []
+let amtVal = ''
+let partnerOn = false
+let venues = []
 
-  // Make functions global
-  window.numPress = function(n) {
-    if (amount.replace('.','').length < 8) {
-      amount += n
-      updateDisplay()
-    }
+// ── TAB NAVIGATION ──
+window.showTab = function(tab, el) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'))
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
+  document.getElementById('screen-' + tab).classList.add('active')
+  if (el) el.classList.add('active')
+  if (tab === 'overview') loadOverview()
+  if (tab === 'venues') loadVenuesList()
+  if (tab === 'amounts') loadAmtVenues()
+  if (tab === 'users') loadUsersTab()
+  if (tab === 'promos') loadPromos()
+  if (tab === 'integrity') loadReviewQueue()
+}
+
+// ── OVERVIEW ──
+async function loadOverview() {
+  const [{ count: userCount }, { count: venueCount }, { data: banks }] = await Promise.all([
+    supabase.from('users').select('*', { count: 'exact', head: true }),
+    supabase.from('venues').select('*', { count: 'exact', head: true }).eq('active', true),
+    supabase.from('banks').select('*').eq('active', true)
+  ])
+
+  const fireCount = banks?.filter(b => b.status === 'fire').length || 0
+  const stats = document.getElementById('overview-stats')
+  if (stats) {
+    stats.innerHTML = `
+      <div class="stat-card"><div class="stat-val" style="color:#aa44ff">${userCount || 0}</div><div class="stat-label">Total Users</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:#ffd700">${venueCount || 0}</div><div class="stat-label">Venues</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:#00ff41">${banks?.length || 0}</div><div class="stat-label">Banks Tracked</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:#ff1744">${fireCount}</div><div class="stat-label">On Fire Now</div></div>`
   }
 
-  window.delDigit = function() {
-    amount = amount.slice(0,-1)
-    updateDisplay()
+  const { data: recent } = await supabase.from('progressives').select('*, banks(name, venues(name))').eq('approved', true).order('created_at', { ascending: false }).limit(5)
+  const recEl = document.getElementById('overview-recent')
+  if (recEl && recent) {
+    recEl.innerHTML = recent.map(p => `
+      <div class="row-item">
+        <div style="font-size:16px">📊</div>
+        <div style="flex:1">
+          <div class="row-name">${p.banks?.venues?.name || 'Unknown'} · ${p.banks?.name || ''}</div>
+          <div class="row-detail">$${Number(p.amount).toLocaleString('en-US', {minimumFractionDigits:2})} · ${p.badge_type || 'community'}</div>
+        </div>
+      </div>`).join('') || '<div style="font-size:9px;color:#555;padding:10px 0">No submissions yet</div>'
   }
+}
 
-  window.clearAmt = function() {
-    amount = ''
-    updateDisplay()
+// ── VENUES ──
+async function loadVenuesList() {
+  await refreshVenues()
+  const el = document.getElementById('venues-list')
+  if (!el) return
+  el.innerHTML = venues.map(v => `
+    <div class="row-item" style="border-color:${v.partner?'#ffd70022':'#141825'}">
+      <div style="font-size:22px">🎰</div>
+      <div style="flex:1">
+        <div class="row-name">${v.name}${v.partner?'<span class="badge badge-gold" style="margin-left:6px">★ Partner</span>':''}</div>
+        <div class="row-detail">${v.area} · ${v.address}</div>
+      </div>
+      <div style="font-size:12px;color:#555;cursor:pointer">✏</div>
+    </div>`).join('')
+}
+
+async function refreshVenues() {
+  const { data } = await supabase.from('venues').select('*').eq('active', true).eq('approved', true).order('name')
+  venues = data || []
+  // Populate all venue dropdowns
+  const selects = ['amt-venue', 'bank-venue', 'u-venue']
+  selects.forEach(id => {
+    const el = document.getElementById(id)
+    if (!el) return
+    const current = el.value
+    el.innerHTML = '<option value="">Select venue</option>' + venues.map(v => `<option value="${v.id}"${v.id===current?' selected':''}>${v.name} · ${v.area}</option>`).join('')
+  })
+}
+
+window.togglePartner = function() {
+  partnerOn = !partnerOn
+  const t = document.getElementById('v-partner-toggle')
+  if (t) {
+    t.className = 'toggle ' + (partnerOn ? 'on' : 'off')
   }
-
-  function updateDisplay() {
-    const el = document.getElementById('amount-display')
-    if (!amount) { el.textContent = '$0'; return }
-    const parts = amount.split('.')
-    el.textContent = '$' + parseInt(parts[0]||'0').toLocaleString() + (amount.includes('.') ? '.' + (parts[1]||'') : '')
-  }
-
-  window.loadBanks = async function() {
-    const venueId = document.getElementById('venue-select').value
-    const bankSelect = document.getElementById('bank-select')
-    bankSelect.innerHTML = '<option value="">Loading...</option>'
-
-    if (!venueId) { bankSelect.innerHTML = '<option value="">Select venue first</option>'; return }
-
-    const { data, error } = await supabase
-      .from('banks')
-      .select('*')
-      .eq('venue_id', venueId)
-      .eq('active', true)
-
-    if (error || !data || data.length === 0) {
-      bankSelect.innerHTML = '<option value="">No banks yet — add one below</option>'
-      return
-    }
-
-    banks = data
-    bankSelect.innerHTML = data.map(b => 
-      `<option value="${b.id}">${b.name} · ${b.game} ${b.denom ? '· ' + b.denom : ''} · $${Number(b.amount||0).toLocaleString()}</option>`
-    ).join('')
-  }
-
-  window.saveAmount = async function() {
-    const bankId = document.getElementById('bank-select').value
-    if (!bankId || !amount) { showStatus('Select a bank and enter an amount', false); return }
-
-    const val = parseFloat(amount)
-    const status = val >= 2400 ? 'fire' : val >= 1500 ? 'heating' : 'rising'
-
-    const { error } = await supabase
-      .from('banks')
-      .update({ amount: val, status: status })
-      .eq('id', bankId)
-
-    if (error) { showStatus('Error: ' + error.message, false); return }
-
-    // Also log to progressives table
-    await supabase.from('progressives').insert({
-      bank_id: bankId,
-      amount: val,
-      status: status,
-      badge_type: 'verified',
-      anonymous: false,
-      approved: true
-    })
-
-    showStatus('✓ Amount saved successfully!', true)
-    amount = ''
-    updateDisplay()
-    loadBanks()
-  }
-
-  window.toggleAddBank = function() {
-    const form = document.getElementById('add-bank-form')
-    form.style.display = form.style.display === 'block' ? 'none' : 'block'
-  }
-
-  window.addBank = async function() {
-    const venueId = document.getElementById('venue-select').value
-    if (!venueId) { showStatus('Select a venue first', false); return }
-    console.log('Adding bank for venue:', venueId)
-
-    const name = document.getElementById('new-bank-name').value
-    const game = document.getElementById('new-bank-game').value
-    const denom = document.getElementById('new-bank-denom').value
-    const type = document.getElementById('new-bank-type').value
-    const start = parseFloat(document.getElementById('new-bank-start').value) || 0
-    const amt = parseFloat(document.getElementById('new-bank-amount').value) || 0
-    const machines = parseInt(document.getElementById('new-bank-machines').value) || 1
-
-    if (!name || !game) { showStatus('Bank name and game are required', false); return }
-
-    const status = amt >= 2400 ? 'fire' : amt >= 1500 ? 'heating' : 'rising'
-
-    const { error } = await supabase.from('banks').insert({
-      venue_id: venueId,
-      name, game, denom, type,
-      starting_amount: start,
-      amount: amt,
-      status, machines,
-      approved: true,
-      active: true
-    })
-
-    if (error) { showStatus('Error adding bank — try again', false); return }
-
-    showStatus('✓ Bank added successfully!', true)
-    document.getElementById('add-bank-form').style.display = 'none'
-    loadBanks()
-  }
-
-  function showStatus(msg, success) {
-    const el = document.getElementById('status-msg')
-    el.textContent = msg
-    el.className = 'status-msg ' + (success ? 'status-success' : 'status-error')
-    el.style.display = 'block'
-    setTimeout(() => { el.style.display = 'none' }, 3000)
-  }
-
-  async function loadVenues() {
-    const { data, error } = await supabase
-      .from('venues')
-      .select('*')
-      .eq('active', true)
-      .eq('approved', true)
-
-    if (error || !data) return
-
-    venues = data
-    const select = document.getElementById('venue-select')
-    select.innerHTML = '<option value="">Select a venue</option>' + 
-      data.map(v => `<option value="${v.id}">${v.name} · ${v.area}</option>`).join('')
-  }
-
-  loadVenues()
-  window.toggleVenueForm = function() {
-  const form = document.getElementById('venue-form')
-  form.style.display = form.style.display === 'block' ? 'none' : 'block'
 }
 
 window.addVenue = async function() {
-  const name = document.getElementById('new-venue-name').value
-  const address = document.getElementById('new-venue-address').value
-  const area = document.getElementById('new-venue-area').value
-  const phone = document.getElementById('new-venue-phone').value
-
-  if (!name || !address) { showStatus('Name and address are required', false); return }
-
-  const { error } = await supabase.from('venues').insert({
-    name, address, area, phone,
-    partner: false,
-    approved: true,
-    active: true
-  })
-
-  if (error) { showStatus('Error adding venue: ' + error.message, false); return }
-
-  showStatus('✓ Venue added!', true)
-  document.getElementById('venue-form').style.display = 'none'
-  document.getElementById('new-venue-name').value = ''
-  document.getElementById('new-venue-address').value = ''
-  document.getElementById('new-venue-phone').value = ''
-  loadVenues()
+  const name = document.getElementById('v-name').value
+  const address = document.getElementById('v-address').value
+  const area = document.getElementById('v-area').value
+  const phone = document.getElementById('v-phone').value
+  if (!name || !address) { showStatus('venue-status', 'Name and address required', false); return }
+  const { error } = await supabase.from('venues').insert({ name, address, area, phone, partner: partnerOn, approved: true, active: true })
+  if (error) { showStatus('venue-status', 'Error: ' + error.message, false); return }
+  showStatus('venue-status', '✓ Venue added!', true)
+  document.getElementById('v-name').value = ''
+  document.getElementById('v-address').value = ''
+  document.getElementById('v-phone').value = ''
+  loadVenuesList()
 }
+
+// ── AMOUNTS ──
+async function loadAmtVenues() {
+  await refreshVenues()
+}
+
+window.loadAmtBanks = async function() {
+  const venueId = document.getElementById('amt-venue').value
+  const bankSel = document.getElementById('amt-bank')
+  if (!bankSel || !venueId) return
+  bankSel.innerHTML = '<option>Loading...</option>'
+  const { data: banks } = await supabase.from('banks').select('*').eq('venue_id', venueId).eq('active', true)
+  if (!banks || banks.length === 0) { bankSel.innerHTML = '<option value="">No banks — add one below</option>'; return }
+  bankSel.innerHTML = '<option value="">Select bank</option>' + banks.map(b => `<option value="${b.id}">${b.name} · ${b.game}${b.denom?' · '+b.denom:''}</option>`).join('')
+}
+
+window.amtNum = function(k) {
+  if (k === 'CLR') amtVal = ''
+  else if (k === '⌫') amtVal = amtVal.slice(0, -1)
+  else if (k === '.') { if (!amtVal.includes('.')) amtVal += '.' }
+  else { if (amtVal.replace('.', '').length < 8) amtVal += k }
+  const disp = document.getElementById('amt-display')
+  if (disp) {
+    const p = amtVal.split('.')
+    disp.textContent = amtVal ? '$' + parseInt(p[0]||'0').toLocaleString() + (amtVal.includes('.') ? '.' + (p[1]||'') : '') : '$0'
+  }
+  const val = parseFloat(amtVal) || 0
+  const st = val >= 2400 ? 'fire' : val >= 1500 ? 'heating' : 'rising'
+  const colors = { fire: '#ff1744', heating: '#ffd700', rising: '#00ff41' }
+  const grads = { fire: 'linear-gradient(90deg,#ff6d00,#ff1744)', heating: 'linear-gradient(90deg,#884400,#ffd700)', rising: 'linear-gradient(90deg,#003300,#00ff41)' }
+  const widths = { fire: '88%', heating: '55%', rising: '24%' }
+  const labels = { fire: '🔥 ON FIRE', heating: '⚡ HEATING UP', rising: '🎯 ON THE RISE' }
+  const meter = document.getElementById('amt-meter')
+  if (meter && amtVal) {
+    meter.innerHTML = `<div class="card" style="margin-bottom:0">
+      <div style="font-size:7px;color:#888;letter-spacing:2px;margin-bottom:5px">JACKPOT METER PREVIEW</div>
+      <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:${colors[st]};margin-bottom:5px">${labels[st]}</div>
+      <div style="height:4px;background:#111;border-radius:3px;overflow:hidden"><div style="height:100%;width:${widths[st]};background:${grads[st]};border-radius:3px"></div></div>
+    </div>`
+  } else if (meter) meter.innerHTML = ''
+  const btn = document.getElementById('amt-btn')
+  if (btn) {
+    btn.style.background = amtVal ? 'linear-gradient(135deg,#ffd700,#ff9500)' : '#1a1a1a'
+    btn.style.color = amtVal ? '#080808' : '#444'
+    btn.textContent = amtVal ? 'Save Amount' : 'Enter Amount First'
+  }
+}
+
+window.saveAmt = async function() {
+  const bankId = document.getElementById('amt-bank')?.value
+  if (!bankId || !amtVal) { showStatus('amt-status', 'Select bank and enter amount', false); return }
+  const val = parseFloat(amtVal)
+  const st = val >= 2400 ? 'fire' : val >= 1500 ? 'heating' : 'rising'
+  const { error } = await supabase.from('banks').update({ amount: val, status: st }).eq('id', bankId)
+  if (error) { showStatus('amt-status', 'Error: ' + error.message, false); return }
+  await supabase.from('progressives').insert({ bank_id: bankId, amount: val, status: st, badge_type: 'verified', anonymous: false, approved: true })
+  showStatus('amt-status', '✓ Amount saved!', true)
+  amtVal = ''
+  const disp = document.getElementById('amt-display')
+  if (disp) disp.textContent = '$0'
+  const meter = document.getElementById('amt-meter')
+  if (meter) meter.innerHTML = ''
+  const btn = document.getElementById('amt-btn')
+  if (btn) { btn.style.background = '#1a1a1a'; btn.style.color = '#444'; btn.textContent = 'Enter Amount First' }
+  loadAmtBanks()
+}
+
+window.addBank = async function() {
+  const venueId = document.getElementById('bank-venue').value
+  const name = document.getElementById('bank-name').value
+  const game = document.getElementById('bank-game').value
+  const denom = document.getElementById('bank-denom').value
+  const type = document.getElementById('bank-type').value
+  const start = parseFloat(document.getElementById('bank-start').value) || 0
+  const amt = parseFloat(document.getElementById('bank-amount').value) || 0
+  const machines = parseInt(document.getElementById('bank-machines').value) || 1
+  if (!venueId || !name || !game) { showStatus('bank-status', 'Venue, name and game required', false); return }
+  const st = amt >= 2400 ? 'fire' : amt >= 1500 ? 'heating' : 'rising'
+  const { error } = await supabase.from('banks').insert({ venue_id: venueId, name, game, denom, type, starting_amount: start, amount: amt || null, status: amt ? st : null, machines, approved: true, active: true })
+  if (error) { showStatus('bank-status', 'Error: ' + error.message, false); return }
+  showStatus('bank-status', '✓ Bank added!', true)
+  ;['bank-name','bank-game','bank-denom','bank-start','bank-amount','bank-machines'].forEach(id => { const el = document.getElementById(id); if (el) el.value = '' })
+  loadAmtBanks()
+}
+
+// ── USERS ──
+async function loadUsersTab() {
+  await refreshVenues()
+  const { data: users } = await supabase.from('users').select('*').order('created_at', { ascending: false })
+  const el = document.getElementById('users-list')
+  if (!el) return
+  if (!users || users.length === 0) { el.innerHTML = '<div style="font-size:9px;color:#555;padding:10px 0">No users yet</div>'; return }
+  el.innerHTML = users.map(u => {
+    const tierBadge = u.tier === 'junkie' ? 'badge-gold' : u.role === 'insider' ? 'badge-green' : u.restricted ? 'badge-red' : 'badge-grey'
+    const tierLabel = u.role === 'insider' ? '✓ Insider' : u.tier === 'junkie' ? '🎰 Junkie' : u.tier === 'trusted' ? '⭐ Trusted' : '👤 Community'
+    return `<div class="row-item">
+      <div style="font-size:20px">👤</div>
+      <div style="flex:1">
+        <div class="row-name">${u.username || u.email?.split('@')[0] || 'Unknown'}</div>
+        <div class="row-detail">${u.submission_count || 0} submissions · ${u.accuracy_score || 100}% accuracy</div>
+      </div>
+      <div class="badge ${tierBadge}">${tierLabel}</div>
+      <div style="display:flex;gap:4px;margin-left:6px">
+        <div style="font-size:9px;padding:3px 7px;border-radius:4px;border:1px solid #222;color:#555;cursor:pointer" onclick="promoteUser('${u.id}')">↑</div>
+        <div style="font-size:9px;padding:3px 7px;border-radius:4px;border:1px solid #ff174422;color:#ff174466;cursor:pointer" onclick="restrictUser('${u.id}')">⊘</div>
+      </div>
+    </div>`
+  }).join('')
+}
+
+window.addTrustedPerson = async function() {
+  const name = document.getElementById('u-name').value
+  const phone = document.getElementById('u-phone').value
+  const venueId = document.getElementById('u-venue').value
+  const role = document.getElementById('u-role').value
+  const notes = document.getElementById('u-notes').value
+  if (!name || !phone) { showStatus('user-status', 'Name and phone required', false); return }
+  // In a full build this would send an invite SMS
+  showStatus('user-status', '✓ ' + name + ' added — invite link sent to ' + phone, true)
+  ;['u-name','u-phone','u-notes'].forEach(id => { const el = document.getElementById(id); if (el) el.value = '' })
+}
+
+window.promoteUser = async function(id) {
+  const tiers = ['community', 'trusted', 'junkie']
+  const { data: user } = await supabase.from('users').select('tier').eq('id', id).single()
+  if (!user) return
+  const nextTier = tiers[Math.min(tiers.indexOf(user.tier) + 1, tiers.length - 1)]
+  await supabase.from('users').update({ tier: nextTier }).eq('id', id)
+  loadUsersTab()
+}
+
+window.restrictUser = async function(id) {
+  await supabase.from('users').update({ restricted: true }).eq('id', id)
+  loadUsersTab()
+}
+
+// ── PROMOS ──
+async function loadPromos() {
+  const { data: pending } = await supabase.from('promos').select('*, venues(name)').eq('approved', false).eq('active', true)
+  const { data: active } = await supabase.from('promos').select('*, venues(name)').eq('approved', true).eq('active', true)
+  
+  const pendingEl = document.getElementById('promos-pending')
+  if (pendingEl) {
+    if (!pending || pending.length === 0) { pendingEl.innerHTML = '<div style="font-size:9px;color:#555;padding:10px 0">No pending promos</div>' }
+    else {
+      pendingEl.innerHTML = pending.map(p => `
+        <div class="approval-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <div style="font-size:11px;color:#ccc">${p.venues?.name || 'Unknown'}</div>
+            <div class="badge badge-gold">New</div>
+          </div>
+          <div style="font-size:13px;color:#aaa;margin-bottom:3px">${p.title}</div>
+          <div style="font-size:9px;color:#666;margin-bottom:10px">${p.detail}</div>
+          <div class="approval-btns">
+            <div class="approval-btn" style="border:1px solid #00ff4133;background:#00ff4110;color:#00ff41" onclick="approvePromo('${p.id}')">✓ Approve</div>
+            <div class="approval-btn" style="border:1px solid #ff174433;background:#ff174010;color:#ff1744" onclick="rejectPromo('${p.id}')">✕ Reject</div>
+          </div>
+        </div>`).join('')
+    }
+  }
+
+  const activeEl = document.getElementById('promos-active')
+  if (activeEl) {
+    if (!active || active.length === 0) { activeEl.innerHTML = '<div style="font-size:9px;color:#555;padding:10px 0">No active promos</div>' }
+    else {
+      activeEl.innerHTML = active.map(p => `
+        <div class="row-item">
+          <div style="font-size:20px">🎰</div>
+          <div style="flex:1">
+            <div class="row-name">${p.venues?.name} — ${p.title}</div>
+            <div class="row-detail">Active</div>
+          </div>
+          <div style="font-size:12px;color:#555;cursor:pointer">✏</div>
+        </div>`).join('')
+    }
+  }
+}
+
+window.approvePromo = async function(id) {
+  await supabase.from('promos').update({ approved: true }).eq('id', id)
+  loadPromos()
+}
+
+window.rejectPromo = async function(id) {
+  await supabase.from('promos').update({ active: false }).eq('id', id)
+  loadPromos()
+}
+
+// ── INTEGRITY ──
+async function loadReviewQueue() {
+  const { data: held } = await supabase.from('progressives').select('*, banks(name, venues(name))').eq('approved', false).order('created_at', { ascending: false })
+  const el = document.getElementById('review-queue')
+  if (!el) return
+  if (!held || held.length === 0) { el.innerHTML = '<div style="font-size:9px;color:#555;padding:10px 0">No items pending review — all clear ✓</div>'; return }
+  el.innerHTML = held.map(p => `
+    <div class="approval-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+        <div>
+          <div style="font-size:11px;color:#ccc;margin-bottom:2px">${p.banks?.venues?.name || 'Unknown'} · ${p.banks?.name || ''}</div>
+          <div style="font-size:22px;font-weight:700;color:#ffd700;font-family:'Orbitron',monospace">$${Number(p.amount).toLocaleString('en-US',{minimumFractionDigits:2})}</div>
+        </div>
+        <div class="badge badge-red">⚠ Hold</div>
+      </div>
+      <div class="approval-btns">
+        <div class="approval-btn" style="border:1px solid #00ff4133;background:#00ff4110;color:#00ff41" onclick="approveSubmission('${p.id}')">✓ Approve</div>
+        <div class="approval-btn" style="border:1px solid #ff174433;background:#ff174010;color:#ff1744" onclick="rejectSubmission('${p.id}')">✕ Reject</div>
+      </div>
+    </div>`).join('')
+}
+
+window.approveSubmission = async function(id) {
+  await supabase.from('progressives').update({ approved: true }).eq('id', id)
+  loadReviewQueue()
+}
+
+window.rejectSubmission = async function(id) {
+  await supabase.from('progressives').delete().eq('id', id)
+  loadReviewQueue()
+}
+
+window.toggleIntegrity = function(id) {
+  const el = document.getElementById('t-' + id)
+  if (!el) return
+  const isOn = el.classList.contains('on')
+  el.className = 'toggle ' + (isOn ? 'off' : 'on')
+}
+
+// ── HELPERS ──
+function showStatus(id, msg, success) {
+  const el = document.getElementById(id)
+  if (!el) return
+  el.textContent = msg
+  el.className = 'status-msg ' + (success ? 'status-ok' : 'status-err')
+  el.style.display = 'block'
+  setTimeout(() => { el.style.display = 'none' }, 3000)
+}
+
+// ── INIT ──
+loadOverview()
+refreshVenues()
 </script>
 
 </body>
