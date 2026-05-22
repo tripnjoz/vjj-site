@@ -41,6 +41,32 @@
 <div class="sub">Update amounts · Add banks · Manage venues</div>
 
 <!-- UPDATE AMOUNT SECTION -->
+  <!-- ADD VENUE -->
+<div style="margin-bottom:20px">
+  <button onclick="toggleVenueForm()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:8px;border:1px solid #aa44ff33;background:#aa44ff10;color:#aa44ff;cursor:pointer;margin-bottom:10px">+ Add New Venue</button>
+  <div id="venue-form" style="display:none;background:#0c0d14;border:1px solid #141825;border-radius:10px;padding:16px;margin-bottom:10px">
+    <div style="font-family:'Orbitron',monospace;font-size:10px;color:#aa44ff;letter-spacing:2px;margin-bottom:14px">New Venue</div>
+    <input class="field" id="new-venue-name" placeholder="Venue Name">
+    <input class="field" id="new-venue-address" placeholder="Full Address">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <select class="field" id="new-venue-area">
+        <option value="Las Vegas">Las Vegas</option>
+        <option value="Henderson">Henderson</option>
+        <option value="North LV">North LV</option>
+        <option value="Summerlin">Summerlin</option>
+        <option value="Boulder City">Boulder City</option>
+      </select>
+      <select class="field" id="new-venue-type">
+        <option value="Bar">Bar</option>
+        <option value="Casino">Casino</option>
+        <option value="Tavern">Tavern</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <input class="field" id="new-venue-phone" placeholder="Phone (optional)">
+    <button onclick="addVenue()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-weight:900;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff">+ Add Venue</button>
+  </div>
+</div>
 <label class="label">Select Venue</label>
 <select class="field" id="venue-select" onchange="loadBanks()">
   <option value="">Loading venues...</option>
@@ -267,6 +293,35 @@ if (entered !== PASSWORD) {
   }
 
   loadVenues()
+  window.toggleVenueForm = function() {
+  const form = document.getElementById('venue-form')
+  form.style.display = form.style.display === 'block' ? 'none' : 'block'
+}
+
+window.addVenue = async function() {
+  const name = document.getElementById('new-venue-name').value
+  const address = document.getElementById('new-venue-address').value
+  const area = document.getElementById('new-venue-area').value
+  const phone = document.getElementById('new-venue-phone').value
+
+  if (!name || !address) { showStatus('Name and address are required', false); return }
+
+  const { error } = await supabase.from('venues').insert({
+    name, address, area, phone,
+    partner: false,
+    approved: true,
+    active: true
+  })
+
+  if (error) { showStatus('Error adding venue: ' + error.message, false); return }
+
+  showStatus('✓ Venue added!', true)
+  document.getElementById('venue-form').style.display = 'none'
+  document.getElementById('new-venue-name').value = ''
+  document.getElementById('new-venue-address').value = ''
+  document.getElementById('new-venue-phone').value = ''
+  loadVenues()
+}
 </script>
 
 </body>
