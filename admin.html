@@ -186,7 +186,7 @@ if (entered !== PASSWORD) {
       .update({ amount: val, status: status })
       .eq('id', bankId)
 
-    if (error) { showStatus('Error saving — try again', false); return }
+    if (error) { showStatus('Error: ' + error.message, false); return }
 
     // Also log to progressives table
     await supabase.from('progressives').insert({
