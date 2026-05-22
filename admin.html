@@ -615,7 +615,7 @@ async function loadOverview() {
     <div class="stat-card"><div class="stat-val" style="color:#ffd700">${vc||0}</div><div class="stat-lbl">Venues</div></div>
     <div class="stat-card"><div class="stat-val" style="color:#00ff41">${banks?.length||0}</div><div class="stat-lbl">Banks</div></div>
     <div class="stat-card"><div class="stat-val" style="color:#ff1744">${fire}</div><div class="stat-lbl">On Fire</div></div>`
-  const { data: recent } = await supabase.from('progressives').select('amount, badge_type, banks(name, venues(name))').eq('approved',true).order('created_at',{ascending:false}).limit(5)
+  const { data: recent } = await supabase.from('progressives').select('amount, badge_type, bank_id').eq('approved',true).order('created_at',{ascending:false}).limit(5)
   const re = document.getElementById('ov-recent')
   if (re) re.innerHTML = (!recent||recent.length===0)
     ? '<div style="font-size:10px;color:#aaa;padding:10px 0">No submissions yet</div>'
@@ -623,7 +623,7 @@ async function loadOverview() {
       <div class="row">
         <div style="font-size:16px">📊</div>
         <div style="flex:1">
-          <div class="row-name">${p.banks?.venues?.name||'Unknown'} · ${p.banks?.name||''}</div>
+          <div class="row-name">${'Submission'||'Unknown'} · ${'Submission'||''}</div>
           <div class="row-detail">$${Number(p.amount).toLocaleString('en-US',{minimumFractionDigits:2})} · ${p.badge_type||'community'}</div>
         </div>
       </div>`).join('')
