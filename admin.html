@@ -105,7 +105,17 @@
 
 <script type="module">
   import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
+// Simple password protection
+const PASSWORD = 'vjj-admin-2026'
+const entered = localStorage.getItem('vjj-admin-auth')
+if (entered !== PASSWORD) {
+  const attempt = prompt('Enter admin password:')
+  if (attempt !== PASSWORD) {
+    document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#ff1744;font-family:monospace">Access Denied</div>'
+    throw new Error('Unauthorized')
+  }
+  localStorage.setItem('vjj-admin-auth', PASSWORD)
+}
   const supabase = createClient(
     'https://uajqyaulvlqleqprxwtr.supabase.co',
     'sb_publishable_b1Fq_jAP4A9On12qxqZIWw_R7R-OxFF'
