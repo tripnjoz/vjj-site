@@ -9,32 +9,40 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   html,body { background:#070709; }
   body { font-family:'Share Tech Mono',monospace; color:#e8eaf0; min-height:100vh; max-width:430px; margin:0 auto; }
-  .header { position:sticky; top:0; z-index:100; background:rgba(7,7,9,0.97); border-bottom:1px solid #111; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
+  .header { position:sticky; top:0; z-index:100; background:rgba(7,7,9,0.97); border-bottom:1px solid #222; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
   .logo { font-family:'Orbitron',monospace; font-weight:900; line-height:1.1; }
-  .logo-vegas { color:#ffd700; text-shadow:0 0 8px #ffd700; font-size:13px; letter-spacing:2px; display:block; }
-  .logo-jackpot { color:#00ff41; text-shadow:0 0 6px #00ff41; font-size:9px; letter-spacing:3px; display:block; }
-  .logo-junkies { color:#ff1744; text-shadow:0 0 8px #ff1744; font-size:14px; letter-spacing:2px; display:block; }
-  .live { font-size:9px; color:#ff1744; letter-spacing:2px; }
-  .loading { text-align:center; padding:40px; font-size:10px; color:#555; letter-spacing:2px; }
-  .venue-card { margin:0 12px 10px; background:#0c0d14; border:1px solid #141825; border-radius:10px; padding:14px; cursor:pointer; transition:all 0.2s; }
+  .logo-vegas { color:#ffd700; text-shadow:0 0 8px #ffd700; font-size:14px; letter-spacing:2px; display:block; }
+  .logo-jackpot { color:#00ff41; text-shadow:0 0 6px #00ff41; font-size:10px; letter-spacing:3px; display:block; }
+  .logo-junkies { color:#ff1744; text-shadow:0 0 8px #ff1744; font-size:15px; letter-spacing:2px; display:block; }
+  .live { font-size:10px; color:#ff1744; letter-spacing:2px; text-shadow:0 0 6px #ff1744; }
+  .loading { text-align:center; padding:40px; font-size:11px; color:#aaa; letter-spacing:2px; }
+  .section-title { font-family:'Orbitron',monospace; font-size:10px; letter-spacing:3px; color:#888; text-transform:uppercase; padding:14px 12px 8px; }
+  .venue-card { margin:0 12px 12px; background:#0c0d14; border:1px solid #1a1a2a; border-radius:10px; padding:14px; cursor:pointer; transition:all 0.2s; }
   .venue-card:active { transform:scale(0.98); }
   .venue-top { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
-  .venue-icon { font-size:26px; }
-  .venue-name { font-size:13px; color:#ccc; letter-spacing:1px; margin-bottom:3px; }
-  .venue-area { font-size:8px; color:#888; letter-spacing:1px; }
-  .venue-badge { font-size:7px; padding:1px 6px; border-radius:2px; background:#ffd70011; border:1px solid #ffd70033; color:#ffd700; margin-left:6px; }
-  .venue-address { font-size:8px; color:#555; letter-spacing:1px; margin-bottom:6px; }
-  .venue-footer { display:flex; justify-content:space-between; align-items:center; }
-  .venue-status { font-size:8px; color:#00ff41; letter-spacing:1px; }
-  .venue-arrow { color:#555; font-size:16px; }
-  .section-title { font-family:'Orbitron',monospace; font-size:9px; letter-spacing:3px; color:#555; text-transform:uppercase; padding:12px 12px 8px; }
-  .disclaimer { font-size:8px; color:#333; letter-spacing:1px; text-align:center; padding:16px; line-height:2; }
-  .bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:430px; background:rgba(7,7,9,0.97); border-top:1px solid #111; padding:10px 0 20px; display:flex; justify-content:space-around; }
+  .venue-icon { font-size:28px; }
+  .venue-name { font-size:14px; color:#e8eaf0; letter-spacing:1px; margin-bottom:3px; font-weight:700; }
+  .venue-area { font-size:10px; color:#aaa; letter-spacing:1px; }
+  .venue-badge { font-size:8px; padding:2px 7px; border-radius:2px; background:#ffd70011; border:1px solid #ffd70033; color:#ffd700; margin-left:6px; }
+  .venue-address { font-size:10px; color:#888; letter-spacing:1px; margin-bottom:8px; }
+  .venue-phone { font-size:10px; color:#666; letter-spacing:1px; margin-bottom:8px; }
+  .venue-footer { display:flex; justify-content:space-between; align-items:center; padding-top:8px; border-top:1px solid #111; }
+  .venue-status { font-size:9px; color:#00ff41; letter-spacing:1px; text-shadow:0 0 5px #00ff41; }
+  .venue-arrow { color:#888; font-size:18px; }
+  .no-data { font-size:9px; color:#555; letter-spacing:1px; padding:8px 0; }
+  .bank-row { padding:8px 0; border-bottom:1px solid #0a0a12; }
+  .bank-row:last-child { border-bottom:none; }
+  .bank-name { font-size:9px; color:#aaa; letter-spacing:1px; margin-bottom:4px; }
+  .bank-amount { font-family:'Orbitron',monospace; font-weight:700; font-size:22px; letter-spacing:1px; }
+  .bank-game { font-size:8px; color:#888; letter-spacing:1px; }
+  .bank-status { font-size:8px; letter-spacing:1px; }
+  .disclaimer { font-size:8px; color:#555; letter-spacing:1px; text-align:center; padding:16px; line-height:2; }
+  .bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:430px; background:rgba(7,7,9,0.97); border-top:1px solid #222; padding:10px 0 20px; display:flex; justify-content:space-around; }
   .nav-tab { display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; padding:2px 12px; }
   .nav-icon { font-size:20px; opacity:0.5; }
   .nav-icon.active { opacity:1; }
-  .nav-label { font-size:7px; letter-spacing:1px; color:#777; text-transform:uppercase; }
-  .nav-label.active { color:#ffd700; }
+  .nav-label { font-size:8px; letter-spacing:1px; color:#777; text-transform:uppercase; }
+  .nav-label.active { color:#ffd700; text-shadow:0 0 5px #ffd700; }
   .content { padding-bottom:90px; }
 </style>
 </head>
@@ -47,7 +55,7 @@
     <span class="logo-junkies">JUNKIES</span>
   </div>
   <div class="live">● LIVE</div>
-  <div style="font-size:16px;opacity:0.5;cursor:pointer">👤</div>
+  <div style="font-size:18px;opacity:0.7;cursor:pointer">👤</div>
 </div>
 
 <div class="content">
@@ -91,24 +99,34 @@
     'sb_publishable_b1Fq_jAP4A9On12qxqZIWw_R7R-OxFF'
   )
 
+  function getAmountColor(status, type) {
+    if (type === 'keno') return status === 'fire' ? '#00eeff' : '#00aaff'
+    return status === 'fire' ? '#ff1744' : status === 'heating' ? '#ffd700' : '#00ff41'
+  }
+
+  function getStatusLabel(status) {
+    if (status === 'fire') return '🔥 ON FIRE'
+    if (status === 'heating') return '⚡ HEATING UP'
+    return '🎯 ON THE RISE'
+  }
+
+  function formatAmount(n) {
+    return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  }
+
   async function loadVenues() {
-    const { data, error } = await supabase
+    const { data: venues, error } = await supabase
       .from('venues')
       .select('*')
       .eq('active', true)
       .eq('approved', true)
 
-    if (error) {
-      document.getElementById('venues-list').innerHTML = '<div class="loading">Error loading venues</div>'
+    if (error || !venues || venues.length === 0) {
+      document.getElementById('venues-list').innerHTML = '<div class="loading">No venues found</div>'
       return
     }
 
-    if (!data || data.length === 0) {
-      document.getElementById('venues-list').innerHTML = '<div class="loading">No venues yet</div>'
-      return
-    }
-
-    const html = data.map(venue => `
+    const html = venues.map(venue => `
       <div class="venue-card">
         <div class="venue-top">
           <div class="venue-icon">🎰</div>
@@ -121,6 +139,10 @@
           </div>
         </div>
         <div class="venue-address">📍 ${venue.address}</div>
+        ${venue.phone ? `<div class="venue-phone">📞 ${venue.phone}</div>` : ''}
+        <div id="banks-${venue.id}">
+          <div class="no-data">Loading progressives...</div>
+        </div>
         <div class="venue-footer">
           <div class="venue-status">● Open 24hrs</div>
           <div class="venue-arrow">›</div>
@@ -129,6 +151,37 @@
     `).join('')
 
     document.getElementById('venues-list').innerHTML = html
+
+    // Load banks for each venue
+    venues.forEach(venue => loadBanks(venue.id))
+  }
+
+  async function loadBanks(venueId) {
+    const { data: banks, error } = await supabase
+      .from('banks')
+      .select('*')
+      .eq('venue_id', venueId)
+      .eq('active', true)
+
+    const container = document.getElementById('banks-' + venueId)
+    if (!container) return
+
+    if (error || !banks || banks.length === 0) {
+      container.innerHTML = '<div class="no-data">No progressives tracked yet</div>'
+      return
+    }
+
+    const html = banks.map(bank => `
+      <div class="bank-row">
+        <div class="bank-name">${bank.name} · ${bank.game} ${bank.denom ? '· ' + bank.denom : ''}</div>
+        <div class="bank-amount" style="color:${getAmountColor(bank.status, bank.type)};text-shadow:0 0 8px ${getAmountColor(bank.status, bank.type)}88">
+          ${bank.amount ? formatAmount(bank.amount) : 'No amount yet'}
+        </div>
+        ${bank.status ? `<div class="bank-status" style="color:${getAmountColor(bank.status, bank.type)}">${getStatusLabel(bank.status)}</div>` : ''}
+      </div>
+    `).join('')
+
+    container.innerHTML = html
   }
 
   loadVenues()
