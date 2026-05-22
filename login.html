@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vegas Jackpot Junkies — Login</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:#070709; }
+  body { font-family:'Share Tech Mono',monospace; color:#e8eaf0; min-height:100vh; max-width:430px; margin:0 auto; padding:40px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; }
+  .brand { text-align:center; font-family:'Orbitron',monospace; font-weight:900; line-height:1.1; margin-bottom:10px; }
+  .brand-vegas { color:#ffd700; text-shadow:0 0 10px #ffd700; font-size:32px; letter-spacing:4px; display:block; }
+  .brand-jackpot { color:#00ff41; text-shadow:0 0 8px #00ff41; font-size:14px; letter-spacing:6px; display:block; margin:4px 0; }
+  .brand-junkies { color:#ff1744; text-shadow:0 0 10px #ff1744; font-size:24px; letter-spacing:4px; display:block; }
+  .card { background:#0c0d14; border:1px solid #1a1a2a; border-radius:12px; padding:24px; width:100%; }
+  .tabs { display:flex; margin-bottom:20px; border-bottom:1px solid #111; }
+  .tab { flex:1; padding:10px; text-align:center; font-family:'Orbitron',monospace; font-size:9px; letter-spacing:2px; cursor:pointer; border-bottom:2px solid transparent; color:#555; text-transform:uppercase; }
+  .tab.active { color:#ffd700; border-bottom-color:#ffd700; }
+  .label { font-size:8px; color:#888; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:block; }
+  .field { width:100%; background:#070709; border:1px solid #1a1a2a; border-radius:8px; padding:12px 14px; font-family:'Share Tech Mono',monospace; font-size:13px; color:#e8eaf0; outline:none; margin-bottom:14px; }
+  .field:focus { border-color:#ffd70044; }
+  .btn { width:100%; padding:14px; font-family:'Orbitron',monospace; font-weight:900; font-size:11px; letter-spacing:3px; text-transform:uppercase; border-radius:8px; border:none; cursor:pointer; background:linear-gradient(135deg,#ffd700,#ff9500); color:#080808; box-shadow:0 0 16px #ffd70033; transition:all 0.2s; margin-bottom:12px; }
+  .btn:active { transform:scale(0.98); }
+  .browse-btn { width:100%; padding:12px; font-family:'Orbitron',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; border-radius:8px; border:1px solid #333; background:transparent; color:#666; cursor:pointer; }
+  .status { text-align:center; font-size:9px; letter-spacing:1px; padding:10px; border-radius:8px; margin-bottom:12px; display:none; }
+  .status-success { background:#00ff4115; border:1px solid #00ff4133; color:#00ff41; }
+  .status-error { background:#ff174415; border:1px solid #ff174433; color:#ff1744; }
+  .disclaimer { font-size:8px; color:#444; letter-spacing:1px; text-align:center; line-height:2; max-width:320px; }
+</style>
+</head>
+<body>
+
+<div class="brand">
+  <span class="brand-vegas">VEGAS</span>
+  <span class="brand-jackpot">JACKPOT</span>
+  <span class="brand-junkies">JUNKIES</span>
+</div>
+
+<div class="card">
+  <div class="tabs">
+    <div class="tab active" id="tab-login" onclick="switchTab('login')">Sign In</div>
+    <div class="tab" id="tab-signup" onclick="switchTab('signup')">Create Account</div>
+  </div>
+
+  <!-- LOGIN FORM -->
+  <div id="form-login">
+    <label class="label">Email</label>
+    <input class="field" id="login-email" type="email" placeholder="your@email.com">
+    <label class="label">Password</label>
+    <input class="field" id="login-password" type="password" placeholder="••••••••">
+    <div class="status" id="login-status"></div>
+    <button class="btn" onclick="signIn()">Sign In</button>
+    <button class="browse-btn" onclick="browseWithout()">Browse Without Account</button>
+  </div>
+
+  <!-- SIGNUP FORM -->
+  <div id="form-signup" style="display:none">
+    <label class="label">Username</label>
+    <input class="field" id="signup-username" placeholder="e.g. vegas_hunter">
+    <label class="label">Email</label>
+    <input class="field" id="signup-email" type="email" placeholder="your@email.com">
+    <label class="label">Password</label>
+    <input class="field" id="signup-password" type="password" placeholder="••••••••">
+    <div class="status" id="signup-status"></div>
+    <button class="btn" onclick="signUp()">Create Account</button>
+    <button class="browse-btn" onclick="browseWithout()">Browse Without Account</button>
+  </div>
+</div>
+
+<div class="disclaimer">
+  For informational purposes only · Vegas Jackpot Junkies does not guarantee wins or outcomes · If you or someone you know has a gambling problem call 1-800-522-4700
+</div>
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+  const supabase = createClient(
+    'https://uajqyaulvlqleqprxwtr.supabase.co',
+    'sb_publishable_b1Fq_jAP4A9On12qxqZIWw_R7R-OxFF'
+  )
+
+  // Check if already logged in
+  const { data: { session } } = await supabase.auth.getSession()
+  if (session) { window.location.href = '/index.html' }
+
+  window.switchTab = function(tab) {
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login')
+    document.getElementById('tab-signup').classList.toggle('active', tab === 'signup')
+    document.getElementById('form-login').style.display = tab === 'login' ? 'block' : 'none'
+    document.getElementById('form-signup').style.display = tab === 'signup' ? 'block' : 'none'
+  }
+
+  window.signIn = async function() {
+    const email = document.getElementById('login-email').value
+    const password = document.getElementById('login-password').value
+    if (!email || !password) { showStatus('login', 'Please fill in all fields', false); return }
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error) { showStatus('login', error.message, false); return }
+
+    window.location.href = '/index.html'
+  }
+
+  window.signUp = async function() {
+    const username = document.getElementById('signup-username').value
+    const email = document.getElementById('signup-email').value
+    const password = document.getElementById('signup-password').value
+    if (!username || !email || !password) { showStatus('signup', 'Please fill in all fields', false); return }
+
+    const { data, error } = await supabase.auth.signUp({ email, password })
+    if (error) { showStatus('signup', error.message, false); return }
+
+    // Add to users table
+    await supabase.from('users').insert({
+      email,
+      username,
+      role: 'player',
+      tier: 'community',
+      accuracy_score: 100,
+      submission_count: 0,
+      xp: 0,
+      streak: 0,
+      restricted: false,
+      banned: false
+    })
+
+    showStatus('signup', '✓ Account created! Welcome to VJJ!', true)
+    setTimeout(() => { window.location.href = '/index.html' }, 1500)
+  }
+
+  window.browseWithout = function() {
+    window.location.href = '/index.html'
+  }
+
+  function showStatus(form, msg, success) {
+    const el = document.getElementById(form + '-status')
+    el.textContent = msg
+    el.className = 'status ' + (success ? 'status-success' : 'status-error')
+    el.style.display = 'block'
+  }
+</script>
+
+</body>
+</html>
