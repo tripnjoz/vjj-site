@@ -130,8 +130,15 @@
   <!-- HOME -->
   <div class="screen active" id="screen-home">
     <div id="home-banner"></div>
+    <div style="display:flex;gap:8px;overflow-x:auto;padding:10px 12px 4px;scrollbar-width:none">
+  <div onclick="filterArea('all')" id="fa-all" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #ffd700;background:#ffd70015;color:#ffd700;cursor:pointer;white-space:nowrap">All Vegas</div>
+  <div onclick="filterArea('lv')" id="fa-lv" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;white-space:nowrap">Las Vegas</div>
+  <div onclick="filterArea('hend')" id="fa-hend" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;white-space:nowrap">Henderson</div>
+  <div onclick="filterArea('nlv')" id="fa-nlv" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;white-space:nowrap">North LV</div>
+  <div onclick="filterArea('summ')" id="fa-summ" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;white-space:nowrap">Summerlin</div>
+</div>
     <div class="section-title">
-      <span>// Venues Near You</span>
+      <span>// Venues</span>
       <span class="section-count" id="venue-count"></span>
     </div>
     <div id="venues-list"><div style="padding:40px;text-align:center;font-size:11px;color:#ccc;letter-spacing:2px">Loading venues...</div></div>
@@ -216,7 +223,8 @@ const supabase = createClient(
   'https://uajqyaulvlqleqprxwtr.supabase.co',
   'sb_publishable_b1Fq_jAP4A9On12qxqZIWw_R7R-OxFF'
 )
-
+  
+let currentFilter = 'all'
 let currentUser = null
 let currentScreen = 'home'
 let submitAmt = ''
@@ -299,7 +307,12 @@ function banner() {
 // ── HOME ──
 async function renderHome() {
   document.getElementById('home-banner').innerHTML = currentUser ? '' : banner()
-  const { data: venues } = await supabase.from('venues').select('*').eq('active',true).eq('approved',true)
+  let query = supabase.from('venues').select('*').eq('active',true).eq('approved',true)
+if (currentFilter === 'lv') query = query.eq('area', 'Las Vegas')
+if (currentFilter === 'hend') query = query.eq('area', 'Henderson')
+if (currentFilter === 'nlv') query = query.eq('area', 'North LV')
+if (currentFilter === 'summ') query = query.eq('area', 'Summerlin')
+const { data: venues } = await query
   if (!venues) return
   allVenues = venues
   document.getElementById('venue-count').textContent = venues.length + ' venues'
@@ -539,6 +552,31 @@ function renderProfile() {
 
       <div style="padding:0 16px 16px">
         <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:#ccc;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #1a1a2a">// Account</div>
+        <div style="padding:0 0 16px">
+  <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:#ccc;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1a1a2a">// Follow Us</div>
+  <div style="display:flex;gap:12px;justify-content:center">
+    <a href="https://instagram.com/vegasjackpotjunkies" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
+      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">📸</div>
+      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">Instagram</div>
+    </a>
+    <a href="https://tiktok.com/@vegasjackpotjunki" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
+      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">🎵</div>
+      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">TikTok</div>
+    </a>
+    <a href="https://facebook.com/vegasjackpotjunkies" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
+      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">👥</div>
+      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">Facebook</div>
+    </a>
+    <a href="https://youtube.com/@vegasjackpotjunkies" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
+      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">▶️</div>
+      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">YouTube</div>
+    </a>
+    <a href="https://x.com/VegasJackp8oh0" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
+      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">✖️</div>
+      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">X</div>
+    </a>
+  </div>
+</div>
         <button onclick="doSignOut()" style="width:100%;padding:13px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:8px;border:1px solid #ff174433;background:transparent;color:#ff1744;cursor:pointer;text-transform:uppercase">Sign Out</button>
       </div>`
   } else {
@@ -593,6 +631,24 @@ function showMStatus(form, msg, success) {
   el.textContent = msg
   el.className = 'modal-status ' + (success?'success':'error')
   el.style.display = 'block'
+}
+  window.filterArea = function(area) {
+  const areas = ['all','lv','hend','nlv','summ']
+  areas.forEach(a => {
+    const el = document.getElementById('fa-'+a)
+    if (!el) return
+    if (a === area) {
+      el.style.borderColor = '#ffd700'
+      el.style.background = '#ffd70015'
+      el.style.color = '#ffd700'
+    } else {
+      el.style.borderColor = '#333'
+      el.style.background = 'transparent'
+      el.style.color = '#ccc'
+    }
+  })
+  currentFilter = area
+  renderHome()
 }
 
 // ── INIT ──
