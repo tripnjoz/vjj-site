@@ -312,14 +312,15 @@ async function loadBanks(venueId) {
 // ── HOT LIST ──
 async function renderHotList() {
   document.getElementById('hotlist-banner').innerHTML = currentUser ? '' : banner()
-  const { data: banks } = await supabase.from('banks').select('*, venues(name,area)').eq('active',true).not('amount','is',null)
+  const { data: venues } = await supabase.from('venues').select('id, name, area')
+const { data: banks } = await supabase.from('banks').select('*').eq('active',true).not('amount','is',null)
   if (!banks || banks.length === 0) { document.getElementById('hotlist-content').innerHTML = '<div style="padding:40px;text-align:center;color:#555">No data yet</div>'; return }
   const sorted = banks.sort((a,b) => { const o={fire:0,heating:1,rising:2}; return (o[a.status]||2)-(o[b.status]||2) })
   let html = ''
   sorted.forEach((b,i) => {
     const c = amtColor(b.status, b.type)
-    const vn = b.venues?.name || 'Unknown'
-    const va = b.venues?.area || ''
+   const vn = venues?.find(v => v.id === b.venue_id)?.name || 'Unknown'
+const va = venues?.find(v => v.id === b.venue_id)?.area || ''
     const rankColor = i===0?'#ffd700':i===1?'#aaa':i===2?'#cd7f32':'#222'
     if (i < 3 || currentUser) {
       html += `<div class="hotlist-card" style="border-color:${b.status==='fire'?'#ff174433':b.status==='heating'?'#ffd70022':'#141825'}">
