@@ -99,7 +99,7 @@
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) { showStatus('login', error.message, false); return }
 
-    window.location.href = '/'
+    window.location.href = 'https://vegasjackpotjunkies.com'
   }
 
   window.signUp = async function() {
@@ -130,7 +130,7 @@
   }
 
   window.browseWithout = function() {
-    window.location.href = '/'
+    window.location.href = 'https://vegasjackpotjunkies.com'
   }
 
   function showStatus(form, msg, success) {
