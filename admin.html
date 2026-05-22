@@ -214,6 +214,51 @@
 
   <!-- PROMOS -->
   <div class="screen" id="s-promos">
+    window.createPromo = async function() {
+  const venueId = document.getElementById('pr-venue').value
+  const type = document.getElementById('pr-type').value
+  const title = document.getElementById('pr-title').value.trim()
+  const detail = document.getElementById('pr-detail').value.trim()
+  const start = document.getElementById('pr-start').value
+  const end = document.getElementById('pr-end').value
+  if (!venueId || !title || !detail) { msg('pr-msg', 'Venue, headline and details required', false); return }
+  const { error } = await supabase.from('promos').insert({
+    venue_id: venueId, type, title, detail,
+    start_date: start || null,
+    end_date: end || null,
+    active: true,
+    approved: true
+  })
+  if (error) { msg('pr-msg', 'Error: ' + error.message, false); return }
+  msg('pr-msg', '✓ Promo published!', true)
+  document.getElementById('pr-title').value = ''
+  document.getElementById('pr-detail').value = ''
+  document.getElementById('pr-start').value = ''
+  document.getElementById('pr-end').value = ''
+  loadPromos()
+}
+    <div class="sec">// Create New Promo</div>
+<div class="card">
+  <label class="lbl">Venue</label>
+  <select class="inp" id="pr-venue"><option value="">Select venue</option></select>
+  <label class="lbl">Promo Type</label>
+  <select class="inp" id="pr-type">
+    <option value="freeplay">🎰 Free Play</option>
+    <option value="food">🍔 Food Special</option>
+    <option value="drawing">🎟 Drawing</option>
+    <option value="other">⭐ Other</option>
+  </select>
+  <label class="lbl">Headline</label>
+  <input class="inp" id="pr-title" placeholder="e.g. $5 Free Play — Show VJJ App">
+  <label class="lbl">Details</label>
+  <input class="inp" id="pr-detail" placeholder="e.g. New players only · Mon–Thu · Limit 1">
+  <label class="lbl">Start Date (optional)</label>
+  <input class="inp" id="pr-start" type="date">
+  <label class="lbl">End Date (optional)</label>
+  <input class="inp" id="pr-end" type="date">
+  <div class="msg" id="pr-msg"></div>
+  <button class="btn-g" onclick="createPromo()">Publish Promo</button>
+</div>
     <div class="sec">// Pending Approval</div>
     <div id="p-pending"><div style="font-size:10px;color:#aaa;padding:10px 0">Loading...</div></div>
     <div class="sec">// Active Promos</div>
@@ -320,7 +365,7 @@ async function loadVenues() {
 async function refreshVenues() {
   const { data } = await supabase.from('venues').select('*').eq('active', true).order('name')
   venues = data || []
-  const ids = ['a-venue','b-venue','u-venue']
+  const ids = ['a-venue','b-venue','u-venue','pr-venue']
   ids.forEach(id => {
     const el = document.getElementById(id)
     if (!el) return
@@ -505,7 +550,29 @@ async function loadPromos() {
         <div style="font-size:13px;color:#aaa;cursor:pointer">✏</div>
       </div>`).join('')
 }
-
+window.createPromo = async function() {
+  const venueId = document.getElementById('pr-venue').value
+  const type = document.getElementById('pr-type').value
+  const title = document.getElementById('pr-title').value.trim()
+  const detail = document.getElementById('pr-detail').value.trim()
+  const start = document.getElementById('pr-start').value
+  const end = document.getElementById('pr-end').value
+  if (!venueId || !title || !detail) { msg('pr-msg', 'Venue, headline and details required', false); return }
+  const { error } = await supabase.from('promos').insert({
+    venue_id: venueId, type, title, detail,
+    start_date: start || null,
+    end_date: end || null,
+    active: true,
+    approved: true
+  })
+  if (error) { msg('pr-msg', 'Error: ' + error.message, false); return }
+  msg('pr-msg', '✓ Promo published!', true)
+  document.getElementById('pr-title').value = ''
+  document.getElementById('pr-detail').value = ''
+  document.getElementById('pr-start').value = ''
+  document.getElementById('pr-end').value = ''
+  loadPromos()
+}
 window.approvePromo = async function(id) { await supabase.from('promos').update({ approved: true }).eq('id', id); loadPromos() }
 window.rejectPromo = async function(id) { await supabase.from('promos').update({ active: false }).eq('id', id); loadPromos() }
 
