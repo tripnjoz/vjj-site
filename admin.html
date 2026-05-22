@@ -212,6 +212,7 @@ if (entered !== PASSWORD) {
   window.addBank = async function() {
     const venueId = document.getElementById('venue-select').value
     if (!venueId) { showStatus('Select a venue first', false); return }
+    console.log('Adding bank for venue:', venueId)
 
     const name = document.getElementById('new-bank-name').value
     const game = document.getElementById('new-bank-game').value
