@@ -1,1 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VJJ Admin</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:#070709; }
+  body { font-family:'Share Tech Mono',monospace; color:#e8eaf0; min-height:100vh; max-width:430px; margin:0 auto; padding:20px; }
+  .header { font-family:'Orbitron',monospace; font-weight:900; font-size:16px; color:#aa44ff; text-shadow:0 0 10px #aa44ff; letter-spacing:3px; margin-bottom:6px; }
+  .sub { font-size:9px; color:#666; letter-spacing:2px; margin-bottom:24px; }
+  .label { font-size:8px; color:#888; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:block; }
+  .field { width:100%; background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:12px 14px; font-family:'Share Tech Mono',monospace; font-size:13px; color:#e8eaf0; outline:none; margin-bottom:16px; }
+  .field:focus { border-color:#aa44ff44; }
+  select.field { cursor:pointer; }
+  .amount-display { background:#0c0d14; border:1px solid #ffd70033; border-radius:10px; padding:20px; text-align:center; margin-bottom:16px; }
+  .amount-label { font-size:8px; color:#888; letter-spacing:2px; margin-bottom:8px; }
+  .amount-value { font-family:'Orbitron',monospace; font-weight:700; font-size:40px; color:#ffd700; text-shadow:0 0 10px #ffd700; letter-spacing:2px; min-height:48px; }
+  .numpad { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:16px; }
+  .key { padding:16px; border-radius:8px; border:1px solid #1a1a2a; background:#0c0d14; font-family:'Orbitron',monospace; font-size:18px; font-weight:700; color:#e8eaf0; cursor:pointer; text-align:center; transition:all 0.15s; }
+  .key:active { background:#1a1a2a; transform:scale(0.96); }
+  .key-clr { color:#ff1744; }
+  .key-del { color:#888; }
+  .save-btn { width:100%; padding:16px; font-family:'Orbitron',monospace; font-weight:900; font-size:12px; letter-spacing:3px; text-transform:uppercase; border-radius:10px; border:none; cursor:pointer; background:linear-gradient(135deg,#aa44ff,#6622cc); color:#fff; box-shadow:0 0 20px #aa44ff33; margin-bottom:12px; transition:all 0.2s; }
+  .save-btn:active { transform:scale(0.98); }
+  .save-btn:disabled { background:#222; color:#444; box-shadow:none; cursor:not-allowed; }
+  .add-bank-btn { width:100%; padding:13px; font-family:'Orbitron',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; border-radius:8px; border:1px solid #ffd70033; background:#ffd70008; color:#ffd700; cursor:pointer; margin-bottom:24px; }
+  .status-msg { text-align:center; font-size:10px; letter-spacing:2px; padding:12px; border-radius:8px; margin-bottom:12px; display:none; }
+  .status-success { background:#00ff4115; border:1px solid #00ff4133; color:#00ff41; }
+  .status-error { background:#ff174415; border:1px solid #ff174433; color:#ff1744; }
+  .divider { border:none; border-top:1px solid #111; margin:20px 0; }
+  .add-bank-form { background:#0c0d14; border:1px solid #141825; border-radius:10px; padding:16px; margin-bottom:16px; display:none; }
+  .add-bank-title { font-family:'Orbitron',monospace; font-size:10px; color:#ffd700; letter-spacing:2px; margin-bottom:14px; }
+</style>
+</head>
+<body>
 
+<div class="header">⚡ VJJ Admin</div>
+<div class="sub">Update amounts · Add banks · Manage venues</div>
+
+<!-- UPDATE AMOUNT SECTION -->
+<label class="label">Select Venue</label>
+<select class="field" id="venue-select" onchange="loadBanks()">
+  <option value="">Loading venues...</option>
+</select>
+
+<label class="label">Select Bank</label>
+<select class="field" id="bank-select">
+  <option value="">Select venue first</option>
+</select>
+
+<div class="amount-display">
+  <div class="amount-label">New Amount</div>
+  <div class="amount-value" id="amount-display">$0</div>
+</div>
+
+<div class="numpad">
+  <div class="key" onclick="numPress('1')">1</div>
+  <div class="key" onclick="numPress('2')">2</div>
+  <div class="key" onclick="numPress('3')">3</div>
+  <div class="key" onclick="numPress('4')">4</div>
+  <div class="key" onclick="numPress('5')">5</div>
+  <div class="key" onclick="numPress('6')">6</div>
+  <div class="key" onclick="numPress('7')">7</div>
+  <div class="key" onclick="numPress('8')">8</div>
+  <div class="key" onclick="numPress('9')">9</div>
+  <div class="key key-clr" onclick="clearAmt()">CLR</div>
+  <div class="key" onclick="numPress('0')">0</div>
+  <div class="key key-del" onclick="delDigit()">⌫</div>
+</div>
+
+<div class="status-msg" id="status-msg"></div>
+
+<button class="save-btn" id="save-btn" onclick="saveAmount()">Save Amount</button>
+
+<hr class="divider">
+
+<!-- ADD NEW BANK -->
+<button class="add-bank-btn" onclick="toggleAddBank()">+ Add New Bank to Venue</button>
+
+<div class="add-bank-form" id="add-bank-form">
+  <div class="add-bank-title">New Bank Details</div>
+  <label class="label">Bank Name</label>
+  <input class="field" id="new-bank-name" placeholder="e.g. Bank A">
+  <label class="label">Game</label>
+  <input class="field" id="new-bank-game" placeholder="e.g. Double Double Bonus">
+  <label class="label">Denomination</label>
+  <input class="field" id="new-bank-denom" placeholder="e.g. $0.25 or free entry">
+  <label class="label">Type</label>
+  <select class="field" id="new-bank-type">
+    <option value="poker">Video Poker</option>
+    <option value="keno">Keno</option>
+    <option value="other">Other</option>
+  </select>
+  <label class="label">Starting Amount</label>
+  <input class="field" id="new-bank-start" placeholder="e.g. 800" type="number">
+  <label class="label">Current Amount</label>
+  <input class="field" id="new-bank-amount" placeholder="e.g. 1800" type="number">
+  <label class="label">Number of Machines</label>
+  <input class="field" id="new-bank-machines" placeholder="e.g. 4" type="number">
+  <button class="save-btn" onclick="addBank()">+ Add Bank</button>
+</div>
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+  const supabase = createClient(
+    'https://uajqyaulvlqleqprxwtr.supabase.co',
+    'sb_publishable_b1Fq_jAP4A9On12qxqZIWw_R7R-OxFF'
+  )
+
+  let amount = ''
+  let venues = []
+  let banks = []
+
+  // Make functions global
+  window.numPress = function(n) {
+    if (amount.replace('.','').length < 8) {
+      amount += n
+      updateDisplay()
+    }
+  }
+
+  window.delDigit = function() {
+    amount = amount.slice(0,-1)
+    updateDisplay()
+  }
+
+  window.clearAmt = function() {
+    amount = ''
+    updateDisplay()
+  }
+
+  function updateDisplay() {
+    const el = document.getElementById('amount-display')
+    if (!amount) { el.textContent = '$0'; return }
+    const parts = amount.split('.')
+    el.textContent = '$' + parseInt(parts[0]||'0').toLocaleString() + (amount.includes('.') ? '.' + (parts[1]||'') : '')
+  }
+
+  window.loadBanks = async function() {
+    const venueId = document.getElementById('venue-select').value
+    const bankSelect = document.getElementById('bank-select')
+    bankSelect.innerHTML = '<option value="">Loading...</option>'
+
+    if (!venueId) { bankSelect.innerHTML = '<option value="">Select venue first</option>'; return }
+
+    const { data, error } = await supabase
+      .from('banks')
+      .select('*')
+      .eq('venue_id', venueId)
+      .eq('active', true)
+
+    if (error || !data || data.length === 0) {
+      bankSelect.innerHTML = '<option value="">No banks yet — add one below</option>'
+      return
+    }
+
+    banks = data
+    bankSelect.innerHTML = data.map(b => 
+      `<option value="${b.id}">${b.name} · ${b.game} ${b.denom ? '· ' + b.denom : ''} · $${Number(b.amount||0).toLocaleString()}</option>`
+    ).join('')
+  }
+
+  window.saveAmount = async function() {
+    const bankId = document.getElementById('bank-select').value
+    if (!bankId || !amount) { showStatus('Select a bank and enter an amount', false); return }
+
+    const val = parseFloat(amount)
+    const status = val >= 2400 ? 'fire' : val >= 1500 ? 'heating' : 'rising'
+
+    const { error } = await supabase
+      .from('banks')
+      .update({ amount: val, status: status })
+      .eq('id', bankId)
+
+    if (error) { showStatus('Error saving — try again', false); return }
+
+    // Also log to progressives table
+    await supabase.from('progressives').insert({
+      bank_id: bankId,
+      amount: val,
+      status: status,
+      badge_type: 'verified',
+      anonymous: false,
+      approved: true
+    })
+
+    showStatus('✓ Amount saved successfully!', true)
+    amount = ''
+    updateDisplay()
+    loadBanks()
+  }
+
+  window.toggleAddBank = function() {
+    const form = document.getElementById('add-bank-form')
+    form.style.display = form.style.display === 'block' ? 'none' : 'block'
+  }
+
+  window.addBank = async function() {
+    const venueId = document.getElementById('venue-select').value
+    if (!venueId) { showStatus('Select a venue first', false); return }
+
+    const name = document.getElementById('new-bank-name').value
+    const game = document.getElementById('new-bank-game').value
+    const denom = document.getElementById('new-bank-denom').value
+    const type = document.getElementById('new-bank-type').value
+    const start = parseFloat(document.getElementById('new-bank-start').value) || 0
+    const amt = parseFloat(document.getElementById('new-bank-amount').value) || 0
+    const machines = parseInt(document.getElementById('new-bank-machines').value) || 1
+
+    if (!name || !game) { showStatus('Bank name and game are required', false); return }
+
+    const status = amt >= 2400 ? 'fire' : amt >= 1500 ? 'heating' : 'rising'
+
+    const { error } = await supabase.from('banks').insert({
+      venue_id: venueId,
+      name, game, denom, type,
+      starting_amount: start,
+      amount: amt,
+      status, machines,
+      approved: true,
+      active: true
+    })
+
+    if (error) { showStatus('Error adding bank — try again', false); return }
+
+    showStatus('✓ Bank added successfully!', true)
+    document.getElementById('add-bank-form').style.display = 'none'
+    loadBanks()
+  }
+
+  function showStatus(msg, success) {
+    const el = document.getElementById('status-msg')
+    el.textContent = msg
+    el.className = 'status-msg ' + (success ? 'status-success' : 'status-error')
+    el.style.display = 'block'
+    setTimeout(() => { el.style.display = 'none' }, 3000)
+  }
+
+  async function loadVenues() {
+    const { data, error } = await supabase
+      .from('venues')
+      .select('*')
+      .eq('active', true)
+      .eq('approved', true)
+
+    if (error || !data) return
+
+    venues = data
+    const select = document.getElementById('venue-select')
+    select.innerHTML = '<option value="">Select a venue</option>' + 
+      data.map(v => `<option value="${v.id}">${v.name} · ${v.area}</option>`).join('')
+  }
+
+  loadVenues()
+</script>
+
+</body>
+</html>
