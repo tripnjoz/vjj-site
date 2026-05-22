@@ -9,67 +9,46 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   html,body { background:#070709; }
   body { font-family:'Share Tech Mono',monospace; color:#e8eaf0; min-height:100vh; max-width:430px; margin:0 auto; }
-
-  /* HEADER */
   .header { position:sticky; top:0; z-index:100; background:rgba(7,7,9,0.97); border-bottom:1px solid #222; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; backdrop-filter:blur(10px); }
   .logo { font-family:'Orbitron',monospace; font-weight:900; line-height:1.1; }
   .logo-vegas { color:#ffd700; text-shadow:0 0 8px #ffd700; font-size:13px; letter-spacing:2px; display:block; }
   .logo-jackpot { color:#00ff41; text-shadow:0 0 6px #00ff41; font-size:9px; letter-spacing:3px; display:block; }
   .logo-junkies { color:#ff1744; text-shadow:0 0 8px #ff1744; font-size:14px; letter-spacing:2px; display:block; }
   .live { font-size:9px; color:#ff1744; letter-spacing:2px; text-shadow:0 0 6px #ff1744; }
-  .login-btn { font-family:'Orbitron',monospace; font-size:8px; letter-spacing:2px; padding:6px 12px; border-radius:6px; border:1px solid #ffd70033; background:#ffd70010; color:#ffd700; cursor:pointer; text-transform:uppercase; text-decoration:none; }
-  .user-btn { font-size:9px; color:#ffd700; letter-spacing:1px; cursor:pointer; display:flex; align-items:center; gap:5px; }
-
-  /* CONTENT */
+  .login-btn { font-family:'Orbitron',monospace; font-size:8px; letter-spacing:2px; padding:6px 12px; border-radius:6px; border:1px solid #ffd70033; background:#ffd70010; color:#ffd700; cursor:pointer; text-transform:uppercase; }
+  .user-btn { font-size:9px; color:#ffd700; letter-spacing:1px; cursor:pointer; }
   .content { padding-bottom:90px; }
   .section-title { font-family:'Orbitron',monospace; font-size:10px; letter-spacing:3px; color:#888; text-transform:uppercase; padding:14px 12px 8px; display:flex; justify-content:space-between; align-items:center; }
-  .section-count { font-size:8px; color:#555; letter-spacing:1px; }
-
-  /* SIGNUP BANNER */
   .signup-banner { margin:8px 12px 12px; background:linear-gradient(135deg,#aa44ff15,#ffd70010); border:1px solid #aa44ff33; border-radius:10px; padding:14px; text-align:center; }
   .signup-banner-title { font-family:'Orbitron',monospace; font-size:11px; color:#aa44ff; text-shadow:0 0 8px #aa44ff; letter-spacing:2px; margin-bottom:5px; }
   .signup-banner-sub { font-size:9px; color:#aaa; letter-spacing:1px; margin-bottom:12px; line-height:1.8; }
-  .signup-banner-btn { font-family:'Orbitron',monospace; font-size:9px; letter-spacing:2px; padding:10px 20px; border-radius:8px; border:none; cursor:pointer; background:linear-gradient(135deg,#ffd700,#ff9500); color:#080808; font-weight:700; display:inline-block; text-decoration:none; }
-
-  /* VENUE CARDS */
-  .venue-card { margin:0 12px 12px; background:#0c0d14; border:1px solid #1a1a2a; border-radius:10px; padding:14px; cursor:pointer; transition:all 0.2s; }
-  .venue-card:active { transform:scale(0.98); }
+  .signup-banner-btn { font-family:'Orbitron',monospace; font-size:9px; letter-spacing:2px; padding:10px 20px; border-radius:8px; border:none; cursor:pointer; background:linear-gradient(135deg,#ffd700,#ff9500); color:#080808; font-weight:700; }
+  .venue-card { margin:0 12px 12px; background:#0c0d14; border:1px solid #1a1a2a; border-radius:10px; padding:14px; }
   .venue-top { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
-  .venue-icon { font-size:26px; }
   .venue-name { font-size:14px; color:#e8eaf0; letter-spacing:1px; margin-bottom:3px; font-weight:700; }
   .venue-area { font-size:10px; color:#aaa; letter-spacing:1px; }
   .venue-badge { font-size:8px; padding:2px 7px; border-radius:2px; background:#ffd70011; border:1px solid #ffd70033; color:#ffd700; margin-left:6px; }
   .venue-footer { display:flex; justify-content:space-between; align-items:center; padding-top:8px; border-top:1px solid #111; margin-top:8px; }
   .venue-status { font-size:9px; color:#00ff41; letter-spacing:1px; text-shadow:0 0 5px #00ff41; }
-  .venue-arrow { color:#888; font-size:18px; }
-
-  /* BANK ROWS */
   .bank-row { padding:8px 0; border-bottom:1px solid #0a0a12; }
   .bank-row:last-child { border-bottom:none; }
-  .bank-name { font-size:9px; color:#aaa; letter-spacing:1px; margin-bottom:4px; }
+  .bank-name { font-size:9px; color:#aaa; letter-spacing:1px; margin-bottom:3px; }
   .bank-game { font-size:8px; color:#666; letter-spacing:1px; margin-bottom:4px; }
   .bank-amount { font-family:'Orbitron',monospace; font-weight:700; font-size:24px; letter-spacing:1px; }
   .bank-status { font-size:8px; letter-spacing:1px; margin-top:2px; }
   .bank-meter { height:4px; background:#111; border-radius:3px; overflow:hidden; margin-top:5px; }
-  .bank-meter-fill { height:100%; border-radius:3px; }
-
-  /* LOCKED STATE */
   .locked-amount { display:flex; align-items:center; gap:8px; }
-  .locked-text { font-family:'Orbitron',monospace; font-weight:700; font-size:24px; color:#333; letter-spacing:2px; filter:blur(4px); user-select:none; }
-  .lock-icon { font-size:18px; }
+  .locked-text { font-family:'Orbitron',monospace; font-weight:700; font-size:24px; color:#333; filter:blur(4px); user-select:none; }
   .unlock-prompt { font-size:8px; color:#aa44ff; letter-spacing:1px; cursor:pointer; margin-top:4px; text-decoration:underline; }
-
-  /* HOT LIST */
   .hotlist-card { margin:0 12px 8px; background:#0c0d14; border-radius:8px; padding:11px 12px; display:flex; align-items:center; gap:10px; border:1px solid #141825; }
-  .hotlist-rank { font-family:'Orbitron',monospace; font-weight:900; font-size:18px; color:#222; min-width:24px; text-align:center; }
+  .hotlist-rank { font-family:'Orbitron',monospace; font-weight:900; font-size:18px; min-width:24px; text-align:center; }
   .hotlist-info { flex:1; }
   .hotlist-venue { font-size:10px; color:#ccc; letter-spacing:1px; margin-bottom:2px; }
   .hotlist-game { font-size:8px; color:#888; letter-spacing:1px; }
   .hotlist-amount { font-family:'Orbitron',monospace; font-weight:700; font-size:20px; flex-shrink:0; }
-  .locked-card { margin:0 12px 8px; background:#0c0d14; border-radius:8px; padding:11px 12px; display:flex; align-items:center; gap:10px; border:1px solid #141825; opacity:0.5; }
-  .locked-row-amount { font-family:'Orbitron',monospace; font-weight:700; font-size:20px; color:#333; filter:blur(5px); }
-
-  /* LOGIN MODAL */
+  .select-field { width:100%; background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:11px 14px; font-family:'Share Tech Mono',monospace; font-size:13px; color:#e8eaf0; outline:none; margin-bottom:14px; }
+  .numkey { padding:14px; border-radius:8px; border:1px solid #1a1a2a; background:#0c0d14; font-family:'Orbitron',monospace; font-size:18px; font-weight:700; color:#e8eaf0; cursor:pointer; text-align:center; transition:all 0.15s; }
+  .numkey:active { background:#1a1a2a; }
   .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:200; display:none; align-items:flex-end; justify-content:center; }
   .modal-overlay.show { display:flex; }
   .modal { background:#0c0d14; border:1px solid #aa44ff33; border-radius:16px 16px 0 0; padding:24px; width:100%; max-width:430px; }
@@ -85,26 +64,19 @@
   .modal-status { text-align:center; font-size:9px; padding:8px; border-radius:6px; margin-bottom:10px; display:none; }
   .modal-status.success { background:#00ff4115; border:1px solid #00ff4133; color:#00ff41; }
   .modal-status.error { background:#ff174415; border:1px solid #ff174433; color:#ff1744; }
-
-  /* BOTTOM NAV */
   .bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:430px; background:rgba(7,7,9,0.97); border-top:1px solid #222; padding:10px 0 20px; display:flex; justify-content:space-around; z-index:100; }
   .nav-tab { display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; padding:2px 12px; }
   .nav-icon { font-size:20px; opacity:0.5; }
   .nav-icon.active { opacity:1; }
   .nav-label { font-size:8px; letter-spacing:1px; color:#777; text-transform:uppercase; }
   .nav-label.active { color:#ffd700; text-shadow:0 0 5px #ffd700; }
-
-  /* SCREENS */
   .screen { display:none; }
   .screen.active { display:block; }
-
-  /* DISCLAIMER */
   .disclaimer { font-size:8px; color:#333; letter-spacing:1px; text-align:center; padding:16px; line-height:2; }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="logo">
     <span class="logo-vegas">VEGAS</span>
@@ -115,38 +87,33 @@
   <div id="header-auth"></div>
 </div>
 
-<!-- SCREENS -->
 <div class="content">
 
-  <!-- HOME SCREEN -->
+  <!-- HOME -->
   <div class="screen active" id="screen-home">
-    <div id="signup-banner-home"></div>
-    <div class="section-title">
-      <span>// Venues Near You</span>
-      <span class="section-count" id="venue-count"></span>
-    </div>
+    <div id="home-banner"></div>
+    <div class="section-title"><span>// Venues Near You</span><span id="venue-count" style="font-size:8px;color:#555"></span></div>
     <div id="venues-list"><div style="padding:40px;text-align:center;font-size:11px;color:#aaa;letter-spacing:2px">Loading venues...</div></div>
     <div class="disclaimer">For informational purposes only · Vegas Jackpot Junkies does not guarantee wins or outcomes · All amounts are user submitted and reflect publicly displayed machine information · Not affiliated with any casino or gaming establishment · If you or someone you know has a gambling problem call 1-800-522-4700</div>
   </div>
 
-  <!-- HOT LIST SCREEN -->
+  <!-- HOT LIST -->
   <div class="screen" id="screen-hotlist">
-    <div id="signup-banner-hotlist"></div>
+    <div id="hotlist-banner"></div>
     <div class="section-title"><span>// 🔥 Hot List</span></div>
-    <div id="hotlist-content"><div style="padding:40px;text-align:center;font-size:11px;color:#aaa;letter-spacing:2px">Loading...</div></div>
+    <div id="hotlist-content"><div style="padding:40px;text-align:center;font-size:11px;color:#aaa">Loading...</div></div>
     <div class="disclaimer">For informational purposes only · If you or someone you know has a gambling problem call 1-800-522-4700</div>
   </div>
 
-  <!-- SUBMIT SCREEN -->
+  <!-- SUBMIT -->
   <div class="screen" id="screen-submit">
-    <div style="padding:40px;text-align:center">
-      <div style="font-size:40px;margin-bottom:16px">🎰</div>
-      <div style="font-family:'Orbitron',monospace;font-size:14px;color:#ffd700;letter-spacing:2px;margin-bottom:10px">Submit an Amount</div>
-      <div id="submit-prompt"></div>
+    <div style="padding:16px">
+      <div class="section-title" style="padding:0 0 14px">// Submit Amount</div>
+      <div id="submit-content"></div>
     </div>
   </div>
 
-  <!-- PROFILE SCREEN -->
+  <!-- PROFILE -->
   <div class="screen" id="screen-profile">
     <div id="profile-content" style="padding:20px"></div>
   </div>
@@ -156,20 +123,20 @@
 <!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <div class="nav-tab" onclick="showScreen('home')">
-    <div class="nav-icon active" id="nav-icon-home">🎰</div>
-    <div class="nav-label active" id="nav-label-home">Progressives</div>
+    <div class="nav-icon active" id="ni-home">🎰</div>
+    <div class="nav-label active" id="nl-home">Progressives</div>
   </div>
   <div class="nav-tab" onclick="showScreen('hotlist')">
-    <div class="nav-icon" id="nav-icon-hotlist">🔥</div>
-    <div class="nav-label" id="nav-label-hotlist">Hot List</div>
+    <div class="nav-icon" id="ni-hotlist">🔥</div>
+    <div class="nav-label" id="nl-hotlist">Hot List</div>
   </div>
   <div class="nav-tab" onclick="showScreen('submit')">
-    <div class="nav-icon" id="nav-icon-submit">➕</div>
-    <div class="nav-label" id="nav-label-submit">Submit</div>
+    <div class="nav-icon" id="ni-submit">➕</div>
+    <div class="nav-label" id="nl-submit">Submit</div>
   </div>
   <div class="nav-tab" onclick="showScreen('profile')">
-    <div class="nav-icon" id="nav-icon-profile">👤</div>
-    <div class="nav-label" id="nav-label-profile">Profile</div>
+    <div class="nav-icon" id="ni-profile">👤</div>
+    <div class="nav-label" id="nl-profile">Profile</div>
   </div>
 </div>
 
@@ -189,7 +156,7 @@
       <button class="modal-btn" onclick="modalSignIn()">Sign In</button>
     </div>
     <div id="modal-signup-form" style="display:none">
-      <input class="modal-field" id="m-signup-username" placeholder="Username (e.g. vegas_hunter)">
+      <input class="modal-field" id="m-signup-username" placeholder="Username">
       <input class="modal-field" id="m-signup-email" type="email" placeholder="Email">
       <input class="modal-field" id="m-signup-password" type="password" placeholder="Password">
       <div class="modal-status" id="modal-signup-status"></div>
@@ -209,241 +176,308 @@ const supabase = createClient(
 
 let currentUser = null
 let currentScreen = 'home'
-let allBanks = []
+let submitAmt = ''
+let submitAnon = true
 
-// ── AUTH ──
 const { data: { session } } = await supabase.auth.getSession()
 if (session) currentUser = session.user
 
 supabase.auth.onAuthStateChange((event, session) => {
   currentUser = session?.user || null
   updateHeader()
-  renderCurrentScreen()
+  renderScreen(currentScreen)
 })
 
+// ── HEADER ──
 function updateHeader() {
   const el = document.getElementById('header-auth')
   if (currentUser) {
-    const email = currentUser.email
-    const name = email.split('@')[0].substring(0, 10)
+    const name = currentUser.email.split('@')[0].substring(0,10)
     el.innerHTML = `<div class="user-btn" onclick="showScreen('profile')">👤 ${name}</div>`
   } else {
     el.innerHTML = `<div class="login-btn" onclick="openModal()">Login</div>`
   }
 }
 
-// ── NAVIGATION ──
-window.showScreen = function(screen) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'))
-  document.getElementById('screen-' + screen).classList.add('active')
-
-  document.querySelectorAll('.nav-icon, .nav-label').forEach(el => {
-    el.classList.remove('active')
+// ── NAV ──
+window.showScreen = function(s) {
+  document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'))
+  document.getElementById('screen-' + s).classList.add('active')
+  ;['home','hotlist','submit','profile'].forEach(t => {
+    document.getElementById('ni-'+t)?.classList.remove('active')
+    document.getElementById('nl-'+t)?.classList.remove('active')
   })
-  const icon = document.getElementById('nav-icon-' + screen)
-  const label = document.getElementById('nav-label-' + screen)
-  if (icon) icon.classList.add('active')
-  if (label) label.classList.add('active')
-
-  currentScreen = screen
-  renderCurrentScreen()
+  document.getElementById('ni-'+s)?.classList.add('active')
+  document.getElementById('nl-'+s)?.classList.add('active')
+  currentScreen = s
+  renderScreen(s)
 }
 
-function renderCurrentScreen() {
-  if (currentScreen === 'home') renderHome()
-  if (currentScreen === 'hotlist') renderHotList()
-  if (currentScreen === 'submit') renderSubmit()
-  if (currentScreen === 'profile') renderProfile()
+function renderScreen(s) {
+  if (s === 'home') renderHome()
+  if (s === 'hotlist') renderHotList()
+  if (s === 'submit') renderSubmit()
+  if (s === 'profile') renderProfile()
 }
 
 // ── HELPERS ──
-function getAmountColor(status, type) {
+function amtColor(status, type) {
   if (type === 'keno') return status === 'fire' ? '#00eeff' : '#00aaff'
   return status === 'fire' ? '#ff1744' : status === 'heating' ? '#ffd700' : '#00ff41'
 }
 
-function getStatusLabel(status) {
-  if (status === 'fire') return '🔥 ON FIRE'
-  if (status === 'heating') return '⚡ HEATING UP'
-  return '🎯 ON THE RISE'
+function statusLabel(s) {
+  return s === 'fire' ? '🔥 ON FIRE' : s === 'heating' ? '⚡ HEATING UP' : '🎯 ON THE RISE'
 }
 
-function getMeterGrad(status, type) {
-  if (type === 'keno') return status === 'fire' ? 'linear-gradient(90deg,#0055cc,#00eeff)' : 'linear-gradient(90deg,#003366,#00aaff)'
-  return status === 'fire' ? 'linear-gradient(90deg,#ff6d00,#ff1744)' : status === 'heating' ? 'linear-gradient(90deg,#884400,#ffd700)' : 'linear-gradient(90deg,#003300,#00ff41)'
+function meterGrad(s, t) {
+  if (t === 'keno') return s === 'fire' ? 'linear-gradient(90deg,#0055cc,#00eeff)' : 'linear-gradient(90deg,#003366,#00aaff)'
+  return s === 'fire' ? 'linear-gradient(90deg,#ff6d00,#ff1744)' : s === 'heating' ? 'linear-gradient(90deg,#884400,#ffd700)' : 'linear-gradient(90deg,#003300,#00ff41)'
 }
 
-function getMeterWidth(status) {
-  return status === 'fire' ? '88%' : status === 'heating' ? '55%' : '24%'
+function meterW(s) { return s === 'fire' ? '88%' : s === 'heating' ? '55%' : '24%' }
+
+function fmtAmt(n) { return '$' + Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) }
+
+function fmtDisplay(v) {
+  if (!v) return '$0'
+  const p = v.split('.')
+  return '$' + parseInt(p[0]||'0').toLocaleString() + (v.includes('.') ? '.' + (p[1]||'') : '')
 }
 
-function formatAmt(n) {
-  return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+function calcStatus(v) {
+  return v >= 2400 ? 'fire' : v >= 1500 ? 'heating' : 'rising'
 }
 
-function signupBanner() {
+function banner() {
   return `<div class="signup-banner">
     <div class="signup-banner-title">🔒 Unlock Full Access</div>
     <div class="signup-banner-sub">Sign up free to see all live amounts,<br>set alerts, and track your favorites.</div>
-    <button class="signup-banner-btn" onclick="openModal()">Sign Up Free — Takes 30 Seconds</button>
+    <button class="signup-banner-btn" onclick="openModal()">Sign Up Free — 30 Seconds</button>
   </div>`
 }
 
-// ── HOME SCREEN ──
+// ── HOME ──
 async function renderHome() {
-  document.getElementById('signup-banner-home').innerHTML = currentUser ? '' : signupBanner()
-
-  const { data: venues, error } = await supabase
-    .from('venues')
-    .select('*')
-    .eq('active', true)
-    .eq('approved', true)
-
-  if (error || !venues) {
-    document.getElementById('venues-list').innerHTML = '<div style="padding:40px;text-align:center;color:#ff1744">Error loading venues</div>'
-    return
-  }
-
+  document.getElementById('home-banner').innerHTML = currentUser ? '' : banner()
+  const { data: venues } = await supabase.from('venues').select('*').eq('active',true).eq('approved',true)
+  if (!venues) return
   document.getElementById('venue-count').textContent = venues.length + ' venues'
-
-  const html = venues.map(venue => `
+  document.getElementById('venues-list').innerHTML = venues.map(v => `
     <div class="venue-card">
       <div class="venue-top">
-        <div class="venue-icon">🎰</div>
+        <div style="font-size:26px">🎰</div>
         <div style="flex:1">
-          <div class="venue-name">${venue.name}${venue.partner ? '<span class="venue-badge">★ Partner</span>' : ''}</div>
-          <div class="venue-area">${venue.area}</div>
+          <div class="venue-name">${v.name}${v.partner?'<span class="venue-badge">★ Partner</span>':''}</div>
+          <div class="venue-area">${v.area}</div>
         </div>
       </div>
-      <div id="banks-${venue.id}"><div style="font-size:9px;color:#555;padding:6px 0">Loading progressives...</div></div>
-      <div class="venue-footer">
-        <div class="venue-status">● Open 24hrs</div>
-        <div class="venue-arrow">›</div>
-      </div>
-    </div>
-  `).join('')
-
-  document.getElementById('venues-list').innerHTML = html
-  venues.forEach(v => loadBanksForVenue(v.id))
+      <div id="b-${v.id}"><div style="font-size:9px;color:#555;padding:6px 0">Loading...</div></div>
+      <div class="venue-footer"><div class="venue-status">● Open 24hrs</div><div style="color:#888;font-size:18px">›</div></div>
+    </div>`).join('')
+  venues.forEach(v => loadBanks(v.id))
 }
 
-async function loadBanksForVenue(venueId) {
-  const { data: banks, error } = await supabase
-    .from('banks')
-    .select('*')
-    .eq('venue_id', venueId)
-    .eq('active', true)
-
-  const container = document.getElementById('banks-' + venueId)
-  if (!container) return
-
-  if (error || !banks || banks.length === 0) {
-    container.innerHTML = '<div style="font-size:9px;color:#555;padding:6px 0">No progressives tracked yet</div>'
-    return
-  }
-
-  // Track all banks for hot list
-  banks.forEach(b => {
-    if (!allBanks.find(x => x.id === b.id)) allBanks.push(b)
-  })
-
-  const html = banks.map(bank => {
-    const color = getAmountColor(bank.status, bank.type)
-    const grad = getMeterGrad(bank.status, bank.type)
-    const mw = getMeterWidth(bank.status)
-
+async function loadBanks(venueId) {
+  const { data: banks } = await supabase.from('banks').select('*').eq('venue_id',venueId).eq('active',true)
+  const el = document.getElementById('b-' + venueId)
+  if (!el) return
+  if (!banks || banks.length === 0) { el.innerHTML = '<div style="font-size:9px;color:#555;padding:6px 0">No progressives tracked yet</div>'; return }
+  el.innerHTML = banks.map(b => {
+    const c = amtColor(b.status, b.type)
+    const g = meterGrad(b.status, b.type)
+    const w = meterW(b.status)
     if (currentUser) {
-      // LOGGED IN — show full amount
       return `<div class="bank-row">
-        <div class="bank-name">${bank.name}</div>
-        <div class="bank-game">${bank.game}${bank.denom ? ' · ' + bank.denom : ''}</div>
-        <div class="bank-amount" style="color:${color};text-shadow:0 0 8px ${color}88">${bank.amount ? formatAmt(bank.amount) : 'No amount yet'}</div>
-        ${bank.status ? `<div class="bank-status" style="color:${color}">${getStatusLabel(bank.status)}</div>` : ''}
-        <div class="bank-meter"><div class="bank-meter-fill" style="width:${mw};background:${grad}"></div></div>
+        <div class="bank-name">${b.name}</div>
+        <div class="bank-game">${b.game}${b.denom?' · '+b.denom:''}</div>
+        <div class="bank-amount" style="color:${c};text-shadow:0 0 8px ${c}88">${b.amount?fmtAmt(b.amount):'No amount yet'}</div>
+        ${b.status?`<div class="bank-status" style="color:${c}">${statusLabel(b.status)}</div>`:''}
+        <div class="bank-meter"><div style="height:100%;width:${w};background:${g};border-radius:3px"></div></div>
       </div>`
     } else {
-      // NOT LOGGED IN — blur amount
       return `<div class="bank-row">
-        <div class="bank-name">${bank.name}</div>
-        <div class="bank-game">${bank.game}${bank.denom ? ' · ' + bank.denom : ''}</div>
-        <div class="locked-amount">
-          <div class="locked-text">$2,847.22</div>
-          <div class="lock-icon">🔒</div>
-        </div>
+        <div class="bank-name">${b.name}</div>
+        <div class="bank-game">${b.game}${b.denom?' · '+b.denom:''}</div>
+        <div class="locked-amount"><div class="locked-text">$2,847.22</div><div style="font-size:18px">🔒</div></div>
         <div class="unlock-prompt" onclick="openModal()">Sign up free to see live amounts →</div>
-        <div class="bank-meter"><div class="bank-meter-fill" style="width:${mw};background:${grad}"></div></div>
+        <div class="bank-meter"><div style="height:100%;width:${w};background:${g};border-radius:3px"></div></div>
       </div>`
     }
   }).join('')
-
-  container.innerHTML = html
 }
 
 // ── HOT LIST ──
 async function renderHotList() {
-  document.getElementById('signup-banner-hotlist').innerHTML = currentUser ? '' : signupBanner()
-
-  const { data: banks, error } = await supabase
-    .from('banks')
-    .select('*, venues(name, area)')
-    .eq('active', true)
-    .not('amount', 'is', null)
-    .order('amount', { ascending: false })
-
-  if (error || !banks || banks.length === 0) {
-    document.getElementById('hotlist-content').innerHTML = '<div style="padding:40px;text-align:center;color:#555;font-size:11px">No data yet</div>'
-    return
-  }
-
-  const sorted = banks.sort((a, b) => {
-    const order = { fire: 0, heating: 1, rising: 2 }
-    return (order[a.status] || 2) - (order[b.status] || 2)
-  })
-
+  document.getElementById('hotlist-banner').innerHTML = currentUser ? '' : banner()
+  const { data: banks } = await supabase.from('banks').select('*, venues(name,area)').eq('active',true).not('amount','is',null)
+  if (!banks || banks.length === 0) { document.getElementById('hotlist-content').innerHTML = '<div style="padding:40px;text-align:center;color:#555">No data yet</div>'; return }
+  const sorted = banks.sort((a,b) => { const o={fire:0,heating:1,rising:2}; return (o[a.status]||2)-(o[b.status]||2) })
   let html = ''
-
-  sorted.forEach((bank, i) => {
-    const color = getAmountColor(bank.status, bank.type)
-    const venueName = bank.venues?.name || 'Unknown Venue'
-    const area = bank.venues?.area || ''
-
+  sorted.forEach((b,i) => {
+    const c = amtColor(b.status, b.type)
+    const vn = b.venues?.name || 'Unknown'
+    const va = b.venues?.area || ''
+    const rankColor = i===0?'#ffd700':i===1?'#aaa':i===2?'#cd7f32':'#222'
     if (i < 3 || currentUser) {
-      // Show top 3 to everyone, rest only to logged in users
-      html += `<div class="hotlist-card" style="border-color:${bank.status === 'fire' ? '#ff174433' : bank.status === 'heating' ? '#ffd70022' : '#141825'}">
-        <div class="hotlist-rank" style="color:${i === 0 ? '#ffd700' : i === 1 ? '#888' : i === 2 ? '#cd7f32' : '#222'}">${i + 1}</div>
+      html += `<div class="hotlist-card" style="border-color:${b.status==='fire'?'#ff174433':b.status==='heating'?'#ffd70022':'#141825'}">
+        <div class="hotlist-rank" style="color:${rankColor}">${i+1}</div>
         <div class="hotlist-info">
-          <div class="hotlist-venue">${venueName} · ${area}</div>
-          <div class="hotlist-game">${bank.game}${bank.denom ? ' · ' + bank.denom : ''} · ${getStatusLabel(bank.status || 'rising')}</div>
+          <div class="hotlist-venue">${vn} · ${va}</div>
+          <div class="hotlist-game">${b.game}${b.denom?' · '+b.denom:''} · ${statusLabel(b.status||'rising')}</div>
         </div>
-        <div class="hotlist-amount" style="color:${color};text-shadow:0 0 6px ${color}88">${formatAmt(bank.amount)}</div>
+        <div class="hotlist-amount" style="color:${c};text-shadow:0 0 6px ${c}88">${fmtAmt(b.amount)}</div>
       </div>`
     } else if (i === 3) {
-      // Show lock prompt after top 3
-      html += `<div style="margin:4px 12px 8px;background:#aa44ff10;border:1px solid #aa44ff33;border-radius:8px;padding:12px;text-align:center">
-        <div style="font-size:18px;margin-bottom:5px">🔒</div>
-        <div style="font-family:'Orbitron',monospace;font-size:10px;color:#aa44ff;letter-spacing:2px;margin-bottom:5px">${sorted.length - 3} More Progressives</div>
+      html += `<div style="margin:4px 12px 8px;background:#aa44ff10;border:1px solid #aa44ff33;border-radius:8px;padding:14px;text-align:center">
+        <div style="font-size:20px;margin-bottom:6px">🔒</div>
+        <div style="font-family:'Orbitron',monospace;font-size:10px;color:#aa44ff;letter-spacing:2px;margin-bottom:5px">${sorted.length-3} More Progressives</div>
         <div style="font-size:9px;color:#888;margin-bottom:10px">Sign up free to see the full ranked list</div>
-        <button onclick="openModal()" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff">Unlock Full List</button>
+        <button onclick="openModal()" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;padding:9px 18px;border-radius:6px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff">Unlock Full List</button>
       </div>`
     }
   })
-
   document.getElementById('hotlist-content').innerHTML = html
 }
 
-// ── SUBMIT SCREEN ──
-function renderSubmit() {
-  const el = document.getElementById('submit-prompt')
-  if (currentUser) {
-    el.innerHTML = `<div style="font-size:11px;color:#aaa;letter-spacing:1px">Submit screen coming soon</div>`
-  } else {
-    el.innerHTML = `
-      <div style="font-size:11px;color:#aaa;letter-spacing:1px;margin-bottom:16px">You need an account to submit progressive amounts.</div>
-      <button onclick="openModal()" style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#ffd700,#ff9500);color:#080808">Sign Up Free</button>`
+// ── SUBMIT ──
+async function renderSubmit() {
+  const el = document.getElementById('submit-content')
+  if (!currentUser) {
+    el.innerHTML = `<div style="text-align:center;padding:30px 0">
+      <div style="font-size:40px;margin-bottom:16px">🎰</div>
+      <div style="font-family:'Orbitron',monospace;font-size:13px;color:#888;letter-spacing:2px;margin-bottom:10px">Sign In to Submit</div>
+      <div style="font-size:10px;color:#555;letter-spacing:1px;margin-bottom:20px;line-height:1.8">Create a free account to submit progressive amounts and help the Vegas community.</div>
+      <button onclick="openModal()" style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;padding:13px 24px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#ffd700,#ff9500);color:#080808">Sign Up Free</button>
+    </div>`
+    return
+  }
+
+  const { data: venues } = await supabase.from('venues').select('*').eq('active',true).eq('approved',true)
+  
+  el.innerHTML = `
+    <div style="font-size:7px;color:#888;letter-spacing:2px;margin-bottom:6px">SELECT VENUE</div>
+    <select class="select-field" id="sub-venue" onchange="loadSubmitBanks()">
+      <option value="">Select a venue</option>
+      ${(venues||[]).map(v=>`<option value="${v.id}">${v.name} · ${v.area}</option>`).join('')}
+    </select>
+    <div style="font-size:7px;color:#888;letter-spacing:2px;margin-bottom:6px">SELECT BANK</div>
+    <select class="select-field" id="sub-bank">
+      <option value="">Select venue first</option>
+    </select>
+    <div style="background:#0c0d14;border:1px solid #ffd70033;border-radius:10px;padding:18px;text-align:center;margin-bottom:14px">
+      <div style="font-size:7px;color:#888;letter-spacing:2px;margin-bottom:6px">AMOUNT ON MACHINE RIGHT NOW</div>
+      <div id="sub-display" style="font-family:'Orbitron',monospace;font-weight:700;font-size:38px;color:#ffd700;text-shadow:0 0 10px #ffd700;min-height:46px;letter-spacing:2px">$0</div>
+    </div>
+    <div id="sub-meter" style="margin-bottom:14px"></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px">
+      ${["1","2","3","4","5","6","7","8","9","CLR","0","⌫"].map(k=>
+        `<div class="numkey" style="${k==='CLR'?'color:#ff1744':k==='⌫'?'color:#888':''}" onclick="subNum('${k}')">${k}</div>`
+      ).join('')}
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;background:#0c0d14;border:1px solid #1a1a2a;border-radius:8px;padding:12px;margin-bottom:14px">
+      <div>
+        <div style="font-size:11px;color:#ccc;margin-bottom:2px">Submit Anonymously</div>
+        <div style="font-size:8px;color:#888">Your name won't be shown</div>
+      </div>
+      <div id="anon-toggle" onclick="toggleAnon()" style="width:44px;height:24px;border-radius:12px;background:#00ff4122;border:1px solid #00ff41;position:relative;cursor:pointer;transition:all 0.3s">
+        <div id="anon-knob" style="width:18px;height:18px;border-radius:50%;background:#00ff41;position:absolute;top:3px;left:23px;transition:all 0.3s;box-shadow:0 0 5px #00ff41"></div>
+      </div>
+    </div>
+    <div id="sub-status" style="text-align:center;font-size:9px;padding:10px;border-radius:8px;margin-bottom:10px;display:none"></div>
+    <button id="sub-btn" onclick="doSubmit()" style="width:100%;padding:14px;font-family:'Orbitron',monospace;font-weight:900;font-size:11px;letter-spacing:3px;text-transform:uppercase;border-radius:8px;border:none;cursor:pointer;background:#1a1a1a;color:#444">Enter Amount First</button>
+  `
+  submitAmt = ''
+}
+
+window.loadSubmitBanks = async function() {
+  const venueId = document.getElementById('sub-venue')?.value
+  const bankSel = document.getElementById('sub-bank')
+  if (!bankSel || !venueId) return
+  bankSel.innerHTML = '<option>Loading...</option>'
+  const { data: banks } = await supabase.from('banks').select('*').eq('venue_id',venueId).eq('active',true)
+  if (!banks || banks.length === 0) { bankSel.innerHTML = '<option value="">No banks yet</option>'; return }
+  bankSel.innerHTML = '<option value="">Select a bank</option>' + banks.map(b=>`<option value="${b.id}">${b.name} · ${b.game}${b.denom?' · '+b.denom:''}</option>`).join('')
+}
+
+window.subNum = function(k) {
+  if (k === 'CLR') { submitAmt = '' }
+  else if (k === '⌫') { submitAmt = submitAmt.slice(0,-1) }
+  else if (k === '.') { if (!submitAmt.includes('.')) submitAmt += '.' }
+  else { if (submitAmt.replace('.','').length < 8) submitAmt += k }
+  
+  const disp = document.getElementById('sub-display')
+  if (disp) disp.textContent = submitAmt ? fmtDisplay(submitAmt) : '$0'
+  
+  const val = parseFloat(submitAmt) || 0
+  const st = calcStatus(val)
+  const c = amtColor(st, 'poker')
+  const g = meterGrad(st, 'poker')
+  const w = meterW(st)
+  const meter = document.getElementById('sub-meter')
+  if (meter && submitAmt) {
+    meter.innerHTML = `<div style="background:#0c0d14;border:1px solid #1a1a2a;border-radius:8px;padding:12px">
+      <div style="font-size:7px;color:#888;letter-spacing:2px;margin-bottom:6px">JACKPOT METER PREVIEW</div>
+      <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:${c};margin-bottom:6px">${statusLabel(st)}</div>
+      <div style="height:4px;background:#111;border-radius:3px;overflow:hidden"><div style="height:100%;width:${w};background:${g};border-radius:3px"></div></div>
+    </div>`
+  } else if (meter) { meter.innerHTML = '' }
+
+  const btn = document.getElementById('sub-btn')
+  if (btn) {
+    btn.style.background = submitAmt ? 'linear-gradient(135deg,#ffd700,#ff9500)' : '#1a1a1a'
+    btn.style.color = submitAmt ? '#080808' : '#444'
   }
 }
 
-// ── PROFILE SCREEN ──
+window.toggleAnon = function() {
+  submitAnon = !submitAnon
+  const t = document.getElementById('anon-toggle')
+  const k = document.getElementById('anon-knob')
+  if (t && k) {
+    t.style.background = submitAnon ? '#00ff4122' : '#1a1a2a'
+    t.style.borderColor = submitAnon ? '#00ff41' : '#2a2a3a'
+    k.style.left = submitAnon ? '23px' : '3px'
+    k.style.background = submitAnon ? '#00ff41' : '#333'
+    k.style.boxShadow = submitAnon ? '0 0 5px #00ff41' : 'none'
+  }
+}
+
+window.doSubmit = async function() {
+  const bankId = document.getElementById('sub-bank')?.value
+  if (!bankId || !submitAmt) return
+  const val = parseFloat(submitAmt)
+  const st = calcStatus(val)
+
+  const { error: bankError } = await supabase.from('banks').update({ amount: val, status: st }).eq('id', bankId)
+  
+  const { error: progError } = await supabase.from('progressives').insert({
+    bank_id: bankId,
+    amount: val,
+    status: st,
+    badge_type: 'community',
+    anonymous: submitAnon,
+    approved: true
+  })
+
+  const statusEl = document.getElementById('sub-status')
+  if (bankError || progError) {
+    if (statusEl) { statusEl.textContent = 'Error submitting — try again'; statusEl.style.background='#ff174415'; statusEl.style.border='1px solid #ff174433'; statusEl.style.color='#ff1744'; statusEl.style.display='block' }
+    return
+  }
+
+  if (statusEl) { statusEl.textContent = '✓ Amount submitted! +10 XP'; statusEl.style.background='#00ff4115'; statusEl.style.border='1px solid #00ff4133'; statusEl.style.color='#00ff41'; statusEl.style.display='block' }
+  submitAmt = ''
+  const disp = document.getElementById('sub-display')
+  if (disp) disp.textContent = '$0'
+  const meter = document.getElementById('sub-meter')
+  if (meter) meter.innerHTML = ''
+  const btn = document.getElementById('sub-btn')
+  if (btn) { btn.style.background='#1a1a1a'; btn.style.color='#444' }
+  setTimeout(() => { if (statusEl) statusEl.style.display='none' }, 3000)
+}
+
+// ── PROFILE ──
 function renderProfile() {
   const el = document.getElementById('profile-content')
   if (currentUser) {
@@ -456,47 +490,36 @@ function renderProfile() {
           <div style="font-size:8px;color:#555;letter-spacing:2px;margin-bottom:6px">TIER</div>
           <div style="font-family:'Orbitron',monospace;font-size:12px;color:#ffd700">👤 Community</div>
         </div>
-        <button onclick="signOut()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:8px;border:1px solid #ff174422;background:transparent;color:#ff174466;cursor:pointer;text-transform:uppercase">Sign Out</button>
+        <button onclick="doSignOut()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:8px;border:1px solid #ff174422;background:transparent;color:#ff174466;cursor:pointer;text-transform:uppercase">Sign Out</button>
       </div>`
   } else {
     el.innerHTML = `
       <div style="text-align:center;padding:40px 20px">
         <div style="font-size:40px;margin-bottom:16px">👤</div>
         <div style="font-family:'Orbitron',monospace;font-size:13px;color:#888;letter-spacing:2px;margin-bottom:10px">Not Signed In</div>
-        <div style="font-size:10px;color:#555;letter-spacing:1px;margin-bottom:20px">Create a free account to track favorites, submit amounts, and get alerts.</div>
+        <div style="font-size:10px;color:#555;letter-spacing:1px;margin-bottom:20px;line-height:1.8">Create a free account to track favorites, submit amounts, and get alerts.</div>
         <button onclick="openModal()" style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#ffd700,#ff9500);color:#080808">Sign Up Free</button>
       </div>`
   }
 }
 
 // ── MODAL ──
-window.openModal = function() {
-  document.getElementById('modal-overlay').classList.add('show')
-}
-
-window.closeModal = function() {
-  document.getElementById('modal-overlay').classList.remove('show')
-}
-
-window.closeModalOutside = function(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModal()
-}
-
+window.openModal = function() { document.getElementById('modal-overlay').classList.add('show') }
+window.closeModal = function() { document.getElementById('modal-overlay').classList.remove('show') }
+window.closeModalOutside = function(e) { if (e.target === document.getElementById('modal-overlay')) closeModal() }
 window.switchModalTab = function(tab) {
-  document.getElementById('mtab-login').classList.toggle('active', tab === 'login')
-  document.getElementById('mtab-signup').classList.toggle('active', tab === 'signup')
-  document.getElementById('modal-login-form').style.display = tab === 'login' ? 'block' : 'none'
-  document.getElementById('modal-signup-form').style.display = tab === 'signup' ? 'block' : 'none'
+  document.getElementById('mtab-login').classList.toggle('active', tab==='login')
+  document.getElementById('mtab-signup').classList.toggle('active', tab==='signup')
+  document.getElementById('modal-login-form').style.display = tab==='login'?'block':'none'
+  document.getElementById('modal-signup-form').style.display = tab==='signup'?'block':'none'
 }
 
 window.modalSignIn = async function() {
   const email = document.getElementById('m-login-email').value
   const password = document.getElementById('m-login-password').value
-  if (!email || !password) { showModalStatus('login', 'Please fill in all fields', false); return }
-
+  if (!email||!password) { showMStatus('login','Please fill in all fields',false); return }
   const { error } = await supabase.auth.signInWithPassword({ email, password })
-  if (error) { showModalStatus('login', error.message, false); return }
-
+  if (error) { showMStatus('login',error.message,false); return }
   closeModal()
 }
 
@@ -504,32 +527,22 @@ window.modalSignUp = async function() {
   const username = document.getElementById('m-signup-username').value
   const email = document.getElementById('m-signup-email').value
   const password = document.getElementById('m-signup-password').value
-  if (!username || !email || !password) { showModalStatus('signup', 'Please fill in all fields', false); return }
-
-  const { data, error } = await supabase.auth.signUp({ email, password })
-  if (error) { showModalStatus('signup', error.message, false); return }
-
-  await supabase.from('users').insert({
-    email, username, role: 'player', tier: 'community',
-    accuracy_score: 100, submission_count: 0, xp: 0, streak: 0,
-    restricted: false, banned: false
-  })
-
-  showModalStatus('signup', '✓ Welcome to VJJ!', true)
+  if (!username||!email||!password) { showMStatus('signup','Please fill in all fields',false); return }
+  const { error } = await supabase.auth.signUp({ email, password })
+  if (error) { showMStatus('signup',error.message,false); return }
+  await supabase.from('users').insert({ email, username, role:'player', tier:'community', accuracy_score:100, submission_count:0, xp:0, streak:0, restricted:false, banned:false })
+  showMStatus('signup','✓ Welcome to VJJ!',true)
   setTimeout(() => closeModal(), 1500)
 }
 
-window.signOut = async function() {
+window.doSignOut = async function() {
   await supabase.auth.signOut()
-  currentUser = null
-  updateHeader()
-  renderCurrentScreen()
 }
 
-function showModalStatus(form, msg, success) {
-  const el = document.getElementById('modal-' + form + '-status')
+function showMStatus(form, msg, success) {
+  const el = document.getElementById('modal-'+form+'-status')
   el.textContent = msg
-  el.className = 'modal-status ' + (success ? 'success' : 'error')
+  el.className = 'modal-status ' + (success?'success':'error')
   el.style.display = 'block'
 }
 
