@@ -358,7 +358,10 @@ async function loadVenues() {
           <div class="row-name">${v.name} ${v.partner?'<span class="badge bg">★ Partner</span>':''}</div>
           <div class="row-detail">${v.area} · ${v.address}</div>
         </div>
-        <div style="font-size:13px;color:#aaa;cursor:pointer">✏</div>
+        <div style="display:flex;gap:6px">
+  <div onclick="editVenue('${v.id}','${v.name}','${v.address}','${v.area}','${v.phone||''}',${v.partner})" style="font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid #aa44ff33;color:#aa44ff;cursor:pointer">✏</div>
+  <div onclick="deactivateVenue('${v.id}','${v.name}')" style="font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid #ff174433;color:#ff1744;cursor:pointer">✕</div>
+</div>
       </div>`).join('')
 }
 
@@ -627,6 +630,47 @@ async function loadOverview() {
           <div class="row-detail">$${Number(p.amount).toLocaleString('en-US',{minimumFractionDigits:2})} · ${p.badge_type||'community'}</div>
         </div>
       </div>`).join('')
+  window.editVenue = function(id, name, address, area, phone, partner) {
+  document.getElementById('v-name').value = name
+  document.getElementById('v-address').value = address
+  document.getElementById('v-area').value = area
+  document.getElementById('v-phone').value = phone
+  const ptog = document.getElementById('v-ptog')
+  if (partner) ptog.className = 'tog on'
+  else ptog.className = 'tog off'
+  
+  // Change Add button to Update
+  const btn = document.querySelector('#s-venues .btn-p')
+  btn.textContent = 'Update Venue'
+  btn.onclick = async function() {
+    const newName = document.getElementById('v-name').value.trim()
+    const newAddress = document.getElementById('v-address').value.trim()
+    const newArea = document.getElementById('v-area').value
+    const newPhone = document.getElementById('v-phone').value.trim()
+    const newPartner = document.getElementById('v-ptog').classList.contains('on')
+    if (!newName || !newAddress) { msg('v-msg', 'Name and address required', false); return }
+    const { error } = await supabase.from('venues').update({ name: newName, address: newAddress, area: newArea, phone: newPhone, partner: newPartner }).eq('id', id)
+    if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
+    msg('v-msg', '✓ Venue updated!', true)
+    btn.textContent = '+ Add Venue'
+    btn.onclick = addVenue
+    document.getElementById('v-name').value = ''
+    document.getElementById('v-address').value = ''
+    document.getElementById('v-phone').value = ''
+    loadVenues()
+  }
+  
+  // Scroll to top of venues tab
+  document.getElementById('s-venues').scrollTop = 0
+  msg('v-msg', 'Editing — ' + name + '. Update details above.', true)
+}
+
+window.deactivateVenue = async function(id, name) {
+  if (!confirm('Remove ' + name + ' from the app? Data is preserved.')) return
+  const { error } = await supabase.from('venues').update({ active: false }).eq('id', id)
+  if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
+  loadVenues()
+}
 }
 
 // ── HELPERS ──
