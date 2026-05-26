@@ -22,67 +22,98 @@
 
   /* CONTENT */
   .content { padding-bottom:90px; }
-  .section-title { font-family:'Orbitron',monospace; font-size:10px; letter-spacing:3px; color:#ccc; text-transform:uppercase; padding:14px 12px 8px; display:flex; justify-content:space-between; align-items:center; }
-  .section-count { font-size:9px; color:#aaa; letter-spacing:1px; }
+  .section-title { font-family:'Orbitron',monospace; font-size:10px; letter-spacing:3px; color:#e8eaf0; text-transform:uppercase; padding:14px 12px 8px; display:flex; justify-content:space-between; align-items:center; }
+  .section-count { font-size:9px; color:#ccc; letter-spacing:1px; }
+
+  /* FILTER PILLS */
+  .filter-row { padding:6px 12px 10px; display:flex; flex-direction:column; gap:8px; }
+  .filter-line { display:flex; gap:8px; }
+  .fpill { font-family:'Orbitron',monospace; font-size:8px; letter-spacing:1px; padding:6px 14px; border-radius:20px; border:1px solid #333; background:transparent; color:#ccc; cursor:pointer; white-space:nowrap; transition:all 0.2s; }
+  .fpill.active { border-color:#ffd700; background:#ffd70015; color:#ffd700; }
 
   /* SIGNUP BANNER */
   .signup-banner { margin:8px 12px 12px; background:linear-gradient(135deg,#aa44ff18,#6622cc10); border:1px solid #aa44ff44; border-radius:10px; padding:16px; text-align:center; box-shadow:0 0 20px #aa44ff11; }
   .signup-banner-title { font-family:'Orbitron',monospace; font-size:12px; color:#aa44ff; text-shadow:0 0 10px #aa44ff; letter-spacing:2px; margin-bottom:6px; }
-  .signup-banner-sub { font-size:10px; color:#ccc; letter-spacing:1px; margin-bottom:14px; line-height:1.8; }
+  .signup-banner-sub { font-size:10px; color:#e8eaf0; letter-spacing:1px; margin-bottom:14px; line-height:1.8; }
   .signup-banner-btn { font-family:'Orbitron',monospace; font-size:9px; letter-spacing:2px; padding:11px 22px; border-radius:8px; border:none; cursor:pointer; background:linear-gradient(135deg,#aa44ff,#6622cc); color:#fff; font-weight:700; box-shadow:0 0 14px #aa44ff33; }
 
-  /* VENUE CARDS */
-  .venue-card { margin:0 12px 12px; background:#0c0d14; border:1px solid #1a1a2a; border-radius:10px; padding:14px; transition:all 0.2s; }
+  /* VENUE CARDS — HOME */
+  .venue-card { margin:0 12px 12px; background:#0c0d14; border:1px solid #1a1a2a; border-radius:12px; padding:16px; cursor:pointer; transition:all 0.2s; position:relative; overflow:hidden; }
   .venue-card:active { transform:scale(0.98); }
-  .venue-top { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+  .venue-card.fire { border-color:#ff174433; box-shadow:0 0 16px #ff174411; }
+  .venue-card.heating { border-color:#ffd70022; box-shadow:0 0 12px #ffd70008; }
+  .venue-card-top { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .venue-icon { font-size:28px; }
   .venue-name { font-size:15px; color:#e8eaf0; letter-spacing:1px; margin-bottom:3px; font-weight:700; }
   .venue-area { font-size:10px; color:#ccc; letter-spacing:1px; }
-  .venue-badge { font-size:8px; padding:2px 7px; border-radius:2px; background:#ffd70015; border:1px solid #ffd70044; color:#ffd700; margin-left:6px; }
-  .venue-footer { display:flex; justify-content:space-between; align-items:center; padding-top:8px; border-top:1px solid #1a1a2a; margin-top:8px; }
-  .venue-status { font-size:10px; color:#00ff41; letter-spacing:1px; text-shadow:0 0 5px #00ff41; }
+  .venue-partner { font-size:8px; padding:2px 7px; border-radius:2px; background:#ffd70015; border:1px solid #ffd70044; color:#ffd700; margin-left:6px; }
+  .venue-amount-row { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:8px; }
+  .venue-top-amount { font-family:'Orbitron',monospace; font-weight:700; font-size:32px; letter-spacing:1px; line-height:1; }
+  .venue-status-label { font-size:9px; letter-spacing:1px; text-align:right; }
+  .venue-meta { display:flex; justify-content:space-between; align-items:center; padding-top:8px; border-top:1px solid #1a1a2a; }
+  .venue-bank-count { font-size:9px; color:#ccc; letter-spacing:1px; }
+  .venue-arrow { color:#ccc; font-size:18px; }
 
-  /* BANK ROWS */
-  .bank-row { padding:9px 0; border-bottom:1px solid #0a0a12; }
-  .bank-row:last-child { border-bottom:none; }
-  .bank-name { font-size:10px; color:#ccc; letter-spacing:1px; margin-bottom:3px; }
-  .bank-game { font-size:9px; color:#aaa; letter-spacing:1px; margin-bottom:4px; }
-  .bank-amount { font-family:'Orbitron',monospace; font-weight:700; font-size:26px; letter-spacing:1px; }
-  .bank-status { font-size:9px; letter-spacing:1px; margin-top:3px; }
+  /* LOCKED VENUE CARD */
+  .locked-amount-big { font-family:'Orbitron',monospace; font-weight:700; font-size:32px; color:#333; filter:blur(5px); user-select:none; letter-spacing:1px; }
+  .unlock-prompt { font-size:9px; color:#aa44ff; letter-spacing:1px; cursor:pointer; text-shadow:0 0 6px #aa44ff; text-decoration:underline; margin-top:4px; display:block; }
+
+  /* VENUE DETAIL */
+  .venue-detail-header { background:linear-gradient(135deg,#0c0d18,#080810); border-bottom:1px solid #222; padding:14px 16px 0; }
+  .back-btn { font-size:10px; color:#ccc; cursor:pointer; letter-spacing:1px; margin-bottom:14px; display:block; }
+  .venue-detail-name { font-family:'Orbitron',monospace; font-weight:900; font-size:18px; color:#e8eaf0; margin-bottom:4px; }
+  .venue-detail-area { font-size:10px; color:#ccc; margin-bottom:10px; }
+  .venue-stats-row { display:flex; border-top:1px solid #222; margin:0 -16px; }
+  .venue-stat { flex:1; padding:10px 8px; text-align:center; border-right:1px solid #222; }
+  .venue-stat:last-child { border-right:none; }
+  .venue-stat-val { font-family:'Orbitron',monospace; font-weight:700; font-size:14px; margin-bottom:2px; }
+  .venue-stat-lbl { font-size:7px; letter-spacing:2px; color:#ccc; text-transform:uppercase; }
+  .detail-tabs { display:flex; border-bottom:1px solid #222; padding:0 16px; }
+  .detail-tab { flex:1; padding:10px 4px; text-align:center; font-family:'Orbitron',monospace; font-size:8px; letter-spacing:1px; cursor:pointer; border-bottom:2px solid transparent; color:#ccc; text-transform:uppercase; transition:all 0.2s; }
+  .detail-tab.active { color:#ffd700; border-bottom-color:#ffd700; }
+
+  /* BANK ROWS — DETAIL */
+  .bank-detail-row { padding:12px 16px; border-bottom:1px solid #0a0a12; }
+  .bank-detail-row:last-child { border-bottom:none; }
+  .bank-detail-name { font-size:10px; color:#ccc; letter-spacing:1px; margin-bottom:2px; }
+  .bank-detail-game { font-size:9px; color:#aaa; letter-spacing:1px; margin-bottom:6px; }
+  .bank-detail-amount { font-family:'Orbitron',monospace; font-weight:700; font-size:28px; letter-spacing:1px; }
+  .bank-detail-status { font-size:9px; letter-spacing:1px; margin-top:3px; }
   .bank-meter { height:4px; background:#111; border-radius:3px; overflow:hidden; margin-top:6px; }
-
-  /* LOCKED */
-  .locked-amount { display:flex; align-items:center; gap:8px; }
-  .locked-text { font-family:'Orbitron',monospace; font-weight:700; font-size:26px; color:#333; filter:blur(4px); user-select:none; }
-  .unlock-prompt { font-size:9px; color:#aa44ff; letter-spacing:1px; cursor:pointer; margin-top:5px; text-decoration:underline; text-shadow:0 0 6px #aa44ff; }
+  .locked-bank { display:flex; align-items:center; gap:8px; }
+  .locked-bank-amt { font-family:'Orbitron',monospace; font-weight:700; font-size:28px; color:#333; filter:blur(4px); user-select:none; }
+  .unlock-small { font-size:9px; color:#aa44ff; cursor:pointer; text-decoration:underline; text-shadow:0 0 6px #aa44ff; margin-top:4px; display:block; }
 
   /* HOT LIST */
-  .hotlist-card { margin:0 12px 8px; background:#0c0d14; border-radius:8px; padding:12px; display:flex; align-items:center; gap:10px; border:1px solid #1a1a2a; }
+  .hotlist-card { margin:0 12px 8px; background:#0c0d14; border-radius:8px; padding:12px; display:flex; align-items:center; gap:10px; border:1px solid #1a1a2a; cursor:pointer; }
+  .hotlist-card:active { transform:scale(0.98); }
   .hotlist-rank { font-family:'Orbitron',monospace; font-weight:900; font-size:20px; min-width:26px; text-align:center; }
   .hotlist-venue { font-size:11px; color:#e8eaf0; letter-spacing:1px; margin-bottom:3px; }
   .hotlist-game { font-size:9px; color:#ccc; letter-spacing:1px; }
   .hotlist-amount { font-family:'Orbitron',monospace; font-weight:700; font-size:20px; flex-shrink:0; }
 
-  /* SELECT FIELDS */
+  /* SUBMIT */
   .sel { width:100%; background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:11px 14px; font-family:'Share Tech Mono',monospace; font-size:13px; color:#e8eaf0; outline:none; margin-bottom:14px; }
-
-  /* NUMPAD */
   .numkey { padding:14px; border-radius:8px; border:1px solid #1a1a2a; background:#0c0d14; font-family:'Orbitron',monospace; font-size:18px; font-weight:700; color:#e8eaf0; cursor:pointer; text-align:center; transition:all 0.15s; }
   .numkey:active { background:#1a1a2a; transform:scale(0.96); }
+  .amt-box { background:#0c0d14; border:1px solid #ffd70044; border-radius:10px; padding:18px; text-align:center; margin-bottom:12px; }
+  .amt-lbl { font-size:8px; color:#ccc; letter-spacing:2px; margin-bottom:8px; }
+  .amt-val { font-family:'Orbitron',monospace; font-weight:700; font-size:40px; color:#ffd700; text-shadow:0 0 12px #ffd700; min-height:50px; letter-spacing:2px; }
 
   /* MODAL */
   .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:200; display:none; align-items:flex-end; justify-content:center; }
   .modal-overlay.show { display:flex; }
   .modal { background:#0c0d14; border:1px solid #aa44ff44; border-radius:16px 16px 0 0; padding:26px; width:100%; max-width:430px; box-shadow:0 0 40px #aa44ff22; }
   .modal-title { font-family:'Orbitron',monospace; font-size:15px; color:#aa44ff; text-shadow:0 0 10px #aa44ff; letter-spacing:2px; margin-bottom:6px; }
-  .modal-sub { font-size:10px; color:#ccc; letter-spacing:1px; margin-bottom:20px; line-height:1.8; }
+  .modal-sub { font-size:10px; color:#e8eaf0; letter-spacing:1px; margin-bottom:20px; line-height:1.8; }
   .modal-tabs { display:flex; margin-bottom:16px; border-bottom:1px solid #1a1a2a; }
-  .modal-tab { flex:1; padding:10px; text-align:center; font-family:'Orbitron',monospace; font-size:8px; letter-spacing:2px; cursor:pointer; border-bottom:2px solid transparent; color:#aaa; text-transform:uppercase; }
+  .modal-tab { flex:1; padding:10px; text-align:center; font-family:'Orbitron',monospace; font-size:8px; letter-spacing:2px; cursor:pointer; border-bottom:2px solid transparent; color:#ccc; text-transform:uppercase; }
   .modal-tab.active { color:#ffd700; border-bottom-color:#ffd700; }
   .modal-field { width:100%; background:#070709; border:1px solid #1a1a2a; border-radius:8px; padding:12px 14px; font-family:'Share Tech Mono',monospace; font-size:13px; color:#e8eaf0; outline:none; margin-bottom:12px; }
   .modal-field:focus { border-color:#aa44ff55; }
   .modal-field::placeholder { color:#666; }
   .modal-btn { width:100%; padding:14px; font-family:'Orbitron',monospace; font-weight:900; font-size:10px; letter-spacing:3px; text-transform:uppercase; border-radius:8px; border:none; cursor:pointer; background:linear-gradient(135deg,#aa44ff,#6622cc); color:#fff; box-shadow:0 0 20px #aa44ff33; margin-bottom:10px; }
-  .modal-close { width:100%; padding:11px; font-family:'Orbitron',monospace; font-size:8px; letter-spacing:2px; border:1px solid #333; background:transparent; color:#aaa; border-radius:8px; cursor:pointer; text-transform:uppercase; }
+  .modal-close { width:100%; padding:11px; font-family:'Orbitron',monospace; font-size:8px; letter-spacing:2px; border:1px solid #333; background:transparent; color:#ccc; border-radius:8px; cursor:pointer; text-transform:uppercase; }
   .modal-status { text-align:center; font-size:9px; padding:8px; border-radius:6px; margin-bottom:10px; display:none; }
   .modal-status.success { background:#00ff4115; border:1px solid #00ff4144; color:#00ff41; }
   .modal-status.error { background:#ff174415; border:1px solid #ff174444; color:#ff1744; }
@@ -104,13 +135,11 @@
   .profile-stat-val { font-family:'Orbitron',monospace; font-weight:700; font-size:20px; margin-bottom:3px; }
   .profile-stat-lbl { font-size:8px; letter-spacing:2px; color:#ccc; text-transform:uppercase; }
 
+  /* PROMO BANNER */
+  .promo-banner { margin:0 12px 10px; border:1px solid #ffd70044; border-radius:10px; background:#ffd70008; padding:12px 14px; display:flex; align-items:center; gap:10px; cursor:pointer; }
+
   /* DISCLAIMER */
   .disclaimer { font-size:8px; color:#555; letter-spacing:1px; text-align:center; padding:16px; line-height:2; }
-
-  /* SUBMIT */
-  .amt-box { background:#0c0d14; border:1px solid #ffd70044; border-radius:10px; padding:18px; text-align:center; margin-bottom:12px; }
-  .amt-lbl { font-size:8px; color:#ccc; letter-spacing:2px; margin-bottom:8px; }
-  .amt-val { font-family:'Orbitron',monospace; font-weight:700; font-size:40px; color:#ffd700; text-shadow:0 0 12px #ffd700; min-height:50px; letter-spacing:2px; }
 </style>
 </head>
 <body>
@@ -130,19 +159,30 @@
   <!-- HOME -->
   <div class="screen active" id="screen-home">
     <div id="home-banner"></div>
-    <div style="display:flex;gap:8px;overflow-x:auto;padding:10px 12px 4px;scrollbar-width:none">
-  <div onclick="filterArea('all')" id="fa-all" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #ffd700;background:#ffd70015;color:#ffd700;cursor:pointer;white-space:nowrap">All Vegas</div>
-  <div onclick="filterArea('lv')" id="fa-lv" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;white-space:nowrap">Las Vegas</div>
-  <div onclick="filterArea('hend')" id="fa-hend" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;white-space:nowrap">Henderson</div>
-  <div onclick="filterArea('nlv')" id="fa-nlv" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;white-space:nowrap">North LV</div>
-  <div onclick="filterArea('summ')" id="fa-summ" style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;white-space:nowrap">Summerlin</div>
-</div>
+    <div class="filter-row">
+      <div class="filter-line">
+        <div class="fpill active" id="fa-all" onclick="filterArea('all')">All Vegas</div>
+        <div class="fpill" id="fa-lv" onclick="filterArea('lv')">Las Vegas</div>
+        <div class="fpill" id="fa-hend" onclick="filterArea('hend')">Henderson</div>
+      </div>
+      <div class="filter-line">
+        <div class="fpill" id="fa-nlv" onclick="filterArea('nlv')">North LV</div>
+        <div class="fpill" id="fa-summ" onclick="filterArea('summ')">Summerlin</div>
+      </div>
+    </div>
     <div class="section-title">
       <span>// Venues</span>
       <span class="section-count" id="venue-count"></span>
     </div>
     <div id="venues-list"><div style="padding:40px;text-align:center;font-size:11px;color:#ccc;letter-spacing:2px">Loading venues...</div></div>
-    <div class="disclaimer">For informational purposes only · Vegas Jackpot Junkies does not guarantee wins or outcomes · All amounts are user submitted and reflect publicly displayed machine information · Not affiliated with any casino or gaming establishment · If you or someone you know has a gambling problem call 1-800-522-4700 · <a href="/terms.html" style="color:#555;text-decoration:underline">Terms of Service</a> · <a href="/privacy.html" style="color:#555;text-decoration:underline">Privacy Policy</a></div>
+    <div class="disclaimer">For informational purposes only · Vegas Jackpot Junkies does not guarantee wins or outcomes · All amounts are user submitted and reflect publicly displayed machine information · Not affiliated with any casino or gaming establishment · If you or someone you know has a gambling problem call 1-800-522-4700 · <a href="/terms.html" style="color:#555;text-decoration:underline">Terms</a> · <a href="/privacy.html" style="color:#555;text-decoration:underline">Privacy</a></div>
+  </div>
+
+  <!-- VENUE DETAIL -->
+  <div class="screen" id="screen-venue">
+    <div class="venue-detail-header" id="venue-detail-header"></div>
+    <div id="venue-detail-content"></div>
+    <div class="disclaimer">For informational purposes only · If you or someone you know has a gambling problem call 1-800-522-4700</div>
   </div>
 
   <!-- HOT LIST -->
@@ -223,12 +263,14 @@ const supabase = createClient(
   'https://uajqyaulvlqleqprxwtr.supabase.co',
   'sb_publishable_b1Fq_jAP4A9On12qxqZIWw_R7R-OxFF'
 )
-  
-let currentFilter = 'all'
+
 let currentUser = null
 let currentScreen = 'home'
+let currentVenueId = null
+let currentVenueTab = 'progressives'
 let submitAmt = ''
 let submitAnon = true
+let currentFilter = 'all'
 let allVenues = []
 
 const { data: { session } } = await supabase.auth.getSession()
@@ -252,21 +294,25 @@ function updateHeader() {
 }
 
 // ── NAV ──
-window.showScreen = function(s) {
+window.showScreen = function(s, params) {
   document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'))
   document.getElementById('screen-' + s).classList.add('active')
   ;['home','hotlist','submit','profile'].forEach(t => {
     document.getElementById('ni-'+t)?.classList.remove('active')
     document.getElementById('nl-'+t)?.classList.remove('active')
   })
-  document.getElementById('ni-'+s)?.classList.add('active')
-  document.getElementById('nl-'+s)?.classList.add('active')
+  const navId = s === 'venue' ? 'home' : s
+  document.getElementById('ni-'+navId)?.classList.add('active')
+  document.getElementById('nl-'+navId)?.classList.add('active')
   currentScreen = s
+  if (params?.venueId) currentVenueId = params.venueId
   renderScreen(s)
+  window.scrollTo(0,0)
 }
 
 function renderScreen(s) {
   if (s === 'home')    renderHome()
+  if (s === 'venue')   renderVenueDetail()
   if (s === 'hotlist') renderHotList()
   if (s === 'submit')  renderSubmit()
   if (s === 'profile') renderProfile()
@@ -274,7 +320,7 @@ function renderScreen(s) {
 
 // ── HELPERS ──
 function amtColor(status, type) {
-  if (type === 'keno') return status === 'fire' ? '#00eeff' : '#00aaff'
+  if (type === 'keno') return status === 'fire' ? '#00eeff' : status === 'heating' ? '#00aaff' : '#0088cc'
   return status === 'fire' ? '#ff1744' : status === 'heating' ? '#ffd700' : '#00ff41'
 }
 
@@ -283,7 +329,7 @@ function statusLabel(s) {
 }
 
 function meterGrad(s, t) {
-  if (t === 'keno') return s === 'fire' ? 'linear-gradient(90deg,#0055cc,#00eeff)' : 'linear-gradient(90deg,#003366,#00aaff)'
+  if (t === 'keno') return s === 'fire' ? 'linear-gradient(90deg,#0055cc,#00eeff)' : s === 'heating' ? 'linear-gradient(90deg,#003366,#00aaff)' : 'linear-gradient(90deg,#002244,#0088cc)'
   return s === 'fire' ? 'linear-gradient(90deg,#ff6d00,#ff1744)' : s === 'heating' ? 'linear-gradient(90deg,#884400,#ffd700)' : 'linear-gradient(90deg,#003300,#00ff41)'
 }
 
@@ -294,7 +340,8 @@ function fmtDisp(v) {
   const p = v.split('.')
   return '$' + parseInt(p[0]||'0').toLocaleString() + (v.includes('.') ? '.' + (p[1]||'') : '')
 }
-function calcSt(v, start) { 
+
+function calcSt(v, start) {
   if (start > 0) {
     const pct = ((v - start) / start) * 100
     return pct >= 80 ? 'fire' : pct >= 40 ? 'heating' : 'rising'
@@ -310,63 +357,197 @@ function banner() {
   </div>`
 }
 
-// ── HOME ──
+// ── FILTER ──
+window.filterArea = function(area) {
+  currentFilter = area
+  ;['all','lv','hend','nlv','summ'].forEach(a => {
+    const el = document.getElementById('fa-'+a)
+    if (!el) return
+    el.className = 'fpill' + (a === area ? ' active' : '')
+  })
+  renderHome()
+}
+
+// ── HOME — VENUE CARDS ──
 async function renderHome() {
   document.getElementById('home-banner').innerHTML = currentUser ? '' : banner()
+
   let query = supabase.from('venues').select('*').eq('active',true).eq('approved',true)
-if (currentFilter === 'lv') query = query.eq('area', 'Las Vegas')
-if (currentFilter === 'hend') query = query.eq('area', 'Henderson')
-if (currentFilter === 'nlv') query = query.eq('area', 'North LV')
-if (currentFilter === 'summ') query = query.eq('area', 'Summerlin')
-const { data: venues } = await query
+  if (currentFilter === 'lv') query = query.eq('area','Las Vegas')
+  if (currentFilter === 'hend') query = query.eq('area','Henderson')
+  if (currentFilter === 'nlv') query = query.eq('area','North LV')
+  if (currentFilter === 'summ') query = query.eq('area','Summerlin')
+  const { data: venues } = await query
+
   if (!venues) return
   allVenues = venues
   document.getElementById('venue-count').textContent = venues.length + ' venues'
-  document.getElementById('venues-list').innerHTML = venues.map(v => `
-    <div class="venue-card">
-      <div class="venue-top">
-        <div style="font-size:28px">🎰</div>
-        <div style="flex:1">
-          <div class="venue-name">${v.name}${v.partner?'<span class="venue-badge">★ Partner</span>':''}</div>
-          <div class="venue-area">${v.area}</div>
-        </div>
-      </div>
-      <div id="b-${v.id}"><div style="font-size:10px;color:#aaa;padding:6px 0">Loading progressives...</div></div>
-      <div class="venue-footer">
-        <div class="venue-status">● Open 24hrs</div>
-        <div style="color:#aaa;font-size:20px">›</div>
-      </div>
-    </div>`).join('')
-  venues.forEach(v => loadBanks(v.id))
-}
 
-async function loadBanks(venueId) {
-  const { data: banks } = await supabase.from('banks').select('*').eq('venue_id',venueId).eq('active',true)
-  const el = document.getElementById('b-' + venueId)
-  if (!el) return
-  if (!banks || banks.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#aaa;padding:6px 0">No progressives tracked yet</div>'; return }
-  el.innerHTML = banks.map(b => {
-    const c = amtColor(b.status, b.type)
-    const g = meterGrad(b.status, b.type)
-    const w = meterW(b.status)
+  // Load all banks to find hottest per venue
+  const { data: allBanks } = await supabase.from('banks').select('*').eq('active',true).not('amount','is',null)
+
+  document.getElementById('venues-list').innerHTML = venues.map(v => {
+    const venueBanks = (allBanks||[]).filter(b => b.venue_id === v.id)
+    const sorted = venueBanks.sort((a,b) => (b.amount||0) - (a.amount||0))
+    const topBank = sorted[0]
+    const fireCount = venueBanks.filter(b => b.status === 'fire').length
+    const cardClass = fireCount > 0 ? 'venue-card fire' : venueBanks.some(b=>b.status==='heating') ? 'venue-card heating' : 'venue-card'
+
+    if (!topBank) {
+      return `<div class="${cardClass}" onclick="showScreen('venue',{venueId:'${v.id}'})">
+        <div class="venue-card-top">
+          <div class="venue-icon">🎰</div>
+          <div style="flex:1">
+            <div class="venue-name">${v.name}${v.partner?`<span class="venue-partner">★ Partner</span>`:''}</div>
+            <div class="venue-area">${v.area}</div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:#aaa;padding:4px 0">No progressives tracked yet</div>
+        <div class="venue-meta">
+          <div class="venue-bank-count">0 progressives</div>
+          <div class="venue-arrow">›</div>
+        </div>
+      </div>`
+    }
+
+    const topStatus = topBank.status || 'rising'
+    const topColor = amtColor(topStatus, topBank.type)
+
     if (currentUser) {
-      return `<div class="bank-row">
-        <div class="bank-name">${b.name}</div>
-        <div class="bank-game">${b.game}${b.denom?' · '+b.denom:''}</div>
-        <div class="bank-amount" style="color:${c};text-shadow:0 0 8px ${c}88">${b.amount?fmtAmt(b.amount):'No amount yet'}</div>
-        ${b.status?`<div class="bank-status" style="color:${c}">${statusLabel(b.status)}</div>`:''}
-        <div class="bank-meter"><div style="height:100%;width:${w};background:${g};border-radius:3px"></div></div>
+      return `<div class="${cardClass}" onclick="showScreen('venue',{venueId:'${v.id}'})">
+        <div class="venue-card-top">
+          <div class="venue-icon">🎰</div>
+          <div style="flex:1">
+            <div class="venue-name">${v.name}${v.partner?`<span class="venue-partner">★ Partner</span>`:''}</div>
+            <div class="venue-area">${v.area}</div>
+          </div>
+        </div>
+        <div class="venue-amount-row">
+          <div class="venue-top-amount" style="color:${topColor};text-shadow:0 0 10px ${topColor}88">${fmtAmt(topBank.amount)}</div>
+          <div>
+            <div class="venue-status-label" style="color:${topColor}">${statusLabel(topStatus)}</div>
+            <div style="font-size:8px;color:#ccc;text-align:right;margin-top:2px">${topBank.game}${topBank.denom?' · '+topBank.denom:''}</div>
+          </div>
+        </div>
+        <div style="height:4px;background:#111;border-radius:3px;overflow:hidden;margin-bottom:8px">
+          <div style="height:100%;width:${meterW(topStatus)};background:${meterGrad(topStatus,topBank.type)};border-radius:3px"></div>
+        </div>
+        <div class="venue-meta">
+          <div class="venue-bank-count">${venueBanks.length} progressive${venueBanks.length!==1?'s':''} tracked${fireCount>0?' · 🔥 '+fireCount+' On Fire':''}</div>
+          <div class="venue-arrow">›</div>
+        </div>
       </div>`
     } else {
-      return `<div class="bank-row">
-        <div class="bank-name">${b.name}</div>
-        <div class="bank-game">${b.game}${b.denom?' · '+b.denom:''}</div>
-        <div class="locked-amount"><div class="locked-text">$2,847.22</div><div style="font-size:20px">🔒</div></div>
-        <div class="unlock-prompt" onclick="openModal()">Sign up free to see live amounts →</div>
-        <div class="bank-meter"><div style="height:100%;width:${w};background:${g};border-radius:3px"></div></div>
+      return `<div class="${cardClass}" onclick="openModal()">
+        <div class="venue-card-top">
+          <div class="venue-icon">🎰</div>
+          <div style="flex:1">
+            <div class="venue-name">${v.name}${v.partner?`<span class="venue-partner">★ Partner</span>`:''}</div>
+            <div class="venue-area">${v.area}</div>
+          </div>
+        </div>
+        <div class="venue-amount-row">
+          <div class="locked-amount-big">$???,???.??</div>
+          <div style="font-size:18px">🔒</div>
+        </div>
+        <span class="unlock-prompt" onclick="openModal()">Sign up free to see live amounts →</span>
+        <div style="height:4px;background:#111;border-radius:3px;overflow:hidden;margin-bottom:8px;margin-top:8px">
+          <div style="height:100%;width:${meterW(topStatus)};background:${meterGrad(topStatus,topBank.type)};border-radius:3px"></div>
+        </div>
+        <div class="venue-meta">
+          <div class="venue-bank-count">${venueBanks.length} progressive${venueBanks.length!==1?'s':''} tracked</div>
+          <div class="venue-arrow">›</div>
+        </div>
       </div>`
     }
   }).join('')
+}
+
+// ── VENUE DETAIL ──
+async function renderVenueDetail() {
+  const venue = allVenues.find(v => v.id === currentVenueId)
+  if (!venue) { showScreen('home'); return }
+
+  const { data: banks } = await supabase.from('banks').select('*').eq('venue_id', currentVenueId).eq('active',true)
+  const sorted = (banks||[]).sort((a,b) => (b.amount||0) - (a.amount||0))
+  const fireCount = sorted.filter(b => b.status==='fire').length
+
+  // Header
+  document.getElementById('venue-detail-header').innerHTML = `
+    <span class="back-btn" onclick="showScreen('home')">‹ Back to Venues</span>
+    <div class="venue-detail-name">${venue.name}${venue.partner?'<span class="venue-partner" style="margin-left:8px">★ Partner</span>':''}</div>
+    <div class="venue-detail-area">${venue.area}</div>
+    <div class="venue-stats-row">
+      <div class="venue-stat"><div class="venue-stat-val" style="color:#ff1744">${fireCount}</div><div class="venue-stat-lbl">On Fire</div></div>
+      <div class="venue-stat"><div class="venue-stat-val" style="color:#ffd700">${sorted.length}</div><div class="venue-stat-lbl">Progressives</div></div>
+      <div class="venue-stat"><div class="venue-stat-val" style="color:#00ff41">● Open</div><div class="venue-stat-lbl">24 Hours</div></div>
+    </div>
+    <div class="detail-tabs">
+      <div class="detail-tab active" id="dtab-progressives" onclick="switchDetailTab('progressives')">Progressives</div>
+      <div class="detail-tab" id="dtab-info" onclick="switchDetailTab('info')">Venue Info</div>
+    </div>`
+
+  renderDetailTab(venue, sorted)
+}
+
+window.switchDetailTab = function(tab) {
+  currentVenueTab = tab
+  document.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'))
+  document.getElementById('dtab-' + tab)?.classList.add('active')
+  const venue = allVenues.find(v => v.id === currentVenueId)
+  supabase.from('banks').select('*').eq('venue_id', currentVenueId).eq('active',true).then(({ data: banks }) => {
+    const sorted = (banks||[]).sort((a,b) => (b.amount||0) - (a.amount||0))
+    renderDetailTab(venue, sorted)
+  })
+}
+
+function renderDetailTab(venue, banks) {
+  const el = document.getElementById('venue-detail-content')
+  if (!el) return
+
+  if (currentVenueTab === 'progressives') {
+    if (!banks || banks.length === 0) {
+      el.innerHTML = '<div style="padding:20px 16px;font-size:10px;color:#ccc">No progressives tracked yet for this venue</div>'
+      return
+    }
+    el.innerHTML = banks.map(b => {
+      const c = amtColor(b.status, b.type)
+      const g = meterGrad(b.status, b.type)
+      const w = meterW(b.status)
+      if (currentUser) {
+        return `<div class="bank-detail-row">
+          <div class="bank-detail-name">${b.name}</div>
+          <div class="bank-detail-game">${b.game}${b.denom?' · '+b.denom:''}</div>
+          <div class="bank-detail-amount" style="color:${c};text-shadow:0 0 8px ${c}88">${b.amount?fmtAmt(b.amount):'No amount yet'}</div>
+          ${b.status?`<div class="bank-detail-status" style="color:${c}">${statusLabel(b.status)}</div>`:''}
+          <div class="bank-meter"><div style="height:100%;width:${w};background:${g};border-radius:3px"></div></div>
+        </div>`
+      } else {
+        return `<div class="bank-detail-row">
+          <div class="bank-detail-name">${b.name}</div>
+          <div class="bank-detail-game">${b.game}${b.denom?' · '+b.denom:''}</div>
+          <div class="locked-bank"><div class="locked-bank-amt">$2,847.22</div><div style="font-size:18px">🔒</div></div>
+          <span class="unlock-small" onclick="openModal()">Sign up free to see live amounts →</span>
+          <div class="bank-meter"><div style="height:100%;width:${w};background:${g};border-radius:3px"></div></div>
+        </div>`
+      }
+    }).join('') + `<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:8px">
+      <button onclick="showScreen('submit')" style="flex:1;padding:11px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;border-radius:7px;border:1px solid #ffd70044;background:#ffd70010;color:#ffd700;cursor:pointer">+ Submit Amount</button>
+    </div>`
+  } else {
+    el.innerHTML = `<div style="padding:14px 16px">
+      ${[
+        {i:'📍',l:'Address',v:venue.address||venue.name+', '+venue.area+', NV'},
+        {i:'🕐',l:'Hours',v:'Open 24 Hours',hi:true},
+        {i:'📞',l:'Phone',v:venue.phone||'See venue for details'},
+        {i:'🎰',l:'Area',v:venue.area},
+      ].map(r=>`<div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #111">
+        <div style="font-size:16px;opacity:0.7;flex-shrink:0;margin-top:2px">${r.i}</div>
+        <div><div style="font-size:8px;letter-spacing:2px;color:#ccc;text-transform:uppercase;margin-bottom:3px">${r.l}</div>
+        <div style="font-size:11px;color:${r.hi?'#00ff41':'#e8eaf0'};letter-spacing:1px">${r.v}</div></div>
+      </div>`).join('')}
+    </div>`
+  }
 }
 
 // ── HOT LIST ──
@@ -374,7 +555,7 @@ async function renderHotList() {
   document.getElementById('hotlist-banner').innerHTML = currentUser ? '' : banner()
   const { data: venues } = await supabase.from('venues').select('id, name, area')
   const { data: banks } = await supabase.from('banks').select('*').eq('active',true).not('amount','is',null)
-  if (!banks || banks.length === 0) { document.getElementById('hotlist-content').innerHTML = '<div style="padding:40px;text-align:center;color:#aaa;font-size:11px">No data yet — check back soon</div>'; return }
+  if (!banks || banks.length === 0) { document.getElementById('hotlist-content').innerHTML = '<div style="padding:40px;text-align:center;color:#ccc;font-size:11px">No data yet — check back soon</div>'; return }
   const sorted = banks.sort((a,b) => { const o={fire:0,heating:1,rising:2}; return (o[a.status]||2)-(o[b.status]||2) })
   let html = ''
   sorted.forEach((b,i) => {
@@ -383,7 +564,7 @@ async function renderHotList() {
     const va = venues?.find(v => v.id === b.venue_id)?.area || ''
     const rankColor = i===0?'#ffd700':i===1?'#aaa':i===2?'#cd7f32':'#444'
     if (i < 3 || currentUser) {
-      html += `<div class="hotlist-card" style="border-color:${b.status==='fire'?'#ff174433':b.status==='heating'?'#ffd70022':'#1a1a2a'}">
+      html += `<div class="hotlist-card" style="border-color:${b.status==='fire'?'#ff174433':b.status==='heating'?'#ffd70022':'#1a1a2a'}" onclick="showScreen('venue',{venueId:'${b.venue_id}'})">
         <div class="hotlist-rank" style="color:${rankColor}">${i+1}</div>
         <div style="flex:1">
           <div class="hotlist-venue">${vn} · ${va}</div>
@@ -395,7 +576,7 @@ async function renderHotList() {
       html += `<div style="margin:4px 12px 8px;background:#aa44ff12;border:1px solid #aa44ff44;border-radius:10px;padding:16px;text-align:center;box-shadow:0 0 20px #aa44ff11">
         <div style="font-size:22px;margin-bottom:8px">🔒</div>
         <div style="font-family:'Orbitron',monospace;font-size:11px;color:#aa44ff;text-shadow:0 0 8px #aa44ff;letter-spacing:2px;margin-bottom:6px">${sorted.length-3} More Progressives</div>
-        <div style="font-size:10px;color:#ccc;margin-bottom:12px">Sign up free to see the full ranked list</div>
+        <div style="font-size:10px;color:#e8eaf0;margin-bottom:12px">Sign up free to see the full ranked list</div>
         <button onclick="openModal()" style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;box-shadow:0 0 14px #aa44ff33">Unlock Full List</button>
       </div>`
     }
@@ -422,7 +603,7 @@ async function renderSubmit() {
       <option value="">Select a venue</option>
       ${(venues||[]).map(v=>`<option value="${v.id}">${v.name} · ${v.area}</option>`).join('')}
     </select>
-    <div style="font-size:8px;color:#ccc;letter-spacing:2px;margin-bottom:6px">SELECT BANK</div>
+    <div style="font-size:8px;color:#ccc;letter-spacing:2px;margin-bottom:6px">SELECT PROGRESSIVE</div>
     <select class="sel" id="sub-bank"><option value="">Select venue first</option></select>
     <div class="amt-box">
       <div class="amt-lbl">AMOUNT ON MACHINE RIGHT NOW</div>
@@ -454,8 +635,8 @@ window.loadSubmitBanks = async function() {
   if (!sel || !venueId) return
   sel.innerHTML = '<option>Loading...</option>'
   const { data: banks } = await supabase.from('banks').select('*').eq('venue_id',venueId).eq('active',true)
-  if (!banks || banks.length === 0) { sel.innerHTML = '<option value="">No banks yet</option>'; return }
-  sel.innerHTML = '<option value="">Select a bank</option>' + banks.map(b=>`<option value="${b.id}">${b.name} · ${b.game}${b.denom?' · '+b.denom:''}</option>`).join('')
+  if (!banks || banks.length === 0) { sel.innerHTML = '<option value="">No progressives yet</option>'; return }
+  sel.innerHTML = '<option value="">Select a progressive</option>' + banks.map(b=>`<option value="${b.id}" data-start="${b.starting_amount||0}">${b.name} · ${b.game}${b.denom?' · '+b.denom:''}</option>`).join('')
 }
 
 window.subNum = function(k) {
@@ -466,7 +647,7 @@ window.subNum = function(k) {
   const disp = document.getElementById('sub-display')
   if (disp) disp.textContent = submitAmt ? fmtDisp(submitAmt) : '$0'
   const val = parseFloat(submitAmt) || 0
-  const st = calcSt(val)
+  const st = calcSt(val, 0)
   const c = amtColor(st, 'poker')
   const g = meterGrad(st, 'poker')
   const w = meterW(st)
@@ -503,9 +684,9 @@ window.doSubmit = async function() {
   const bankId = document.getElementById('sub-bank')?.value
   if (!bankId || !submitAmt) return
   const val = parseFloat(submitAmt)
-const { data: bankInfo } = await supabase.from('banks').select('starting_amount').eq('id', bankId).single()
-const startAmt = bankInfo?.starting_amount || 0
-const st = calcSt(val, startAmt)
+  const { data: bankInfo } = await supabase.from('banks').select('starting_amount').eq('id', bankId).single()
+  const startAmt = bankInfo?.starting_amount || 0
+  const st = calcSt(val, startAmt)
   const { error: be } = await supabase.from('banks').update({ amount: val, status: st }).eq('id', bankId)
   const { error: pe } = await supabase.from('progressives').insert({ bank_id: bankId, amount: val, status: st, badge_type: 'community', anonymous: submitAnon, approved: true })
   const statusEl = document.getElementById('sub-status')
@@ -536,7 +717,6 @@ function renderProfile() {
         <div style="font-size:10px;color:#ccc;letter-spacing:1px">${currentUser.email}</div>
         <div style="font-size:8px;padding:3px 12px;border-radius:10px;background:#aa44ff15;border:1px solid #aa44ff44;color:#aa44ff;text-shadow:0 0 6px #aa44ff;letter-spacing:2px">👤 Community Member</div>
       </div>
-
       <div style="margin:16px;background:#0c0d14;border:1px solid #aa44ff33;border-radius:10px;padding:14px;box-shadow:0 0 16px #aa44ff10">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
           <div style="font-family:'Orbitron',monospace;font-size:11px;color:#aa44ff;text-shadow:0 0 6px #aa44ff;letter-spacing:2px">👤 Community</div>
@@ -549,43 +729,27 @@ function renderProfile() {
           <span>0 submissions</span><span>25 needed for Trusted Player</span>
         </div>
       </div>
-
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 16px 16px">
-        ${[
-          {v:'0',l:'Submissions',c:'#ffd700'},
-          {v:'100%',l:'Accuracy',c:'#00ff41'},
-          {v:'0',l:'XP Earned',c:'#aa44ff'},
-        ].map(s=>`<div class="profile-stat"><div class="profile-stat-val" style="color:${s.c};text-shadow:0 0 6px ${s.c}88">${s.v}</div><div class="profile-stat-lbl">${s.l}</div></div>`).join('')}
+        ${[{v:'0',l:'Submissions',c:'#ffd700'},{v:'100%',l:'Accuracy',c:'#00ff41'},{v:'0',l:'XP Earned',c:'#aa44ff'}].map(s=>`
+          <div class="profile-stat"><div class="profile-stat-val" style="color:${s.c};text-shadow:0 0 6px ${s.c}88">${s.v}</div><div class="profile-stat-lbl">${s.l}</div></div>`).join('')}
       </div>
-
       <div style="padding:0 16px 16px">
-        <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:#ccc;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #1a1a2a">// Account</div>
-        <div style="padding:0 0 16px">
-  <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:#ccc;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1a1a2a">// Follow Us</div>
-  <div style="display:flex;gap:12px;justify-content:center">
-    <a href="https://instagram.com/vegasjackpotjunkies" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
-      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">📸</div>
-      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">Instagram</div>
-    </a>
-    <a href="https://tiktok.com/@vegasjackpotjunki" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
-      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">🎵</div>
-      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">TikTok</div>
-    </a>
-    <a href="https://facebook.com/vegasjackpotjunkies" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
-      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">👥</div>
-      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">Facebook</div>
-    </a>
-    <a href="https://youtube.com/@vegasjackpotjunkies" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
-      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">▶️</div>
-      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">YouTube</div>
-    </a>
-    <a href="https://x.com/VegasJackp8oh0" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
-      <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">✖️</div>
-      <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">X</div>
-    </a>
-  </div>
-</div>
-        <button onclick="doSignOut()" style="width:100%;padding:13px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:8px;border:1px solid #ff174433;background:transparent;color:#ff1744;cursor:pointer;text-transform:uppercase">Sign Out</button>
+        <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:#e8eaf0;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1a1a2a">// Follow Us</div>
+        <div style="display:flex;gap:10px;justify-content:center;margin-bottom:16px">
+          ${[
+            {href:'https://instagram.com/vegasjackpotjunkies',icon:'📸',label:'Instagram'},
+            {href:'https://tiktok.com/@vegasjackpotjunki',icon:'🎵',label:'TikTok'},
+            {href:'https://facebook.com/vegasjackpotjunkies',icon:'👥',label:'Facebook'},
+            {href:'https://youtube.com/@vegasjackpotjunkies',icon:'▶️',label:'YouTube'},
+            {href:'https://x.com/VegasJackp8oh0',icon:'✖️',label:'X'},
+          ].map(s=>`<a href="${s.href}" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none">
+            <div style="width:44px;height:44px;border-radius:10px;background:#0c0d14;border:1px solid #1a1a2a;display:flex;align-items:center;justify-content:center;font-size:20px">${s.icon}</div>
+            <div style="font-size:7px;letter-spacing:1px;color:#ccc;text-transform:uppercase">${s.label}</div>
+          </a>`).join('')}
+        </div>
+        <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:#e8eaf0;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #1a1a2a">// Account</div>
+        <button onclick="shareApp()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:8px;border:1px solid #aa44ff44;background:#aa44ff10;color:#aa44ff;cursor:pointer;text-transform:uppercase;margin-bottom:8px">📤 Share VJJ With a Friend</button>
+        <button onclick="doSignOut()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:8px;border:1px solid #ff174433;background:transparent;color:#ff1744;cursor:pointer;text-transform:uppercase">Sign Out</button>
       </div>`
   } else {
     el.innerHTML = `
@@ -595,6 +759,16 @@ function renderProfile() {
         <div style="font-size:11px;color:#ccc;letter-spacing:1px;margin-bottom:24px;line-height:1.8">Create a free account to track favorites,<br>submit amounts, and get alerts.</div>
         <button onclick="openModal()" style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;padding:13px 28px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;box-shadow:0 0 16px #aa44ff33">Sign Up Free</button>
       </div>`
+  }
+}
+
+// ── SHARE ──
+window.shareApp = function() {
+  if (navigator.share) {
+    navigator.share({ title:'Vegas Jackpot Junkies', text:'Track live progressive jackpots across Vegas — know before you go 🎰', url:'https://vegasjackpotjunkies.com' })
+  } else {
+    navigator.clipboard.writeText('https://vegasjackpotjunkies.com')
+    alert('Link copied! Share it with your friends.')
   }
 }
 
@@ -626,37 +800,17 @@ window.modalSignUp = async function() {
   const { error } = await supabase.auth.signUp({ email, password })
   if (error) { showMStatus('signup',error.message,false); return }
   await supabase.from('users').insert({ email, username, role:'player', tier:'community', accuracy_score:100, submission_count:0, xp:0, streak:0, restricted:false, banned:false })
-  showMStatus('signup','✓ Welcome to VJJ!',true)
-  setTimeout(() => closeModal(), 1500)
+  showMStatus('signup','✓ Welcome to VJJ! Check your email to confirm.',true)
+  setTimeout(() => closeModal(), 2000)
 }
 
-window.doSignOut = async function() {
-  await supabase.auth.signOut()
-}
+window.doSignOut = async function() { await supabase.auth.signOut() }
 
 function showMStatus(form, msg, success) {
   const el = document.getElementById('modal-'+form+'-status')
   el.textContent = msg
   el.className = 'modal-status ' + (success?'success':'error')
   el.style.display = 'block'
-}
-  window.filterArea = function(area) {
-  const areas = ['all','lv','hend','nlv','summ']
-  areas.forEach(a => {
-    const el = document.getElementById('fa-'+a)
-    if (!el) return
-    if (a === area) {
-      el.style.borderColor = '#ffd700'
-      el.style.background = '#ffd70015'
-      el.style.color = '#ffd700'
-    } else {
-      el.style.borderColor = '#333'
-      el.style.background = 'transparent'
-      el.style.color = '#ccc'
-    }
-  })
-  currentFilter = area
-  renderHome()
 }
 
 // ── INIT ──
