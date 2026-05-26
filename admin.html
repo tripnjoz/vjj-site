@@ -657,18 +657,18 @@ window.promoteUser = async function(id, currentTier) {
   const tiers = ['community','trusted','junkie']
   const next = tiers[Math.min(tiers.indexOf(currentTier)+1, tiers.length-1)]
   await supabase.from('users').update({ tier: next }).eq('id', id)
-  loadUsers()
+  await loadUsers()
 }
 
 window.restrictUser = async function(id, restrict) {
   await supabase.from('users').update({ restricted: restrict }).eq('id', id)
-  loadUsers()
+  await loadUsers()
 }
 
 window.deleteUser = async function(id, name) {
   if (!confirm('Delete user ' + name + '? This cannot be undone.')) return
   await supabase.from('users').delete().eq('id', id)
-  loadUsers()
+  await loadUsers()
 }
 
 // ── PROMOS ──
