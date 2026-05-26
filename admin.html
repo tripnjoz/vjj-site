@@ -10,21 +10,23 @@
   html,body { background:#070709; }
   body { font-family:'Share Tech Mono',monospace; color:#e8eaf0; min-height:100vh; max-width:430px; margin:0 auto; }
   .header { background:#070709; border-bottom:1px solid #1a0a2a; padding:10px 14px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
-  .header-title { font-family:'Orbitron',monospace; font-weight:900; font-size:14px; color:#aa44ff; text-shadow:0 0 10px #aa44ff; letter-spacing:2px; }
+  .header-title { font-family:'Orbitron',monospace; font-weight:900; font-size:14px; color:#aa44ff; text-shadow:0 0 12px #aa44ff, 0 0 24px #aa44ff66; letter-spacing:2px; }
   .header-badge { font-size:9px; padding:4px 12px; border-radius:2px; background:#aa44ff15; border:1px solid #aa44ff44; color:#aa44ff; letter-spacing:2px; }
   .tabs { display:flex; overflow-x:auto; scrollbar-width:none; border-bottom:1px solid #222; background:#070709; position:sticky; top:46px; z-index:99; }
   .tabs::-webkit-scrollbar { display:none; }
-  .tab { font-family:'Orbitron',monospace; font-size:8px; letter-spacing:1px; padding:11px 14px; color:#666; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; text-transform:uppercase; transition:all 0.2s; }
-  .tab.active { color:#aa44ff; border-bottom-color:#aa44ff; }
+  .tab { font-family:'Orbitron',monospace; font-size:9px; letter-spacing:1px; padding:12px 13px; color:#e8eaf0; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; text-transform:uppercase; transition:all 0.2s; opacity:0.7; }
+  .tab.active { color:#aa44ff; border-bottom-color:#aa44ff; text-shadow:0 0 8px #aa44ff, 0 0 16px #aa44ff66; opacity:1; font-weight:700; }
+  .tab:hover { opacity:1; color:#e8eaf0; }
   .content { padding:16px; padding-bottom:40px; overflow-y:auto; max-height:calc(100vh - 90px); }
   .screen { display:none; }
   .screen.active { display:block; }
-  .sec { font-family:'Orbitron',monospace; font-size:9px; letter-spacing:3px; color:#aaa; text-transform:uppercase; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #1a1a2a; margin-top:16px; }
+  .sec { font-family:'Orbitron',monospace; font-size:10px; letter-spacing:3px; color:#e8eaf0; text-transform:uppercase; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #1a1a2a; margin-top:16px; }
   .sec:first-child { margin-top:0; }
   .card { background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:14px; margin-bottom:10px; }
-  .lbl { font-size:8px; color:#aaa; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:block; }
+  .lbl { font-size:9px; color:#ccc; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:block; }
   .inp { width:100%; background:#070709; border:1px solid #1a1a2a; border-radius:6px; padding:10px 12px; font-family:'Share Tech Mono',monospace; font-size:13px; color:#e8eaf0; outline:none; margin-bottom:10px; }
   .inp:focus { border-color:#aa44ff55; }
+  .inp::placeholder { color:#666; }
   select.inp { cursor:pointer; }
   .btn-p { width:100%; padding:13px; font-family:'Orbitron',monospace; font-weight:900; font-size:10px; letter-spacing:2px; text-transform:uppercase; border-radius:8px; border:none; cursor:pointer; background:linear-gradient(135deg,#aa44ff,#6622cc); color:#fff; box-shadow:0 0 14px #aa44ff33; margin-bottom:8px; }
   .btn-g { width:100%; padding:13px; font-family:'Orbitron',monospace; font-weight:900; font-size:10px; letter-spacing:2px; text-transform:uppercase; border-radius:8px; border:none; cursor:pointer; background:linear-gradient(135deg,#ffd700,#ff9500); color:#080808; box-shadow:0 0 14px #ffd70033; margin-bottom:8px; }
@@ -33,16 +35,21 @@
   .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
   .stat-card { background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:14px; text-align:center; }
   .stat-val { font-family:'Orbitron',monospace; font-weight:700; font-size:24px; margin-bottom:4px; }
-  .stat-lbl { font-size:8px; letter-spacing:2px; color:#aaa; text-transform:uppercase; }
+  .stat-lbl { font-size:9px; letter-spacing:2px; color:#ccc; text-transform:uppercase; }
   .row { background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
-  .row-name { font-size:12px; color:#e8eaf0; margin-bottom:2px; }
-  .row-detail { font-size:9px; color:#aaa; letter-spacing:1px; }
-  .badge { font-size:8px; padding:2px 8px; border-radius:2px; display:inline-block; }
-  .bg { background:#ffd70011; border:1px solid #ffd70044; color:#ffd700; }
-  .bp { background:#aa44ff11; border:1px solid #aa44ff44; color:#aa44ff; }
-  .bg2 { background:#00ff4111; border:1px solid #00ff4144; color:#00ff41; }
-  .br { background:#ff174411; border:1px solid #ff174444; color:#ff1744; }
-  .bw { background:#ffffff08; border:1px solid #333; color:#aaa; }
+  .row-name { font-size:13px; color:#e8eaf0; margin-bottom:2px; }
+  .row-detail { font-size:9px; color:#ccc; letter-spacing:1px; }
+  .badge { font-size:8px; padding:3px 8px; border-radius:2px; display:inline-block; font-family:'Orbitron',monospace; letter-spacing:1px; }
+  .badge-community { background:#ffffff08; border:1px solid #333; color:#aaa; }
+  .badge-trusted { background:#aa44ff15; border:1px solid #aa44ff44; color:#aa44ff; text-shadow:0 0 6px #aa44ff66; }
+  .badge-junkie { background:#ffd70015; border:1px solid #ffd70044; color:#ffd700; text-shadow:0 0 6px #ffd70066; }
+  .badge-insider { background:#00ff4115; border:1px solid #00ff4144; color:#00ff41; text-shadow:0 0 6px #00ff4166; }
+  .badge-flagged { background:#ff174415; border:1px solid #ff174444; color:#ff1744; }
+  .action-btn { font-size:9px; padding:5px 9px; border-radius:4px; cursor:pointer; white-space:nowrap; font-family:'Orbitron',monospace; letter-spacing:1px; }
+  .ab-purple { border:1px solid #aa44ff44; color:#aa44ff; background:#aa44ff10; }
+  .ab-red { border:1px solid #ff174444; color:#ff1744; background:#ff174410; }
+  .ab-gold { border:1px solid #ffd70044; color:#ffd700; background:#ffd70010; }
+  .ab-grey { border:1px solid #333; color:#ccc; background:transparent; }
   .amt-box { background:#0c0d14; border:1px solid #ffd70044; border-radius:10px; padding:18px; text-align:center; margin-bottom:12px; }
   .amt-val { font-family:'Orbitron',monospace; font-weight:700; font-size:40px; color:#ffd700; text-shadow:0 0 12px #ffd700; letter-spacing:2px; min-height:50px; }
   .numpad { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-bottom:14px; }
@@ -54,12 +61,20 @@
   .tok { width:17px; height:17px; border-radius:50%; position:absolute; top:3px; transition:all 0.3s; }
   .tog.on .tok { background:#aa44ff; left:22px; box-shadow:0 0 6px #aa44ff; }
   .tog.off .tok { background:#444; left:3px; }
-  .msg { text-align:center; font-size:10px; padding:10px; border-radius:8px; margin-bottom:10px; display:none; }
+  .msg { text-align:center; font-size:10px; padding:10px; border-radius:8px; margin-bottom:10px; display:none; letter-spacing:1px; }
   .msg-ok { background:#00ff4115; border:1px solid #00ff4144; color:#00ff41; }
   .msg-err { background:#ff174415; border:1px solid #ff174444; color:#ff1744; }
   .appr-btns { display:flex; gap:6px; margin-top:10px; }
-  .appr-btn { flex:1; font-size:9px; letter-spacing:1px; padding:9px; border-radius:6px; cursor:pointer; text-align:center; }
+  .appr-btn { flex:1; font-size:9px; letter-spacing:1px; padding:9px; border-radius:6px; cursor:pointer; text-align:center; font-family:'Orbitron',monospace; }
   .meter-bar { height:5px; background:#111; border-radius:3px; overflow:hidden; margin-top:6px; }
+  .edit-form { background:#070709; border:1px solid #aa44ff33; border-radius:8px; padding:12px; margin-top:8px; display:none; }
+  .edit-form.open { display:block; }
+  /* QR Screen */
+  .qr-fullscreen { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; gap:20px; text-align:center; }
+  .qr-box { background:#ffffff; border:4px solid #aa44ff; border-radius:16px; padding:20px; box-shadow:0 0 30px #aa44ff44; }
+  .qr-title { font-family:'Orbitron',monospace; font-size:13px; color:#aa44ff; text-shadow:0 0 8px #aa44ff; letter-spacing:3px; }
+  .qr-url { font-size:12px; color:#ffd700; letter-spacing:2px; text-shadow:0 0 6px #ffd700; }
+  .qr-tip { font-size:10px; color:#ccc; letter-spacing:1px; max-width:280px; line-height:1.8; }
 </style>
 </head>
 <body>
@@ -69,13 +84,14 @@
   <div class="header-badge">👑 Joshua</div>
 </div>
 
-<div class="tabs" id="tabs">
+<div class="tabs">
   <div class="tab active" onclick="showTab('overview',this)">Overview</div>
   <div class="tab" onclick="showTab('venues',this)">Venues</div>
   <div class="tab" onclick="showTab('amounts',this)">Amounts</div>
   <div class="tab" onclick="showTab('users',this)">Users</div>
   <div class="tab" onclick="showTab('promos',this)">Promos</div>
   <div class="tab" onclick="showTab('integrity',this)">Integrity</div>
+  <div class="tab" onclick="showTab('qr',this)">QR Code</div>
 </div>
 
 <div class="content">
@@ -94,7 +110,7 @@
     <button class="btn-o" onclick="showTab('users',document.querySelectorAll('.tab')[3])">+ Add Trusted Person</button>
     <button class="btn-r" onclick="showTab('promos',document.querySelectorAll('.tab')[4])">Review Promos</button>
     <div class="sec">// Recent Submissions</div>
-    <div id="ov-recent"><div style="font-size:10px;color:#aaa;padding:10px 0">Loading...</div></div>
+    <div id="ov-recent"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
   </div>
 
   <!-- VENUES -->
@@ -121,10 +137,10 @@
         <div class="tog off" id="v-ptog" onclick="flipTog('v-ptog')"><div class="tok"></div></div>
       </div>
       <div class="msg" id="v-msg"></div>
-      <button class="btn-p" onclick="addVenue()">+ Add Venue</button>
+      <button class="btn-p" id="v-submit-btn" onclick="addVenue()">+ Add Venue</button>
     </div>
     <div class="sec">// All Venues</div>
-    <div id="v-list"><div style="font-size:10px;color:#aaa;padding:10px 0">Loading...</div></div>
+    <div id="v-list"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
   </div>
 
   <!-- AMOUNTS -->
@@ -139,7 +155,7 @@
       <option value="">Select venue first</option>
     </select>
     <div class="amt-box">
-      <div style="font-size:8px;color:#aaa;letter-spacing:2px;margin-bottom:8px">AMOUNT ON MACHINE</div>
+      <div style="font-size:8px;color:#ccc;letter-spacing:2px;margin-bottom:8px">AMOUNT ON MACHINE</div>
       <div class="amt-val" id="a-disp">$0</div>
     </div>
     <div id="a-meter" style="margin-bottom:12px"></div>
@@ -158,7 +174,10 @@
       <div class="nk" style="color:#aaa" onclick="an('⌫')">⌫</div>
     </div>
     <div class="msg" id="a-msg"></div>
-    <button id="a-btn" onclick="saveAmt()" style="width:100%;padding:14px;font-family:'Orbitron',monospace;font-weight:900;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:8px;border:none;cursor:pointer;background:#1a1a1a;color:#555;margin-bottom:20px">Enter Amount First</button>
+    <button id="a-btn" onclick="saveAmt()" style="width:100%;padding:14px;font-family:'Orbitron',monospace;font-weight:900;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:8px;border:none;cursor:pointer;background:#1a1a1a;color:#666;margin-bottom:20px">Enter Amount First</button>
+
+    <div class="sec">// Banks at This Venue</div>
+    <div id="banks-list"><div style="font-size:10px;color:#ccc;padding:10px 0">Select a venue above to see its banks</div></div>
 
     <div class="sec">// Add New Bank</div>
     <div class="card">
@@ -194,7 +213,7 @@
       <label class="lbl">Full Name</label>
       <input class="inp" id="u-name" placeholder="e.g. Maria Rodriguez">
       <label class="lbl">Phone Number</label>
-      <input class="inp" id="u-phone" placeholder="Invite link will be sent here">
+      <input class="inp" id="u-phone" placeholder="Invite link sent here">
       <label class="lbl">Venue</label>
       <select class="inp" id="u-venue"><option value="">Select venue</option></select>
       <label class="lbl">Role</label>
@@ -209,60 +228,37 @@
       <button class="btn-p" onclick="addTrusted()">+ Add Trusted Person</button>
     </div>
     <div class="sec">// All Users</div>
-    <div id="u-list"><div style="font-size:10px;color:#aaa;padding:10px 0">Loading...</div></div>
+    <div id="u-list"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
   </div>
 
   <!-- PROMOS -->
   <div class="screen" id="s-promos">
-    window.createPromo = async function() {
-  const venueId = document.getElementById('pr-venue').value
-  const type = document.getElementById('pr-type').value
-  const title = document.getElementById('pr-title').value.trim()
-  const detail = document.getElementById('pr-detail').value.trim()
-  const start = document.getElementById('pr-start').value
-  const end = document.getElementById('pr-end').value
-  if (!venueId || !title || !detail) { msg('pr-msg', 'Venue, headline and details required', false); return }
-  const { error } = await supabase.from('promos').insert({
-    venue_id: venueId, type, title, detail,
-    start_date: start || null,
-    end_date: end || null,
-    active: true,
-    approved: true
-  })
-  if (error) { msg('pr-msg', 'Error: ' + error.message, false); return }
-  msg('pr-msg', '✓ Promo published!', true)
-  document.getElementById('pr-title').value = ''
-  document.getElementById('pr-detail').value = ''
-  document.getElementById('pr-start').value = ''
-  document.getElementById('pr-end').value = ''
-  loadPromos()
-}
     <div class="sec">// Create New Promo</div>
-<div class="card">
-  <label class="lbl">Venue</label>
-  <select class="inp" id="pr-venue"><option value="">Select venue</option></select>
-  <label class="lbl">Promo Type</label>
-  <select class="inp" id="pr-type">
-    <option value="freeplay">🎰 Free Play</option>
-    <option value="food">🍔 Food Special</option>
-    <option value="drawing">🎟 Drawing</option>
-    <option value="other">⭐ Other</option>
-  </select>
-  <label class="lbl">Headline</label>
-  <input class="inp" id="pr-title" placeholder="e.g. $5 Free Play — Show VJJ App">
-  <label class="lbl">Details</label>
-  <input class="inp" id="pr-detail" placeholder="e.g. New players only · Mon–Thu · Limit 1">
-  <label class="lbl">Start Date (optional)</label>
-  <input class="inp" id="pr-start" type="date">
-  <label class="lbl">End Date (optional)</label>
-  <input class="inp" id="pr-end" type="date">
-  <div class="msg" id="pr-msg"></div>
-  <button class="btn-g" onclick="createPromo()">Publish Promo</button>
-</div>
+    <div class="card">
+      <label class="lbl">Venue</label>
+      <select class="inp" id="pr-venue"><option value="">Select venue</option></select>
+      <label class="lbl">Promo Type</label>
+      <select class="inp" id="pr-type">
+        <option value="freeplay">🎰 Free Play</option>
+        <option value="food">🍔 Food Special</option>
+        <option value="drawing">🎟 Drawing</option>
+        <option value="other">⭐ Other</option>
+      </select>
+      <label class="lbl">Headline</label>
+      <input class="inp" id="pr-title" placeholder="e.g. $5 Free Play — Show VJJ App">
+      <label class="lbl">Details</label>
+      <input class="inp" id="pr-detail" placeholder="e.g. New players only · Mon–Thu · Limit 1">
+      <label class="lbl">Start Date (optional)</label>
+      <input class="inp" id="pr-start" type="date">
+      <label class="lbl">End Date (optional)</label>
+      <input class="inp" id="pr-end" type="date">
+      <div class="msg" id="pr-msg"></div>
+      <button class="btn-g" onclick="createPromo()">Publish Promo</button>
+    </div>
     <div class="sec">// Pending Approval</div>
-    <div id="p-pending"><div style="font-size:10px;color:#aaa;padding:10px 0">Loading...</div></div>
+    <div id="p-pending"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
     <div class="sec">// Active Promos</div>
-    <div id="p-active"><div style="font-size:10px;color:#aaa;padding:10px 0">Loading...</div></div>
+    <div id="p-active"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
   </div>
 
   <!-- INTEGRITY -->
@@ -270,47 +266,61 @@
     <div class="sec">// Global Controls</div>
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #111">
-        <div><div style="font-size:11px;color:#e8eaf0;margin-bottom:2px">Auto-hold suspicious submissions</div><div style="font-size:9px;color:#aaa">Hold for review before going live</div></div>
+        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Auto-hold suspicious submissions</div><div style="font-size:9px;color:#ccc">Hold for review before going live</div></div>
         <div class="tog on" id="t-hold" onclick="flipTog('t-hold')"><div class="tok"></div></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #111">
-        <div><div style="font-size:11px;color:#e8eaf0;margin-bottom:2px">Require photo for high amounts</div><div style="font-size:9px;color:#aaa">Thresholds set per denomination below</div></div>
+        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Require photo for high amounts</div><div style="font-size:9px;color:#ccc">Thresholds set per denomination below</div></div>
         <div class="tog on" id="t-photo" onclick="flipTog('t-photo')"><div class="tok"></div></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #111">
-        <div><div style="font-size:11px;color:#e8eaf0;margin-bottom:2px">Auto-restrict low accuracy users</div><div style="font-size:9px;color:#aaa">Below threshold → auto restricted</div></div>
+        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Auto-restrict low accuracy users</div><div style="font-size:9px;color:#ccc">Below threshold → auto restricted</div></div>
         <div class="tog on" id="t-restrict" onclick="flipTog('t-restrict')"><div class="tok"></div></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #111">
-        <div><div style="font-size:11px;color:#e8eaf0;margin-bottom:2px">Conflict alerts</div><div style="font-size:9px;color:#aaa">Flag when submissions disagree</div></div>
+        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Conflict alerts</div><div style="font-size:9px;color:#ccc">Flag when submissions disagree</div></div>
         <div class="tog on" id="t-conflict" onclick="flipTog('t-conflict')"><div class="tok"></div></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #111">
-        <div><div style="font-size:11px;color:#e8eaf0;margin-bottom:2px">Auto-restrict threshold</div><div style="font-size:9px;color:#aaa">Users below this accuracy %</div></div>
-        <div style="display:flex;align-items:center;gap:5px"><input style="background:#070709;border:1px solid #aa44ff44;border-radius:6px;padding:6px 8px;font-size:13px;color:#aa44ff;outline:none;width:60px;text-align:right" type="number" value="70"><span style="font-size:11px;color:#aa44ff">%</span></div>
+        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Auto-restrict threshold</div><div style="font-size:9px;color:#ccc">Users below this accuracy %</div></div>
+        <div style="display:flex;align-items:center;gap:5px"><input style="background:#070709;border:1px solid #aa44ff44;border-radius:6px;padding:6px 8px;font-size:13px;color:#aa44ff;outline:none;width:60px;text-align:right" type="number" value="70"><span style="font-size:12px;color:#ccc">%</span></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0">
-        <div><div style="font-size:11px;color:#e8eaf0;margin-bottom:2px">Variance auto-hold threshold</div><div style="font-size:9px;color:#aaa">Hold if X% above last verified</div></div>
-        <div style="display:flex;align-items:center;gap:5px"><input style="background:#070709;border:1px solid #aa44ff44;border-radius:6px;padding:6px 8px;font-size:13px;color:#aa44ff;outline:none;width:60px;text-align:right" type="number" value="15"><span style="font-size:11px;color:#aa44ff">%</span></div>
+        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Variance auto-hold threshold</div><div style="font-size:9px;color:#ccc">Hold if X% above last verified</div></div>
+        <div style="display:flex;align-items:center;gap:5px"><input style="background:#070709;border:1px solid #aa44ff44;border-radius:6px;padding:6px 8px;font-size:13px;color:#aa44ff;outline:none;width:60px;text-align:right" type="number" value="15"><span style="font-size:12px;color:#ccc">%</span></div>
       </div>
     </div>
 
     <div class="sec">// Photo Thresholds by Denomination</div>
     <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#00ff41">$0.05</div><div style="font-size:9px;color:#aaa;flex:1;padding:0 10px">Photo required above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#aaa">$</span><input style="background:#070709;border:1px solid #00ff4133;border-radius:6px;padding:6px 8px;font-size:13px;color:#00ff41;outline:none;width:75px;text-align:right" type="number" value="1200"></div></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#00eeff">$0.10</div><div style="font-size:9px;color:#aaa;flex:1;padding:0 10px">Photo required above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#aaa">$</span><input style="background:#070709;border:1px solid #00eeff33;border-radius:6px;padding:6px 8px;font-size:13px;color:#00eeff;outline:none;width:75px;text-align:right" type="number" value="1500"></div></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#ffd700">$0.25</div><div style="font-size:9px;color:#aaa;flex:1;padding:0 10px">Photo required above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#aaa">$</span><input style="background:#070709;border:1px solid #ffd70033;border-radius:6px;padding:6px 8px;font-size:13px;color:#ffd700;outline:none;width:75px;text-align:right" type="number" value="2000"></div></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#ff9500">$0.50</div><div style="font-size:9px;color:#aaa;flex:1;padding:0 10px">Photo required above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#aaa">$</span><input style="background:#070709;border:1px solid #ff950033;border-radius:6px;padding:6px 8px;font-size:13px;color:#ff9500;outline:none;width:75px;text-align:right" type="number" value="3000"></div></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#ff1744">$1.00</div><div style="font-size:9px;color:#aaa;flex:1;padding:0 10px">Photo required above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#aaa">$</span><input style="background:#070709;border:1px solid #ff174433;border-radius:6px;padding:6px 8px;font-size:13px;color:#ff1744;outline:none;width:75px;text-align:right" type="number" value="4000"></div></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0"><div style="font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#aa44ff">$2.00</div><div style="font-size:9px;color:#aaa;flex:1;padding:0 10px">Photo required above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#aaa">$</span><input style="background:#070709;border:1px solid #aa44ff33;border-radius:6px;padding:6px 8px;font-size:13px;color:#aa44ff;outline:none;width:75px;text-align:right" type="number" value="6000"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#00ff41;min-width:54px">$0.05</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #00ff4133;border-radius:6px;padding:6px 8px;font-size:13px;color:#00ff41;outline:none;width:78px;text-align:right" type="number" value="1200"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#00eeff;min-width:54px">$0.10</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #00eeff33;border-radius:6px;padding:6px 8px;font-size:13px;color:#00eeff;outline:none;width:78px;text-align:right" type="number" value="1500"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#ffd700;min-width:54px">$0.25</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #ffd70033;border-radius:6px;padding:6px 8px;font-size:13px;color:#ffd700;outline:none;width:78px;text-align:right" type="number" value="2000"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#ff9500;min-width:54px">$0.50</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #ff950033;border-radius:6px;padding:6px 8px;font-size:13px;color:#ff9500;outline:none;width:78px;text-align:right" type="number" value="3000"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#ff1744;min-width:54px">$1.00</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #ff174433;border-radius:6px;padding:6px 8px;font-size:13px;color:#ff1744;outline:none;width:78px;text-align:right" type="number" value="4000"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#aa44ff;min-width:54px">$2.00</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #aa44ff33;border-radius:6px;padding:6px 8px;font-size:13px;color:#aa44ff;outline:none;width:78px;text-align:right" type="number" value="6000"></div></div>
     </div>
 
     <div class="sec">// Review Queue</div>
-    <div id="rq"><div style="font-size:10px;color:#aaa;padding:10px 0">Loading...</div></div>
+    <div id="rq"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
+  </div>
+
+  <!-- QR CODE -->
+  <div class="screen" id="s-qr">
+    <div class="qr-fullscreen">
+      <div class="qr-title">Scan to Join VJJ</div>
+      <div class="qr-box">
+        <div id="qr-display"></div>
+      </div>
+      <div class="qr-url">VegasJackpotJunkies.com</div>
+      <div class="qr-tip">Show this to anyone — they scan with their camera and land directly on the app. No typing needed.</div>
+      <button onclick="shareApp()" style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;box-shadow:0 0 14px #aa44ff33;text-transform:uppercase">📤 Share App Link</button>
+    </div>
   </div>
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
@@ -329,6 +339,8 @@ if (localStorage.getItem('vjj-admin-auth') !== PW) {
 
 let venues = []
 let amtStr = ''
+let editingVenueId = null
+let editingBankId = null
 
 // ── TABS ──
 window.showTab = function(tab, el) {
@@ -342,6 +354,32 @@ window.showTab = function(tab, el) {
   if (tab === 'users')      loadUsers()
   if (tab === 'promos')     loadPromos()
   if (tab === 'integrity')  loadReviewQueue()
+  if (tab === 'qr')         loadQR()
+}
+
+// ── QR CODE ──
+function loadQR() {
+  const el = document.getElementById('qr-display')
+  if (!el || el.innerHTML !== '') return
+  new QRCode(el, {
+    text: 'https://vegasjackpotjunkies.com',
+    width: 220, height: 220,
+    colorDark: '#070709', colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  })
+}
+
+window.shareApp = function() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Vegas Jackpot Junkies',
+      text: 'Track live progressive jackpots across Vegas — know before you go 🎰',
+      url: 'https://vegasjackpotjunkies.com'
+    })
+  } else {
+    navigator.clipboard.writeText('https://vegasjackpotjunkies.com')
+    alert('Link copied! Share it anywhere.')
+  }
 }
 
 // ── VENUES ──
@@ -350,18 +388,19 @@ async function loadVenues() {
   const el = document.getElementById('v-list')
   if (!el) return
   el.innerHTML = venues.length === 0
-    ? '<div style="font-size:10px;color:#aaa;padding:10px 0">No venues yet</div>'
+    ? '<div style="font-size:10px;color:#ccc;padding:10px 0">No venues yet</div>'
     : venues.map(v => `
-      <div class="row" style="border-color:${v.partner?'#ffd70033':'#1a1a2a'}">
+      <div class="row" style="border-color:${v.partner?'#ffd70033':'#1a1a2a'};flex-wrap:wrap;gap:8px">
         <div style="font-size:22px">🎰</div>
-        <div style="flex:1">
-          <div class="row-name">${v.name} ${v.partner?'<span class="badge bg">★ Partner</span>':''}</div>
+        <div style="flex:1;min-width:120px">
+          <div class="row-name">${v.name} ${v.partner?'<span class="badge badge-junkie">★ Partner</span>':''}</div>
           <div class="row-detail">${v.area} · ${v.address}</div>
         </div>
         <div style="display:flex;gap:6px">
-  <div onclick="editVenue('${v.id}','${v.name}','${v.address}','${v.area}','${v.phone||''}',${v.partner})" style="font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid #aa44ff33;color:#aa44ff;cursor:pointer">✏</div>
-  <div onclick="deactivateVenue('${v.id}','${v.name}')" style="font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid #ff174433;color:#ff1744;cursor:pointer">✕</div>
-</div>
+          <div class="action-btn ab-gold" onclick="jumpToAddBank('${v.id}','${v.name}')">+ Bank</div>
+          <div class="action-btn ab-purple" onclick="editVenue('${v.id}','${v.name}','${v.address}','${v.area}','${v.phone||''}',${v.partner})">✏ Edit</div>
+          <div class="action-btn ab-red" onclick="deactivateVenue('${v.id}','${v.name}')">✕</div>
+        </div>
       </div>`).join('')
 }
 
@@ -384,13 +423,50 @@ window.addVenue = async function() {
   const phone = document.getElementById('v-phone').value.trim()
   const partner = document.getElementById('v-ptog').classList.contains('on')
   if (!name || !address) { msg('v-msg', 'Name and address required', false); return }
-  const { error } = await supabase.from('venues').insert({ name, address, area, phone, partner, approved: true, active: true })
-  if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
-  msg('v-msg', '✓ ' + name + ' added!', true)
+
+  if (editingVenueId) {
+    const { error } = await supabase.from('venues').update({ name, address, area, phone, partner }).eq('id', editingVenueId)
+    if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
+    msg('v-msg', '✓ ' + name + ' updated!', true)
+    editingVenueId = null
+    document.getElementById('v-submit-btn').textContent = '+ Add Venue'
+  } else {
+    const { error } = await supabase.from('venues').insert({ name, address, area, phone, partner, approved: true, active: true })
+    if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
+    msg('v-msg', '✓ ' + name + ' added!', true)
+  }
   document.getElementById('v-name').value = ''
   document.getElementById('v-address').value = ''
   document.getElementById('v-phone').value = ''
   loadVenues()
+}
+
+window.editVenue = function(id, name, address, area, phone, partner) {
+  editingVenueId = id
+  document.getElementById('v-name').value = name
+  document.getElementById('v-address').value = address
+  document.getElementById('v-area').value = area
+  document.getElementById('v-phone').value = phone
+  const ptog = document.getElementById('v-ptog')
+  ptog.className = 'tog ' + (partner ? 'on' : 'off')
+  document.getElementById('v-submit-btn').textContent = '✓ Update Venue'
+  msg('v-msg', 'Editing ' + name + ' — update details above', true)
+  document.getElementById('s-venues').scrollTop = 0
+}
+
+window.deactivateVenue = async function(id, name) {
+  if (!confirm('Remove ' + name + ' from the app?')) return
+  await supabase.from('venues').update({ active: false }).eq('id', id)
+  loadVenues()
+}
+
+window.jumpToAddBank = function(venueId, venueName) {
+  showTab('amounts', document.querySelectorAll('.tab')[2])
+  setTimeout(() => {
+    const sel = document.getElementById('b-venue')
+    if (sel) { sel.value = venueId; }
+    msg('b-msg', 'Adding bank for ' + venueName, true)
+  }, 300)
 }
 
 // ── AMOUNTS ──
@@ -402,13 +478,79 @@ window.loadABanks = async function() {
   if (!sel || !venueId) return
   sel.innerHTML = '<option>Loading...</option>'
   const { data } = await supabase.from('banks').select('*').eq('venue_id', venueId).eq('active', true)
-  if (!data || data.length === 0) { sel.innerHTML = '<option value="">No banks — add below</option>'; return }
-  sel.innerHTML = '<option value="">Select bank</option>' + data.map(b => `<option value="${b.id}">${b.name} · ${b.game}${b.denom?' · '+b.denom:''} · $${Number(b.amount||0).toLocaleString()}</option>`).join('')
+  if (!data || data.length === 0) { sel.innerHTML = '<option value="">No banks — add below</option>'; }
+  else { sel.innerHTML = '<option value="">Select bank</option>' + data.map(b => `<option value="${b.id}">${b.name} · ${b.game}${b.denom?' · '+b.denom:''} · $${Number(b.amount||0).toLocaleString()}</option>`).join('') }
+  renderBanksList(venueId, data || [])
+}
+
+function renderBanksList(venueId, banks) {
+  const el = document.getElementById('banks-list')
+  if (!el) return
+  if (banks.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#ccc;padding:10px 0">No banks yet for this venue</div>'; return }
+  el.innerHTML = banks.map(b => `
+    <div class="row" style="flex-wrap:wrap;gap:8px" id="bank-row-${b.id}">
+      <div style="flex:1;min-width:150px">
+        <div class="row-name">${b.name} · ${b.game}${b.denom?' · '+b.denom:''}</div>
+        <div class="row-detail">${b.amount ? '$'+Number(b.amount).toLocaleString('en-US',{minimumFractionDigits:2}) : 'No amount yet'} · ${b.type||'poker'}</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <div class="action-btn ab-purple" onclick="toggleEditBank('${b.id}','${b.name}','${b.game}','${b.denom||''}','${b.type||'poker'}',${b.starting_amount||0},${b.amount||0},${b.machines||1})">✏ Edit</div>
+        <div class="action-btn ab-red" onclick="deleteBank('${b.id}','${b.name}')">🗑 Delete</div>
+      </div>
+      <div class="edit-form" id="bank-edit-${b.id}">
+        <label class="lbl">Bank Name</label>
+        <input class="inp" id="be-name-${b.id}" value="${b.name}">
+        <label class="lbl">Game</label>
+        <input class="inp" id="be-game-${b.id}" value="${b.game}">
+        <label class="lbl">Denomination</label>
+        <input class="inp" id="be-denom-${b.id}" value="${b.denom||''}">
+        <label class="lbl">Type</label>
+        <select class="inp" id="be-type-${b.id}">
+          <option value="poker" ${b.type==='poker'?'selected':''}>Video Poker</option>
+          <option value="keno" ${b.type==='keno'?'selected':''}>Keno</option>
+          <option value="other" ${b.type==='other'?'selected':''}>Other / High Limit</option>
+        </select>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div><label class="lbl">Starting Amount</label><input class="inp" id="be-start-${b.id}" type="number" value="${b.starting_amount||0}"></div>
+          <div><label class="lbl">Machines</label><input class="inp" id="be-mach-${b.id}" type="number" value="${b.machines||1}"></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <button onclick="saveBankEdit('${b.id}')" style="flex:2;padding:10px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:7px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;text-transform:uppercase">Save Changes</button>
+          <button onclick="toggleEditBank('${b.id}')" style="flex:1;padding:10px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:1px;border-radius:7px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;text-transform:uppercase">Cancel</button>
+        </div>
+      </div>
+    </div>`).join('')
+}
+
+window.toggleEditBank = function(id) {
+  const form = document.getElementById('bank-edit-' + id)
+  if (form) form.classList.toggle('open')
+}
+
+window.saveBankEdit = async function(id) {
+  const name = document.getElementById('be-name-'+id).value.trim()
+  const game = document.getElementById('be-game-'+id).value.trim()
+  const denom = document.getElementById('be-denom-'+id).value.trim()
+  const type = document.getElementById('be-type-'+id).value
+  const start = parseFloat(document.getElementById('be-start-'+id).value) || 0
+  const mach = parseInt(document.getElementById('be-mach-'+id).value) || 1
+  if (!name || !game) { alert('Name and game required'); return }
+  const { error } = await supabase.from('banks').update({ name, game, denom, type, starting_amount: start, machines: mach }).eq('id', id)
+  if (error) { alert('Error: ' + error.message); return }
+  const venueId = document.getElementById('a-venue').value
+  if (venueId) loadABanks()
+}
+
+window.deleteBank = async function(id, name) {
+  if (!confirm('Delete ' + name + '? This cannot be undone.')) return
+  await supabase.from('banks').update({ active: false }).eq('id', id)
+  const venueId = document.getElementById('a-venue').value
+  if (venueId) loadABanks()
 }
 
 window.an = function(k) {
   if (k === 'CLR') amtStr = ''
-  else if (k === '⌫') amtStr = amtStr.slice(0, -1)
+  else if (k === '⌫') amtStr = amtStr.slice(0,-1)
   else if (k === '.') { if (!amtStr.includes('.')) amtStr += '.' }
   else { if (amtStr.replace('.','').length < 8) amtStr += k }
   const p = amtStr.split('.')
@@ -423,7 +565,7 @@ window.an = function(k) {
   const meter = document.getElementById('a-meter')
   if (meter && amtStr) {
     meter.innerHTML = `<div class="card" style="margin-bottom:0">
-      <div style="font-size:8px;color:#aaa;letter-spacing:2px;margin-bottom:6px">JACKPOT METER PREVIEW</div>
+      <div style="font-size:8px;color:#ccc;letter-spacing:2px;margin-bottom:6px">JACKPOT METER PREVIEW</div>
       <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:${cols[st]};margin-bottom:6px">${labs[st]}</div>
       <div class="meter-bar"><div style="height:100%;width:${wids[st]};background:${grads[st]};border-radius:3px"></div></div>
     </div>`
@@ -431,7 +573,7 @@ window.an = function(k) {
   const btn = document.getElementById('a-btn')
   if (btn) {
     btn.style.background = amtStr ? 'linear-gradient(135deg,#ffd700,#ff9500)' : '#1a1a1a'
-    btn.style.color = amtStr ? '#080808' : '#555'
+    btn.style.color = amtStr ? '#080808' : '#666'
     btn.textContent = amtStr ? 'Save Amount' : 'Enter Amount First'
   }
 }
@@ -450,7 +592,7 @@ window.saveAmt = async function() {
   const meter = document.getElementById('a-meter')
   if (meter) meter.innerHTML = ''
   const btn = document.getElementById('a-btn')
-  if (btn) { btn.style.background = '#1a1a1a'; btn.style.color = '#555'; btn.textContent = 'Enter Amount First' }
+  if (btn) { btn.style.background = '#1a1a1a'; btn.style.color = '#666'; btn.textContent = 'Enter Amount First' }
   loadABanks()
 }
 
@@ -469,6 +611,7 @@ window.addBank = async function() {
   if (error) { msg('b-msg', 'Error: ' + error.message, false); return }
   msg('b-msg', '✓ Bank added!', true)
   ;['b-name','b-game','b-denom','b-start','b-amt','b-mach'].forEach(id => { const el = document.getElementById(id); if (el) el.value = '' })
+  if (document.getElementById('a-venue').value === venueId) loadABanks()
 }
 
 // ── USERS ──
@@ -477,20 +620,24 @@ async function loadUsers() {
   const { data: users } = await supabase.from('users').select('*').order('created_at', { ascending: false })
   const el = document.getElementById('u-list')
   if (!el) return
-  if (!users || users.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#aaa;padding:10px 0">No users yet</div>'; return }
+  if (!users || users.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#ccc;padding:10px 0">No users yet</div>'; return }
   el.innerHTML = users.map(u => {
-    const tc = u.role==='insider'?'bg2':u.tier==='junkie'?'bg':u.restricted?'br':'bw'
-    const tl = u.role==='insider'?'✓ Insider':u.tier==='junkie'?'🎰 Junkie':u.tier==='trusted'?'⭐ Trusted':'👤 Community'
-    return `<div class="row">
+    const tierClass = u.role==='insider'?'badge-insider':u.tier==='junkie'?'badge-junkie':u.tier==='trusted'?'badge-trusted':u.restricted?'badge-flagged':'badge-community'
+    const tierLabel = u.role==='insider'?'✓ Insider':u.tier==='junkie'?'🎰 Junkie':u.tier==='trusted'?'⭐ Trusted':u.restricted?'⚠ Restricted':'👤 Community'
+    return `<div class="row" style="flex-wrap:wrap;gap:8px">
       <div style="font-size:20px">👤</div>
-      <div style="flex:1">
+      <div style="flex:1;min-width:120px">
         <div class="row-name">${u.username || u.email?.split('@')[0] || 'Unknown'}</div>
         <div class="row-detail">${u.submission_count||0} submissions · ${u.accuracy_score||100}% accuracy</div>
+        <div style="font-size:9px;color:#aaa;margin-top:2px">${u.email||''}</div>
       </div>
-      <div class="badge ${tc}">${tl}</div>
-      <div style="display:flex;gap:4px;margin-left:6px">
-        <div style="font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid #aa44ff33;color:#aa44ff;cursor:pointer" onclick="promoteUser('${u.id}')">↑</div>
-        <div style="font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid #ff174433;color:#ff1744;cursor:pointer" onclick="restrictUser('${u.id}')">⊘</div>
+      <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end">
+        <div class="badge ${tierClass}">${tierLabel}</div>
+        <div style="display:flex;gap:5px">
+          <div class="action-btn ab-purple" onclick="promoteUser('${u.id}','${u.tier||'community'}')">↑ Promote</div>
+          <div class="action-btn ab-grey" onclick="restrictUser('${u.id}',${!u.restricted})">${u.restricted?'✓ Restore':'⊘ Restrict'}</div>
+          <div class="action-btn ab-red" onclick="deleteUser('${u.id}','${u.username||u.email}')">🗑</div>
+        </div>
       </div>
     </div>`
   }).join('')
@@ -506,53 +653,61 @@ window.addTrusted = async function() {
   document.getElementById('u-notes').value = ''
 }
 
-window.promoteUser = async function(id) {
+window.promoteUser = async function(id, currentTier) {
   const tiers = ['community','trusted','junkie']
-  const { data: u } = await supabase.from('users').select('tier').eq('id', id).single()
-  if (!u) return
-  const next = tiers[Math.min(tiers.indexOf(u.tier)+1, tiers.length-1)]
+  const next = tiers[Math.min(tiers.indexOf(currentTier)+1, tiers.length-1)]
   await supabase.from('users').update({ tier: next }).eq('id', id)
   loadUsers()
 }
 
-window.restrictUser = async function(id) {
-  await supabase.from('users').update({ restricted: true }).eq('id', id)
+window.restrictUser = async function(id, restrict) {
+  await supabase.from('users').update({ restricted: restrict }).eq('id', id)
+  loadUsers()
+}
+
+window.deleteUser = async function(id, name) {
+  if (!confirm('Delete user ' + name + '? This cannot be undone.')) return
+  await supabase.from('users').delete().eq('id', id)
   loadUsers()
 }
 
 // ── PROMOS ──
 async function loadPromos() {
+  await refreshVenues()
   const { data: pending } = await supabase.from('promos').select('*').eq('approved', false).eq('active', true)
-const { data: active } = await supabase.from('promos').select('*').eq('approved', true).eq('active', true)
+  const { data: active } = await supabase.from('promos').select('*').eq('approved', true).eq('active', true)
   const pel = document.getElementById('p-pending')
   if (pel) pel.innerHTML = (!pending || pending.length===0)
-    ? '<div style="font-size:10px;color:#aaa;padding:10px 0">No pending promos ✓</div>'
-    : pending.map(p => `
-      <div class="card" style="border-color:#ffd70033">
-        <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-          <div style="font-size:12px;color:#e8eaf0">${venues.find(v => v.id === p.venue_id)?.name || 'Unknown'||'Unknown'}</div>
-          <div class="badge bg">New</div>
-        </div>
-        <div style="font-size:14px;color:#ccc;margin-bottom:3px">${p.title}</div>
-        <div style="font-size:10px;color:#aaa;margin-bottom:10px">${p.detail}</div>
-        <div class="appr-btns">
-          <div class="appr-btn" style="border:1px solid #00ff4144;background:#00ff4110;color:#00ff41" onclick="approvePromo('${p.id}')">✓ Approve</div>
-          <div class="appr-btn" style="border:1px solid #ff174444;background:#ff174010;color:#ff1744" onclick="rejectPromo('${p.id}')">✕ Reject</div>
-        </div>
-      </div>`).join('')
+    ? '<div style="font-size:10px;color:#00ff41;padding:10px 0">✓ No pending promos</div>'
+    : pending.map(p => {
+        const vn = venues.find(v => v.id === p.venue_id)?.name || 'Unknown'
+        return `<div class="card" style="border-color:#ffd70033">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+            <div style="font-size:13px;color:#e8eaf0">${vn}</div>
+            <div class="badge badge-junkie">New</div>
+          </div>
+          <div style="font-size:14px;color:#ccc;margin-bottom:3px">${p.title}</div>
+          <div style="font-size:10px;color:#ccc;margin-bottom:10px">${p.detail}</div>
+          <div class="appr-btns">
+            <div class="appr-btn" style="border:1px solid #00ff4144;background:#00ff4110;color:#00ff41" onclick="approvePromo('${p.id}')">✓ Approve</div>
+            <div class="appr-btn" style="border:1px solid #ff174444;background:#ff174010;color:#ff1744" onclick="rejectPromo('${p.id}')">✕ Reject</div>
+          </div>
+        </div>`}).join('')
   const ael = document.getElementById('p-active')
   if (ael) ael.innerHTML = (!active || active.length===0)
-    ? '<div style="font-size:10px;color:#aaa;padding:10px 0">No active promos</div>'
-    : active.map(p => `
-      <div class="row">
-        <div style="font-size:20px">🎰</div>
-        <div style="flex:1">
-          <div class="row-name">${venues.find(v => v.id === p.venue_id)?.name || 'Unknown'} — ${p.title}</div>
-          <div class="row-detail">Active · ${p.type}</div>
-        </div>
-        <div style="font-size:13px;color:#aaa;cursor:pointer">✏</div>
-      </div>`).join('')
+    ? '<div style="font-size:10px;color:#ccc;padding:10px 0">No active promos</div>'
+    : active.map(p => {
+        const vn = venues.find(v => v.id === p.venue_id)?.name || 'Unknown'
+        return `<div class="row">
+          <div style="font-size:20px">🎰</div>
+          <div style="flex:1">
+            <div class="row-name">${vn} — ${p.title}</div>
+            <div class="row-detail">Active · ${p.type}</div>
+          </div>
+          <div class="action-btn ab-red" onclick="deactivatePromo('${p.id}')">✕ End</div>
+        </div>`}).join('')
 }
+
 window.createPromo = async function() {
   const venueId = document.getElementById('pr-venue').value
   const type = document.getElementById('pr-type').value
@@ -561,44 +716,39 @@ window.createPromo = async function() {
   const start = document.getElementById('pr-start').value
   const end = document.getElementById('pr-end').value
   if (!venueId || !title || !detail) { msg('pr-msg', 'Venue, headline and details required', false); return }
-  const { error } = await supabase.from('promos').insert({
-    venue_id: venueId, type, title, detail,
-    start_date: start || null,
-    end_date: end || null,
-    active: true,
-    approved: true
-  })
+  const { error } = await supabase.from('promos').insert({ venue_id: venueId, type, title, detail, start_date: start||null, end_date: end||null, active: true, approved: true })
   if (error) { msg('pr-msg', 'Error: ' + error.message, false); return }
   msg('pr-msg', '✓ Promo published!', true)
   document.getElementById('pr-title').value = ''
   document.getElementById('pr-detail').value = ''
-  document.getElementById('pr-start').value = ''
-  document.getElementById('pr-end').value = ''
   loadPromos()
 }
+
 window.approvePromo = async function(id) { await supabase.from('promos').update({ approved: true }).eq('id', id); loadPromos() }
 window.rejectPromo = async function(id) { await supabase.from('promos').update({ active: false }).eq('id', id); loadPromos() }
+window.deactivatePromo = async function(id) { await supabase.from('promos').update({ active: false }).eq('id', id); loadPromos() }
 
 // ── INTEGRITY ──
 async function loadReviewQueue() {
-  const { data: held } = await supabase.from('progressives').select('*, banks(name, venues(name))').eq('approved', false)
+  const { data: held } = await supabase.from('progressives').select('*, banks(name, venue_id)').eq('approved', false)
   const el = document.getElementById('rq')
   if (!el) return
-  if (!held || held.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#00ff41;padding:10px 0">✓ No items pending review — all clear</div>'; return }
-  el.innerHTML = held.map(p => `
-    <div class="card" style="border-color:#ff174433">
+  if (!held || held.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#00ff41;padding:10px 0">✓ No items pending — all clear</div>'; return }
+  el.innerHTML = held.map(p => {
+    const vn = venues.find(v => v.id === p.banks?.venue_id)?.name || 'Unknown'
+    return `<div class="card" style="border-color:#ff174433">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
         <div>
-          <div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">${p.banks?.venues?.name||'Unknown'} · ${p.banks?.name||''}</div>
+          <div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">${vn} · ${p.banks?.name||''}</div>
           <div style="font-family:'Orbitron',monospace;font-size:24px;font-weight:700;color:#ffd700">$${Number(p.amount).toLocaleString('en-US',{minimumFractionDigits:2})}</div>
         </div>
-        <div class="badge br">⚠ Hold</div>
+        <div class="badge badge-flagged">⚠ Hold</div>
       </div>
       <div class="appr-btns">
         <div class="appr-btn" style="border:1px solid #00ff4144;background:#00ff4110;color:#00ff41" onclick="approveS('${p.id}')">✓ Approve</div>
         <div class="appr-btn" style="border:1px solid #ff174444;background:#ff174010;color:#ff1744" onclick="rejectS('${p.id}')">✕ Reject</div>
       </div>
-    </div>`).join('')
+    </div>`}).join('')
 }
 
 window.approveS = async function(id) { await supabase.from('progressives').update({ approved: true }).eq('id', id); loadReviewQueue() }
@@ -621,64 +771,22 @@ async function loadOverview() {
   const { data: recent } = await supabase.from('progressives').select('amount, badge_type, bank_id').eq('approved',true).order('created_at',{ascending:false}).limit(5)
   const re = document.getElementById('ov-recent')
   if (re) re.innerHTML = (!recent||recent.length===0)
-    ? '<div style="font-size:10px;color:#aaa;padding:10px 0">No submissions yet</div>'
+    ? '<div style="font-size:10px;color:#ccc;padding:10px 0">No submissions yet</div>'
     : recent.map(p => `
       <div class="row">
         <div style="font-size:16px">📊</div>
         <div style="flex:1">
-          <div class="row-name">${'Submission'||'Unknown'} · ${'Submission'||''}</div>
+          <div class="row-name">Submission</div>
           <div class="row-detail">$${Number(p.amount).toLocaleString('en-US',{minimumFractionDigits:2})} · ${p.badge_type||'community'}</div>
         </div>
       </div>`).join('')
-  window.editVenue = function(id, name, address, area, phone, partner) {
-  document.getElementById('v-name').value = name
-  document.getElementById('v-address').value = address
-  document.getElementById('v-area').value = area
-  document.getElementById('v-phone').value = phone
-  const ptog = document.getElementById('v-ptog')
-  if (partner) ptog.className = 'tog on'
-  else ptog.className = 'tog off'
-  
-  // Change Add button to Update
-  const btn = document.querySelector('#s-venues .btn-p')
-  btn.textContent = 'Update Venue'
-  btn.onclick = async function() {
-    const newName = document.getElementById('v-name').value.trim()
-    const newAddress = document.getElementById('v-address').value.trim()
-    const newArea = document.getElementById('v-area').value
-    const newPhone = document.getElementById('v-phone').value.trim()
-    const newPartner = document.getElementById('v-ptog').classList.contains('on')
-    if (!newName || !newAddress) { msg('v-msg', 'Name and address required', false); return }
-    const { error } = await supabase.from('venues').update({ name: newName, address: newAddress, area: newArea, phone: newPhone, partner: newPartner }).eq('id', id)
-    if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
-    msg('v-msg', '✓ Venue updated!', true)
-    btn.textContent = '+ Add Venue'
-    btn.onclick = addVenue
-    document.getElementById('v-name').value = ''
-    document.getElementById('v-address').value = ''
-    document.getElementById('v-phone').value = ''
-    loadVenues()
-  }
-  
-  // Scroll to top of venues tab
-  document.getElementById('s-venues').scrollTop = 0
-  msg('v-msg', 'Editing — ' + name + '. Update details above.', true)
-}
-
-window.deactivateVenue = async function(id, name) {
-  if (!confirm('Remove ' + name + ' from the app? Data is preserved.')) return
-  const { error } = await supabase.from('venues').update({ active: false }).eq('id', id)
-  if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
-  loadVenues()
-}
 }
 
 // ── HELPERS ──
 window.flipTog = function(id) {
   const el = document.getElementById(id)
   if (!el) return
-  const on = el.classList.contains('on')
-  el.className = 'tog ' + (on ? 'off' : 'on')
+  el.className = 'tog ' + (el.classList.contains('on') ? 'off' : 'on')
 }
 
 function msg(id, text, ok) {
