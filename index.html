@@ -554,8 +554,8 @@ function renderDetailTab(venue, banks) {
 async function renderHotList() {
   document.getElementById('hotlist-banner').innerHTML = currentUser ? '' : banner()
   const { data: venues } = await supabase.from('venues').select('id, name, area')
-  const { data: banks } = await supabase.from('banks').select('*').eq('active',true).not('amount','is',null)
-  if (!banks || banks.length === 0) { document.getElementById('hotlist-content').innerHTML = '<div style="padding:40px;text-align:center;color:#ccc;font-size:11px">No data yet — check back soon</div>'; return }
+  const { data: banks } = await supabase.from('banks').select('*').eq('active',true).eq('status','fire').not('amount','is',null)
+  if (!banks || banks.length === 0) { document.getElementById('hotlist-content').innerHTML = '<div style="padding:40px;text-align:center;color:#ccc;font-size:11px;letter-spacing:1px">🔥 No machines On Fire right now<br><br><span style="font-size:9px;color:#aaa">Check back soon — when a progressive hits 80% above its starting amount it lands here</span></div>'; return }
   const sorted = banks.sort((a,b) => { const o={fire:0,heating:1,rising:2}; return (o[a.status]||2)-(o[b.status]||2) })
   let html = ''
   sorted.forEach((b,i) => {
