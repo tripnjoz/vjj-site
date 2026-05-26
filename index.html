@@ -294,7 +294,13 @@ function fmtDisp(v) {
   const p = v.split('.')
   return '$' + parseInt(p[0]||'0').toLocaleString() + (v.includes('.') ? '.' + (p[1]||'') : '')
 }
-function calcSt(v) { return v >= 2400 ? 'fire' : v >= 1500 ? 'heating' : 'rising' }
+function calcSt(v, start) { 
+  if (start > 0) {
+    const pct = ((v - start) / start) * 100
+    return pct >= 80 ? 'fire' : pct >= 40 ? 'heating' : 'rising'
+  }
+  return v >= 2400 ? 'fire' : v >= 1500 ? 'heating' : 'rising'
+}
 
 function banner() {
   return `<div class="signup-banner">
@@ -497,7 +503,9 @@ window.doSubmit = async function() {
   const bankId = document.getElementById('sub-bank')?.value
   if (!bankId || !submitAmt) return
   const val = parseFloat(submitAmt)
-  const st = calcSt(val)
+const { data: bankInfo } = await supabase.from('banks').select('starting_amount').eq('id', bankId).single()
+const startAmt = bankInfo?.starting_amount || 0
+const st = calcSt(val, startAmt)
   const { error: be } = await supabase.from('banks').update({ amount: val, status: st }).eq('id', bankId)
   const { error: pe } = await supabase.from('progressives').insert({ bank_id: bankId, amount: val, status: st, badge_type: 'community', anonymous: submitAnon, approved: true })
   const statusEl = document.getElementById('sub-status')
