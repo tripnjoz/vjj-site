@@ -91,6 +91,7 @@
   <div class="tab" onclick="showTab('users',this)">Users</div>
   <div class="tab" onclick="showTab('promos',this)">Promos</div>
   <div class="tab" onclick="showTab('integrity',this)">Integrity</div>
+  <div class="tab" onclick="showTab('progressives',this)">Progressives</div>
   <div class="tab" onclick="showTab('qr',this)">QR Code</div>
 </div>
 
@@ -304,6 +305,12 @@
     <div class="sec">// Review Queue</div>
     <div id="rq"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
   </div>
+  <!-- PROGRESSIVES -->
+<div class="screen" id="s-progressives">
+  <div class="sec">// All Progressives</div>
+  <div style="font-size:10px;color:#ccc;margin-bottom:12px;letter-spacing:1px">Tap any progressive to edit or delete it</div>
+  <div id="prog-list"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
+</div>
 
   <!-- QR CODE -->
   <div class="screen" id="s-qr">
@@ -354,7 +361,86 @@ window.showTab = function(tab, el) {
   if (tab === 'users')      loadUsers()
   if (tab === 'promos')     loadPromos()
   if (tab === 'integrity')  loadReviewQueue()
+  if (tab === 'progressives') loadProgressives()
   if (tab === 'qr')         loadQR()
+}
+  // ── PROGRESSIVES ──
+async function loadProgressives() {
+  await refreshVenues()
+  const { data: banks } = await supabase.from('banks').select('*').eq('active', true).order('created_at', { ascending: false })
+  const el = document.getElementById('prog-list')
+  if (!el) return
+  if (!banks || banks.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#ccc;padding:10px 0">No progressives yet</div>'; return }
+  el.innerHTML = banks.map(b => {
+    const vn = venues.find(v => v.id === b.venue_id)?.name || 'Unknown'
+    const st = b.status || 'rising'
+    const cols = { fire:'#ff1744', heating:'#ffd700', rising:'#00ff41' }
+    const labs = { fire:'🔥 ON FIRE', heating:'⚡ HEATING UP', rising:'🎯 ON THE RISE' }
+    return `<div style="background:#0c0d14;border:1px solid #1a1a2a;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="toggleProgEdit('${b.id}')">
+        <div style="flex:1">
+          <div style="font-size:13px;color:#e8eaf0;margin-bottom:2px">${vn} · ${b.name}</div>
+          <div style="font-size:10px;color:#ccc;margin-bottom:3px">${b.game}${b.denom?' · '+b.denom:''}</div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="font-family:'Orbitron',monospace;font-size:18px;font-weight:700;color:${cols[st]};text-shadow:0 0 6px ${cols[st]}88">${b.amount ? '$'+Number(b.amount).toLocaleString('en-US',{minimumFractionDigits:2}) : '<span style="color:#555">No amount</span>'}</div>
+            <div style="font-size:8px;color:${cols[st]}">${labs[st]}</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#aa44ff;letter-spacing:1px">✏ Edit</div>
+      </div>
+      <div class="edit-form" id="prog-edit-${b.id}">
+        <label class="lbl" style="margin-top:10px">Bank Name</label>
+        <input class="inp" id="pe-name-${b.id}" value="${b.name}">
+        <label class="lbl">Game</label>
+        <input class="inp" id="pe-game-${b.id}" value="${b.game}">
+        <label class="lbl">Denomination</label>
+        <input class="inp" id="pe-denom-${b.id}" value="${b.denom||''}">
+        <label class="lbl">Type</label>
+        <select class="inp" id="pe-type-${b.id}">
+          <option value="poker" ${b.type==='poker'?'selected':''}>Video Poker</option>
+          <option value="keno" ${b.type==='keno'?'selected':''}>Keno</option>
+          <option value="other" ${b.type==='other'?'selected':''}>Other / High Limit</option>
+        </select>
+        <label class="lbl">Current Amount</label>
+        <input class="inp" id="pe-amt-${b.id}" type="number" value="${b.amount||0}" placeholder="Current amount">
+        <label class="lbl">Starting Amount</label>
+        <input class="inp" id="pe-start-${b.id}" type="number" value="${b.starting_amount||0}">
+        <label class="lbl">Machines</label>
+        <input class="inp" id="pe-mach-${b.id}" type="number" value="${b.machines||1}">
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button onclick="saveProgEdit('${b.id}')" style="flex:2;padding:11px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:7px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;text-transform:uppercase">Save Changes</button>
+          <button onclick="deleteProg('${b.id}','${b.name}')" style="flex:1;padding:11px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:1px;border-radius:7px;border:1px solid #ff174444;background:#ff174410;color:#ff1744;cursor:pointer;text-transform:uppercase">🗑 Delete</button>
+        </div>
+        <button onclick="toggleProgEdit('${b.id}')" style="width:100%;padding:9px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;border-radius:7px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;text-transform:uppercase;margin-top:6px">Cancel</button>
+      </div>
+    </div>`
+  }).join('')
+}
+
+window.toggleProgEdit = function(id) {
+  const form = document.getElementById('prog-edit-' + id)
+  if (form) form.classList.toggle('open')
+}
+
+window.saveProgEdit = async function(id) {
+  const name = document.getElementById('pe-name-'+id).value.trim()
+  const game = document.getElementById('pe-game-'+id).value.trim()
+  const denom = document.getElementById('pe-denom-'+id).value.trim()
+  const type = document.getElementById('pe-type-'+id).value
+  const amt = parseFloat(document.getElementById('pe-amt-'+id).value) || 0
+  const start = parseFloat(document.getElementById('pe-start-'+id).value) || 0
+  const mach = parseInt(document.getElementById('pe-mach-'+id).value) || 1
+  if (!name || !game) { alert('Name and game required'); return }
+  const st = amt >= 2400 ? 'fire' : amt >= 1500 ? 'heating' : 'rising'
+  const { error } = await supabase.from('banks').update({ name, game, denom, type, amount: amt||null, status: amt?st:null, starting_amount: start, machines: mach }).eq('id', id)
+  if (error) { alert('Error: ' + error.message); return }
+  await loadProgressives()
+}
+
+window.deleteProg = async function(id, name) {
+  if (!confirm('Delete ' + name + '? This cannot be undone.')) return
+  await supabase.from('banks').update({ active: false }).eq('id', id)
+  await loadProgressives()
 }
 
 // ── QR CODE ──
