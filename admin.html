@@ -668,7 +668,10 @@ window.saveAmt = async function() {
   const bankId = document.getElementById('a-bank').value
   if (!bankId || !amtStr) { msg('a-msg', 'Select bank and enter amount', false); return }
   const val = parseFloat(amtStr)
-  const st = val >= 2400 ? 'fire' : val >= 1500 ? 'heating' : 'rising'
+  const { data: bankData } = await supabase.from('banks').select('starting_amount').eq('id', bankId).single()
+const startAmt = bankData?.starting_amount || 0
+const pct = startAmt > 0 ? ((val - startAmt) / startAmt) * 100 : (val >= 2400 ? 100 : val >= 1500 ? 50 : 10)
+const st = pct >= 80 ? 'fire' : pct >= 40 ? 'heating' : 'rising'
   const { error } = await supabase.from('banks').update({ amount: val, status: st }).eq('id', bankId)
   if (error) { msg('a-msg', 'Error: ' + error.message, false); return }
   await supabase.from('progressives').insert({ bank_id: bankId, amount: val, status: st, badge_type: 'verified', anonymous: false, approved: true })
@@ -692,7 +695,9 @@ window.addBank = async function() {
   const amt = parseFloat(document.getElementById('b-amt').value) || 0
   const machines = parseInt(document.getElementById('b-mach').value) || 1
   if (!venueId || !name || !game) { msg('b-msg', 'Venue, name and game required', false); return }
-  const st = amt >= 2400 ? 'fire' : amt >= 1500 ? 'heating' : 'rising'
+  const { data: bankData2 } = await supabase.from('banks').select('starting_amount').eq('id', id).single()
+const pct3 = start > 0 ? ((amt - start) / start) * 100 : (amt >= 2400 ? 100 : amt >= 1500 ? 50 : 10)
+const st = pct3 >= 80 ? 'fire' : pct3 >= 40 ? 'heating' : 'rising'
   const { error } = await supabase.from('banks').insert({ venue_id: venueId, name, game, denom, type, starting_amount: start, amount: amt || null, status: amt ? st : null, machines, approved: true, active: true })
   if (error) { msg('b-msg', 'Error: ' + error.message, false); return }
   msg('b-msg', '✓ Bank added!', true)
