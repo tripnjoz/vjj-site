@@ -485,7 +485,7 @@ async function loadVenues() {
         <div style="display:flex;gap:6px">
           <div class="action-btn ab-gold" onclick="jumpToAddBank('${v.id}','${v.name}')">+ Bank</div>
           <div class="action-btn ab-purple" onclick="editVenue('${v.id}','${v.name}','${v.address}','${v.area}','${v.phone||''}',${v.partner})">✏ Edit</div>
-          <div class="action-btn ab-red" onclick="deactivateVenue('${v.id}','${v.name}')">✕</div>
+          <div class="action-btn ab-red" onclick="deactivateVenue('${v.id}',this)">✕</div>
         </div>
       </div>`).join('')
 }
@@ -540,7 +540,8 @@ window.editVenue = function(id, name, address, area, phone, partner) {
   document.getElementById('s-venues').scrollTop = 0
 }
 
-window.deactivateVenue = async function(id, name) {
+window.deactivateVenue = async function(id, btn) {
+  const name = btn.closest('.row').querySelector('.row-name').textContent.trim()
   if (!confirm('Remove ' + name + ' from the app?')) return
   await supabase.from('venues').update({ active: false }).eq('id', id)
   loadVenues()
