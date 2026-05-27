@@ -695,7 +695,7 @@ window.addBank = async function() {
   const amt = parseFloat(document.getElementById('b-amt').value) || 0
   const machines = parseInt(document.getElementById('b-mach').value) || 1
   if (!venueId || !name || !game) { msg('b-msg', 'Venue, name and game required', false); return }
-  const { data: bankData2 } = await supabase.from('banks').select('starting_amount').eq('id', id).single()
+  
 const pct3 = start > 0 ? ((amt - start) / start) * 100 : (amt >= 2400 ? 100 : amt >= 1500 ? 50 : 10)
 const st = pct3 >= 80 ? 'fire' : pct3 >= 40 ? 'heating' : 'rising'
   const { error } = await supabase.from('banks').insert({ venue_id: venueId, name, game, denom, type, starting_amount: start, amount: amt || null, status: amt ? st : null, machines, approved: true, active: true })
