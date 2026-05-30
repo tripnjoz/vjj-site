@@ -255,6 +255,7 @@
     <button class="modal-close" onclick="closeModal()">Maybe Later</button>
   </div>
 </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
@@ -753,6 +754,7 @@ function renderProfile() {
           </a>`).join('')}
         </div>
         <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:#e8eaf0;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #1a1a2a">// Account</div>
+        <button onclick="showUserQR()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:8px;border:1px solid #ffd70044;background:#ffd70010;color:#ffd700;cursor:pointer;text-transform:uppercase;margin-bottom:8px">📱 Show QR Code</button>
         <button onclick="shareApp()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:8px;border:1px solid #aa44ff44;background:#aa44ff10;color:#aa44ff;cursor:pointer;text-transform:uppercase;margin-bottom:8px">📤 Share VJJ With a Friend</button>
         <button onclick="doSignOut()" style="width:100%;padding:12px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:8px;border:1px solid #ff174433;background:transparent;color:#ff1744;cursor:pointer;text-transform:uppercase">Sign Out</button>
       </div>`
@@ -766,8 +768,26 @@ function renderProfile() {
       </div>`
   }
 }
+  // ── USER QR ──
+window.showUserQR = function() {
+  const el = document.getElementById('user-qr-code')
+  if (el && el.innerHTML === '') {
+    new QRCode(el, {
+      text: 'https://vegasjackpotjunkies.com',
+      width: 200, height: 200,
+      colorDark: '#070709', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    })
+  }
+  document.getElementById('user-qr-overlay').classList.add('show')
+}
+
+window.closeUserQR = function() {
+  document.getElementById('user-qr-overlay').classList.remove('show')
+}
 
 // ── SHARE ──
+}
 window.shareApp = function() {
   if (navigator.share) {
     navigator.share({ title:'Vegas Jackpot Junkies', text:'Track live progressive jackpots across Vegas — know before you go 🎰', url:'https://vegasjackpotjunkies.com' })
@@ -909,6 +929,18 @@ renderHome()
     <div id="qs-status" style="text-align:center;font-size:10px;padding:10px;border-radius:8px;margin-bottom:10px;display:none"></div>
     <button id="qs-btn" onclick="submitQuick()" style="width:100%;padding:14px;font-family:'Orbitron',monospace;font-weight:900;font-size:11px;letter-spacing:3px;text-transform:uppercase;border-radius:8px;border:none;cursor:pointer;background:#1a1a1a;color:#555;margin-bottom:8px">Enter Amount First</button>
     <button onclick="closeQuickSubmit()" style="width:100%;padding:11px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;border:1px solid #333;background:transparent;color:#ccc;border-radius:8px;cursor:pointer;text-transform:uppercase">Cancel</button>
+  </div>
+</div>
+  <!-- USER QR MODAL -->
+<div class="modal-overlay" id="user-qr-overlay" onclick="closeUserQR()" style="align-items:center;justify-content:center">
+  <div style="background:#0c0d14;border:1px solid #aa44ff44;border-radius:16px;padding:30px;text-align:center;max-width:320px;width:90%;box-shadow:0 0 40px #aa44ff22">
+    <div style="font-family:'Orbitron',monospace;font-size:12px;color:#aa44ff;text-shadow:0 0 8px #aa44ff;letter-spacing:2px;margin-bottom:6px">Scan to Join VJJ</div>
+    <div style="font-size:9px;color:#ccc;letter-spacing:1px;margin-bottom:16px">Show this to a friend</div>
+    <div style="background:#fff;border:3px solid #aa44ff;border-radius:12px;padding:16px;display:inline-block;margin-bottom:16px">
+      <div id="user-qr-code"></div>
+    </div>
+    <div style="font-size:10px;color:#ffd700;letter-spacing:2px;margin-bottom:16px">VegasJackpotJunkies.com</div>
+    <button onclick="closeUserQR()" style="width:100%;padding:11px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;border:1px solid #333;background:transparent;color:#ccc;border-radius:8px;cursor:pointer;text-transform:uppercase">Close</button>
   </div>
 </div>
 
