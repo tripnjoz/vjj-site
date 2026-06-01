@@ -484,7 +484,7 @@ async function loadVenues() {
         </div>
         <div style="display:flex;gap:6px">
           <div class="action-btn ab-gold" onclick="jumpToAddBank('${v.id}','${v.name}')">+ Bank</div>
-          <div class="action-btn ab-purple" onclick="editVenue('${v.id}','${v.name}','${v.address}','${v.area}','${v.phone||''}',${v.partner})">✏ Edit</div>
+          <div class="action-btn ab-purple" onclick="editVenue('${v.id}')">✏ Edit</div>
           <div class="action-btn ab-red" onclick="deactivateVenue('${v.id}',this)">✕</div>
         </div>
       </div>`).join('')
@@ -527,7 +527,14 @@ window.addVenue = async function() {
   loadVenues()
 }
 
-window.editVenue = function(id, name, address, area, phone, partner) {
+window.editVenue = async function(id) {
+  const { data: v } = await supabase.from('venues').select('*').eq('id', id).single()
+  if (!v) return
+  const name = v.name
+  const address = v.address
+  const area = v.area
+  const phone = v.phone || ''
+  const partner = v.partner
   editingVenueId = id
   document.getElementById('v-name').value = name
   document.getElementById('v-address').value = address
