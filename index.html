@@ -907,7 +907,8 @@ window.submitQuick = async function() {
   if (statusEl) { statusEl.textContent = '✓ Amount updated! +10 XP'; statusEl.style.background='#00ff4115'; statusEl.style.border='1px solid #00ff4144'; statusEl.style.color='#00ff41'; statusEl.style.display='block' }
   setTimeout(() => {
     closeQuickSubmit()
-    renderVenueDetail()
+    await renderHome()
+renderVenueDetail()
   }, 1500)
 }
 
