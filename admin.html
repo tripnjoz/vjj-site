@@ -708,6 +708,7 @@ window.selectPromoteRole = function(role) {
 
 window.confirmPromotion = async function() {
   if (!promoteUserId || !promoteRole) return
+  console.log('Promoting user ID:', promoteUserId)
   const venueId = promoteRole === 'insider' ? document.getElementById('promote-venue-id').value : null
   if (promoteRole === 'insider' && !venueId) { alert('Please select a venue for this insider'); return }
   
