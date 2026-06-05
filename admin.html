@@ -711,9 +711,11 @@ window.confirmPromotion = async function() {
   const venueId = promoteRole === 'insider' ? document.getElementById('promote-venue-id').value : null
   if (promoteRole === 'insider' && !venueId) { alert('Please select a venue for this insider'); return }
   
-  const updates = { tier: promoteRole === 'trusted' ? 'trusted' : promoteRole === 'junkie' ? 'junkie' : 'community' }
-  if (promoteRole === 'insider') { updates.role = 'insider'; updates.venue_id = venueId }
-  if (promoteRole === 'admin') { updates.role = 'admin' }
+  const updates = {}
+if (promoteRole === 'trusted') { updates.tier = 'trusted' }
+if (promoteRole === 'junkie') { updates.tier = 'junkie' }
+if (promoteRole === 'insider') { updates.role = 'insider'; updates.tier = 'community'; updates.venue_id = venueId }
+if (promoteRole === 'admin') { updates.role = 'admin'; updates.tier = 'community' }
   
   const { error } = await supabase.from('users').update(updates).eq('id', promoteUserId)
   if (error) { alert('Error: ' + error.message); return }
