@@ -10,13 +10,12 @@
   html,body { background:#070709; }
   body { font-family:'Share Tech Mono',monospace; color:#e8eaf0; min-height:100vh; max-width:430px; margin:0 auto; }
   .header { background:#070709; border-bottom:1px solid #1a0a2a; padding:10px 14px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
-  .header-title { font-family:'Orbitron',monospace; font-weight:900; font-size:14px; color:#aa44ff; text-shadow:0 0 12px #aa44ff, 0 0 24px #aa44ff66; letter-spacing:2px; }
+  .header-title { font-family:'Orbitron',monospace; font-weight:900; font-size:14px; color:#aa44ff; text-shadow:0 0 12px #aa44ff; letter-spacing:2px; }
   .header-badge { font-size:9px; padding:4px 12px; border-radius:2px; background:#aa44ff15; border:1px solid #aa44ff44; color:#aa44ff; letter-spacing:2px; }
   .tabs { display:flex; overflow-x:auto; scrollbar-width:none; border-bottom:1px solid #222; background:#070709; position:sticky; top:46px; z-index:99; }
   .tabs::-webkit-scrollbar { display:none; }
   .tab { font-family:'Orbitron',monospace; font-size:9px; letter-spacing:1px; padding:12px 13px; color:#e8eaf0; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; text-transform:uppercase; transition:all 0.2s; opacity:0.7; }
-  .tab.active { color:#aa44ff; border-bottom-color:#aa44ff; text-shadow:0 0 8px #aa44ff, 0 0 16px #aa44ff66; opacity:1; font-weight:700; }
-  .tab:hover { opacity:1; color:#e8eaf0; }
+  .tab.active { color:#aa44ff; border-bottom-color:#aa44ff; text-shadow:0 0 8px #aa44ff; opacity:1; font-weight:700; }
   .content { padding:16px; padding-bottom:40px; overflow-y:auto; max-height:calc(100vh - 90px); }
   .screen { display:none; }
   .screen.active { display:block; }
@@ -36,7 +35,7 @@
   .stat-card { background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:14px; text-align:center; }
   .stat-val { font-family:'Orbitron',monospace; font-weight:700; font-size:24px; margin-bottom:4px; }
   .stat-lbl { font-size:9px; letter-spacing:2px; color:#ccc; text-transform:uppercase; }
-  .row { background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
+  .row { background:#0c0d14; border:1px solid #1a1a2a; border-radius:8px; padding:12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
   .row-name { font-size:13px; color:#e8eaf0; margin-bottom:2px; }
   .row-detail { font-size:9px; color:#ccc; letter-spacing:1px; }
   .badge { font-size:8px; padding:3px 8px; border-radius:2px; display:inline-block; font-family:'Orbitron',monospace; letter-spacing:1px; }
@@ -44,12 +43,14 @@
   .badge-trusted { background:#aa44ff15; border:1px solid #aa44ff44; color:#aa44ff; text-shadow:0 0 6px #aa44ff66; }
   .badge-junkie { background:#ffd70015; border:1px solid #ffd70044; color:#ffd700; text-shadow:0 0 6px #ffd70066; }
   .badge-insider { background:#00ff4115; border:1px solid #00ff4144; color:#00ff41; text-shadow:0 0 6px #00ff4166; }
+  .badge-admin { background:#ff174415; border:1px solid #ff174444; color:#ff1744; }
   .badge-flagged { background:#ff174415; border:1px solid #ff174444; color:#ff1744; }
   .action-btn { font-size:9px; padding:5px 9px; border-radius:4px; cursor:pointer; white-space:nowrap; font-family:'Orbitron',monospace; letter-spacing:1px; }
   .ab-purple { border:1px solid #aa44ff44; color:#aa44ff; background:#aa44ff10; }
   .ab-red { border:1px solid #ff174444; color:#ff1744; background:#ff174410; }
   .ab-gold { border:1px solid #ffd70044; color:#ffd700; background:#ffd70010; }
   .ab-grey { border:1px solid #333; color:#ccc; background:transparent; }
+  .ab-green { border:1px solid #00ff4144; color:#00ff41; background:#00ff4110; }
   .amt-box { background:#0c0d14; border:1px solid #ffd70044; border-radius:10px; padding:18px; text-align:center; margin-bottom:12px; }
   .amt-val { font-family:'Orbitron',monospace; font-weight:700; font-size:40px; color:#ffd700; text-shadow:0 0 12px #ffd700; letter-spacing:2px; min-height:50px; }
   .numpad { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-bottom:14px; }
@@ -69,12 +70,20 @@
   .meter-bar { height:5px; background:#111; border-radius:3px; overflow:hidden; margin-top:6px; }
   .edit-form { background:#070709; border:1px solid #aa44ff33; border-radius:8px; padding:12px; margin-top:8px; display:none; }
   .edit-form.open { display:block; }
-  /* QR Screen */
   .qr-fullscreen { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; gap:20px; text-align:center; }
   .qr-box { background:#ffffff; border:4px solid #aa44ff; border-radius:16px; padding:20px; box-shadow:0 0 30px #aa44ff44; }
-  .qr-title { font-family:'Orbitron',monospace; font-size:13px; color:#aa44ff; text-shadow:0 0 8px #aa44ff; letter-spacing:3px; }
-  .qr-url { font-size:12px; color:#ffd700; letter-spacing:2px; text-shadow:0 0 6px #ffd700; }
-  .qr-tip { font-size:10px; color:#ccc; letter-spacing:1px; max-width:280px; line-height:1.8; }
+  /* PROMOTE MODAL */
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:200; display:none; align-items:flex-end; justify-content:center; }
+  .modal-overlay.show { display:flex; }
+  .modal { background:#0c0d14; border:1px solid #aa44ff44; border-radius:16px 16px 0 0; padding:24px; width:100%; max-width:430px; box-shadow:0 0 40px #aa44ff22; }
+  .modal-title { font-family:'Orbitron',monospace; font-size:14px; color:#aa44ff; text-shadow:0 0 10px #aa44ff; letter-spacing:2px; margin-bottom:6px; }
+  .modal-sub { font-size:10px; color:#ccc; letter-spacing:1px; margin-bottom:16px; }
+  .promote-option { padding:14px; border-radius:8px; border:1px solid #1a1a2a; background:#070709; margin-bottom:8px; cursor:pointer; display:flex; align-items:center; gap:12px; transition:all 0.2s; }
+  .promote-option:active { background:#0c0d14; }
+  .promote-option-icon { font-size:20px; }
+  .promote-option-name { font-family:'Orbitron',monospace; font-size:11px; letter-spacing:1px; margin-bottom:2px; }
+  .promote-option-desc { font-size:9px; color:#aaa; letter-spacing:1px; }
+  .modal-close { width:100%; padding:11px; font-family:'Orbitron',monospace; font-size:8px; letter-spacing:2px; border:1px solid #333; background:transparent; color:#ccc; border-radius:8px; cursor:pointer; text-transform:uppercase; margin-top:4px; }
 </style>
 </head>
 <body>
@@ -90,8 +99,8 @@
   <div class="tab" onclick="showTab('amounts',this)">Amounts</div>
   <div class="tab" onclick="showTab('users',this)">Users</div>
   <div class="tab" onclick="showTab('promos',this)">Promos</div>
-  <div class="tab" onclick="showTab('integrity',this)">Integrity</div>
   <div class="tab" onclick="showTab('progressives',this)">Progressives</div>
+  <div class="tab" onclick="showTab('integrity',this)">Integrity</div>
   <div class="tab" onclick="showTab('qr',this)">QR Code</div>
 </div>
 
@@ -148,38 +157,26 @@
   <div class="screen" id="s-amounts">
     <div class="sec">// Quick Amount Update</div>
     <label class="lbl">Select Venue</label>
-    <select class="inp" id="a-venue" onchange="loadABanks()">
-      <option value="">Select venue</option>
-    </select>
+    <select class="inp" id="a-venue" onchange="loadABanks()"><option value="">Select venue</option></select>
     <label class="lbl">Select Bank</label>
-    <select class="inp" id="a-bank">
-      <option value="">Select venue first</option>
-    </select>
+    <select class="inp" id="a-bank"><option value="">Select venue first</option></select>
     <div class="amt-box">
       <div style="font-size:8px;color:#ccc;letter-spacing:2px;margin-bottom:8px">AMOUNT ON MACHINE</div>
       <div class="amt-val" id="a-disp">$0</div>
     </div>
     <div id="a-meter" style="margin-bottom:12px"></div>
     <div class="numpad">
-      <div class="nk" onclick="an('1')">1</div>
-      <div class="nk" onclick="an('2')">2</div>
-      <div class="nk" onclick="an('3')">3</div>
-      <div class="nk" onclick="an('4')">4</div>
-      <div class="nk" onclick="an('5')">5</div>
-      <div class="nk" onclick="an('6')">6</div>
-      <div class="nk" onclick="an('7')">7</div>
-      <div class="nk" onclick="an('8')">8</div>
-      <div class="nk" onclick="an('9')">9</div>
+      <div class="nk" onclick="an('1')">1</div><div class="nk" onclick="an('2')">2</div><div class="nk" onclick="an('3')">3</div>
+      <div class="nk" onclick="an('4')">4</div><div class="nk" onclick="an('5')">5</div><div class="nk" onclick="an('6')">6</div>
+      <div class="nk" onclick="an('7')">7</div><div class="nk" onclick="an('8')">8</div><div class="nk" onclick="an('9')">9</div>
       <div class="nk" style="color:#ff1744" onclick="an('CLR')">CLR</div>
       <div class="nk" onclick="an('0')">0</div>
       <div class="nk" style="color:#aaa" onclick="an('⌫')">⌫</div>
     </div>
     <div class="msg" id="a-msg"></div>
     <button id="a-btn" onclick="saveAmt()" style="width:100%;padding:14px;font-family:'Orbitron',monospace;font-weight:900;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:8px;border:none;cursor:pointer;background:#1a1a1a;color:#666;margin-bottom:20px">Enter Amount First</button>
-
     <div class="sec">// Banks at This Venue</div>
-    <div id="banks-list"><div style="font-size:10px;color:#ccc;padding:10px 0">Select a venue above to see its banks</div></div>
-
+    <div id="banks-list"><div style="font-size:10px;color:#ccc;padding:10px 0">Select a venue above</div></div>
     <div class="sec">// Add New Bank</div>
     <div class="card">
       <label class="lbl">Venue</label>
@@ -262,6 +259,13 @@
     <div id="p-active"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
   </div>
 
+  <!-- PROGRESSIVES -->
+  <div class="screen" id="s-progressives">
+    <div class="sec">// All Progressives</div>
+    <div style="font-size:10px;color:#ccc;margin-bottom:12px;letter-spacing:1px">Tap any progressive to edit or delete</div>
+    <div id="prog-list"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
+  </div>
+
   <!-- INTEGRITY -->
   <div class="screen" id="s-integrity">
     <div class="sec">// Global Controls</div>
@@ -275,24 +279,15 @@
         <div class="tog on" id="t-photo" onclick="flipTog('t-photo')"><div class="tok"></div></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #111">
-        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Auto-restrict low accuracy users</div><div style="font-size:9px;color:#ccc">Below threshold → auto restricted</div></div>
+        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Auto-restrict low accuracy users</div><div style="font-size:9px;color:#ccc">Below threshold auto restricted</div></div>
         <div class="tog on" id="t-restrict" onclick="flipTog('t-restrict')"><div class="tok"></div></div>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #111">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0">
         <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Conflict alerts</div><div style="font-size:9px;color:#ccc">Flag when submissions disagree</div></div>
         <div class="tog on" id="t-conflict" onclick="flipTog('t-conflict')"><div class="tok"></div></div>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #111">
-        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Auto-restrict threshold</div><div style="font-size:9px;color:#ccc">Users below this accuracy %</div></div>
-        <div style="display:flex;align-items:center;gap:5px"><input style="background:#070709;border:1px solid #aa44ff44;border-radius:6px;padding:6px 8px;font-size:13px;color:#aa44ff;outline:none;width:60px;text-align:right" type="number" value="70"><span style="font-size:12px;color:#ccc">%</span></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0">
-        <div><div style="font-size:12px;color:#e8eaf0;margin-bottom:2px">Variance auto-hold threshold</div><div style="font-size:9px;color:#ccc">Hold if X% above last verified</div></div>
-        <div style="display:flex;align-items:center;gap:5px"><input style="background:#070709;border:1px solid #aa44ff44;border-radius:6px;padding:6px 8px;font-size:13px;color:#aa44ff;outline:none;width:60px;text-align:right" type="number" value="15"><span style="font-size:12px;color:#ccc">%</span></div>
-      </div>
     </div>
-
-    <div class="sec">// Photo Thresholds by Denomination</div>
+    <div class="sec">// Photo Thresholds</div>
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#00ff41;min-width:54px">$0.05</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #00ff4133;border-radius:6px;padding:6px 8px;font-size:13px;color:#00ff41;outline:none;width:78px;text-align:right" type="number" value="1200"></div></div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#00eeff;min-width:54px">$0.10</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #00eeff33;border-radius:6px;padding:6px 8px;font-size:13px;color:#00eeff;outline:none;width:78px;text-align:right" type="number" value="1500"></div></div>
@@ -301,30 +296,65 @@
       <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #111"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#ff1744;min-width:54px">$1.00</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #ff174433;border-radius:6px;padding:6px 8px;font-size:13px;color:#ff1744;outline:none;width:78px;text-align:right" type="number" value="4000"></div></div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0"><div style="font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:#aa44ff;min-width:54px">$2.00</div><div style="font-size:9px;color:#ccc;flex:1;padding:0 10px">Photo above</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px;color:#ccc">$</span><input style="background:#070709;border:1px solid #aa44ff33;border-radius:6px;padding:6px 8px;font-size:13px;color:#aa44ff;outline:none;width:78px;text-align:right" type="number" value="6000"></div></div>
     </div>
-
     <div class="sec">// Review Queue</div>
     <div id="rq"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
   </div>
-  <!-- PROGRESSIVES -->
-<div class="screen" id="s-progressives">
-  <div class="sec">// All Progressives</div>
-  <div style="font-size:10px;color:#ccc;margin-bottom:12px;letter-spacing:1px">Tap any progressive to edit or delete it</div>
-  <div id="prog-list"><div style="font-size:10px;color:#ccc;padding:10px 0">Loading...</div></div>
-</div>
 
   <!-- QR CODE -->
   <div class="screen" id="s-qr">
     <div class="qr-fullscreen">
-      <div class="qr-title">Scan to Join VJJ</div>
-      <div class="qr-box">
-        <div id="qr-display"></div>
-      </div>
-      <div class="qr-url">VegasJackpotJunkies.com</div>
-      <div class="qr-tip">Show this to anyone — they scan with their camera and land directly on the app. No typing needed.</div>
+      <div style="font-family:'Orbitron',monospace;font-size:13px;color:#aa44ff;text-shadow:0 0 8px #aa44ff;letter-spacing:3px">Scan to Join VJJ</div>
+      <div class="qr-box"><div id="qr-display"></div></div>
+      <div style="font-size:12px;color:#ffd700;letter-spacing:2px;text-shadow:0 0 6px #ffd700">VegasJackpotJunkies.com</div>
+      <div style="font-size:10px;color:#ccc;letter-spacing:1px;max-width:280px;line-height:1.8;text-align:center">Show this to anyone — they scan with their camera and land directly on the app</div>
       <button onclick="shareApp()" style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;box-shadow:0 0 14px #aa44ff33;text-transform:uppercase">📤 Share App Link</button>
     </div>
   </div>
 
+</div>
+
+<!-- PROMOTE MODAL -->
+<div class="modal-overlay" id="promote-overlay" onclick="closePromoteModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-title">↑ Promote User</div>
+    <div class="modal-sub" id="promote-user-name">Select a role for this user</div>
+    <div class="promote-option" onclick="selectPromoteRole('trusted')">
+      <div class="promote-option-icon">⭐</div>
+      <div>
+        <div class="promote-option-name" style="color:#aa44ff">Trusted Player</div>
+        <div class="promote-option-desc">Verified accurate submitter</div>
+      </div>
+    </div>
+    <div class="promote-option" onclick="selectPromoteRole('junkie')">
+      <div class="promote-option-icon">🎰</div>
+      <div>
+        <div class="promote-option-name" style="color:#ffd700">Jackpot Junkie</div>
+        <div class="promote-option-desc">Elite — highly accurate, very active</div>
+      </div>
+    </div>
+    <div class="promote-option" onclick="selectPromoteRole('insider')">
+      <div class="promote-option-icon">✓</div>
+      <div>
+        <div class="promote-option-name" style="color:#00ff41">Venue Insider</div>
+        <div class="promote-option-desc">Bartender or staff at a specific venue</div>
+      </div>
+    </div>
+    <div class="promote-option" onclick="selectPromoteRole('admin')">
+      <div class="promote-option-icon">👑</div>
+      <div>
+        <div class="promote-option-name" style="color:#ff1744">Admin</div>
+        <div class="promote-option-desc">Full access — use sparingly</div>
+      </div>
+    </div>
+    <div id="insider-venue-select" style="display:none;margin-top:10px">
+      <label class="lbl">Select Venue for This Insider</label>
+      <select class="inp" id="promote-venue-id"><option value="">Select venue</option></select>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="promote-confirm-btn" onclick="confirmPromotion()" style="flex:2;padding:12px;font-family:'Orbitron',monospace;font-weight:900;font-size:9px;letter-spacing:2px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;text-transform:uppercase;display:none">Confirm Promotion</button>
+      <button onclick="closePromoteModal()" class="modal-close" style="flex:1;margin-top:0">Cancel</button>
+    </div>
+  </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -336,7 +366,6 @@ const supabase = createClient(
   'sb_publishable_b1Fq_jAP4A9On12qxqZIWw_R7R-OxFF'
 )
 
-// Password
 const PW = 'vjj-admin-2026'
 if (localStorage.getItem('vjj-admin-auth') !== PW) {
   const a = prompt('Admin password:')
@@ -347,7 +376,8 @@ if (localStorage.getItem('vjj-admin-auth') !== PW) {
 let venues = []
 let amtStr = ''
 let editingVenueId = null
-let editingBankId = null
+let promoteUserId = null
+let promoteRole = null
 
 // ── TABS ──
 window.showTab = function(tab, el) {
@@ -355,16 +385,358 @@ window.showTab = function(tab, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
   document.getElementById('s-' + tab).classList.add('active')
   if (el) el.classList.add('active')
-  if (tab === 'overview')   loadOverview()
-  if (tab === 'venues')     loadVenues()
-  if (tab === 'amounts')    loadAmtVenues()
-  if (tab === 'users')      loadUsers()
-  if (tab === 'promos')     loadPromos()
-  if (tab === 'integrity')  loadReviewQueue()
+  if (tab === 'overview')     loadOverview()
+  if (tab === 'venues')       loadVenues()
+  if (tab === 'amounts')      loadAmtVenues()
+  if (tab === 'users')        loadUsers()
+  if (tab === 'promos')       loadPromos()
   if (tab === 'progressives') loadProgressives()
-  if (tab === 'qr')         loadQR()
+  if (tab === 'integrity')    loadReviewQueue()
+  if (tab === 'qr')           loadQR()
 }
-  // ── PROGRESSIVES ──
+
+// ── QR ──
+function loadQR() {
+  const el = document.getElementById('qr-display')
+  if (!el || el.innerHTML !== '') return
+  new QRCode(el, { text:'https://vegasjackpotjunkies.com', width:220, height:220, colorDark:'#070709', colorLight:'#ffffff', correctLevel:QRCode.CorrectLevel.H })
+}
+
+window.shareApp = function() {
+  if (navigator.share) { navigator.share({ title:'Vegas Jackpot Junkies', text:'Track progressive jackpots across Vegas 🎰', url:'https://vegasjackpotjunkies.com' }) }
+  else { navigator.clipboard.writeText('https://vegasjackpotjunkies.com'); alert('Link copied!') }
+}
+
+// ── VENUES ──
+async function loadVenues() {
+  await refreshVenues()
+  const el = document.getElementById('v-list')
+  if (!el) return
+  el.innerHTML = venues.length === 0
+    ? '<div style="font-size:10px;color:#ccc;padding:10px 0">No venues yet</div>'
+    : venues.map(v => `
+      <div class="row" style="border-color:${v.partner?'#ffd70033':'#1a1a2a'}">
+        <div style="font-size:22px">🎰</div>
+        <div style="flex:1;min-width:120px">
+          <div class="row-name">${v.name}${v.partner?' <span class="badge badge-junkie">★ Partner</span>':''}</div>
+          <div class="row-detail">${v.area} · ${v.address}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <div class="action-btn ab-gold" onclick="jumpToAddBank('${v.id}')">+ Bank</div>
+          <div class="action-btn ab-purple" onclick="editVenue('${v.id}')">✏ Edit</div>
+          <div class="action-btn ab-red" onclick="deactivateVenue('${v.id}', this)">✕</div>
+        </div>
+      </div>`).join('')
+}
+
+async function refreshVenues() {
+  const { data } = await supabase.from('venues').select('*').eq('active', true).order('name')
+  venues = data || []
+  const ids = ['a-venue','b-venue','u-venue','pr-venue','promote-venue-id']
+  ids.forEach(id => {
+    const el = document.getElementById(id)
+    if (!el) return
+    const cur = el.value
+    el.innerHTML = '<option value="">Select venue</option>' + venues.map(v => `<option value="${v.id}"${v.id===cur?' selected':''}>${v.name} · ${v.area}</option>`).join('')
+  })
+}
+
+window.addVenue = async function() {
+  const name = document.getElementById('v-name').value.trim()
+  const address = document.getElementById('v-address').value.trim()
+  const area = document.getElementById('v-area').value
+  const phone = document.getElementById('v-phone').value.trim()
+  const partner = document.getElementById('v-ptog').classList.contains('on')
+  if (!name || !address) { msg('v-msg', 'Name and address required', false); return }
+  if (editingVenueId) {
+    const { error } = await supabase.from('venues').update({ name, address, area, phone, partner }).eq('id', editingVenueId)
+    if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
+    msg('v-msg', '✓ ' + name + ' updated!', true)
+    editingVenueId = null
+    document.getElementById('v-submit-btn').textContent = '+ Add Venue'
+  } else {
+    const { error } = await supabase.from('venues').insert({ name, address, area, phone, partner, approved: true, active: true })
+    if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
+    msg('v-msg', '✓ ' + name + ' added!', true)
+  }
+  document.getElementById('v-name').value = ''
+  document.getElementById('v-address').value = ''
+  document.getElementById('v-phone').value = ''
+  loadVenues()
+}
+
+window.editVenue = async function(id) {
+  const { data: v } = await supabase.from('venues').select('*').eq('id', id).single()
+  if (!v) return
+  editingVenueId = id
+  document.getElementById('v-name').value = v.name
+  document.getElementById('v-address').value = v.address
+  document.getElementById('v-area').value = v.area
+  document.getElementById('v-phone').value = v.phone || ''
+  document.getElementById('v-ptog').className = 'tog ' + (v.partner ? 'on' : 'off')
+  document.getElementById('v-submit-btn').textContent = '✓ Update Venue'
+  msg('v-msg', 'Editing ' + v.name + ' — update details above', true)
+  document.getElementById('s-venues').scrollTop = 0
+}
+
+window.deactivateVenue = async function(id, btn) {
+  const name = btn.closest('.row').querySelector('.row-name').textContent.trim()
+  if (!confirm('Remove ' + name + ' from the app?')) return
+  await supabase.from('venues').update({ active: false }).eq('id', id)
+  loadVenues()
+}
+
+window.jumpToAddBank = function(venueId) {
+  showTab('amounts', document.querySelectorAll('.tab')[2])
+  setTimeout(() => {
+    const sel = document.getElementById('b-venue')
+    if (sel) sel.value = venueId
+    msg('b-msg', 'Adding bank for selected venue', true)
+  }, 300)
+}
+
+// ── AMOUNTS ──
+async function loadAmtVenues() { await refreshVenues() }
+
+window.loadABanks = async function() {
+  const venueId = document.getElementById('a-venue').value
+  const sel = document.getElementById('a-bank')
+  if (!sel || !venueId) return
+  sel.innerHTML = '<option>Loading...</option>'
+  const { data } = await supabase.from('banks').select('*').eq('venue_id', venueId).eq('active', true)
+  if (!data || data.length === 0) { sel.innerHTML = '<option value="">No banks — add below</option>' }
+  else { sel.innerHTML = '<option value="">Select bank</option>' + data.map(b => `<option value="${b.id}">${b.name} · ${b.game}${b.denom?' · '+b.denom:''} · $${Number(b.amount||0).toLocaleString()}</option>`).join('') }
+  renderBanksList(venueId, data || [])
+}
+
+function renderBanksList(venueId, banks) {
+  const el = document.getElementById('banks-list')
+  if (!el) return
+  if (banks.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#ccc;padding:10px 0">No banks yet</div>'; return }
+  el.innerHTML = banks.map(b => `
+    <div class="row" id="bank-row-${b.id}" style="flex-wrap:wrap">
+      <div style="flex:1;min-width:150px">
+        <div class="row-name">${b.name} · ${b.game}${b.denom?' · '+b.denom:''}</div>
+        <div class="row-detail">${b.amount ? '$'+Number(b.amount).toLocaleString('en-US',{minimumFractionDigits:2}) : 'No amount'} · ${b.type||'poker'}</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <div class="action-btn ab-purple" onclick="toggleEditBank('${b.id}')">✏ Edit</div>
+        <div class="action-btn ab-red" onclick="deleteBank('${b.id}', this)">🗑 Delete</div>
+      </div>
+      <div class="edit-form" id="bank-edit-${b.id}" style="width:100%">
+        <label class="lbl">Bank Name</label><input class="inp" id="be-name-${b.id}" value="${b.name}">
+        <label class="lbl">Game</label><input class="inp" id="be-game-${b.id}" value="${b.game}">
+        <label class="lbl">Denomination</label><input class="inp" id="be-denom-${b.id}" value="${b.denom||''}">
+        <label class="lbl">Type</label>
+        <select class="inp" id="be-type-${b.id}">
+          <option value="poker" ${b.type==='poker'?'selected':''}>Video Poker</option>
+          <option value="keno" ${b.type==='keno'?'selected':''}>Keno</option>
+          <option value="other" ${b.type==='other'?'selected':''}>Other / High Limit</option>
+        </select>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div><label class="lbl">Starting Amount</label><input class="inp" id="be-start-${b.id}" type="number" value="${b.starting_amount||0}"></div>
+          <div><label class="lbl">Machines</label><input class="inp" id="be-mach-${b.id}" type="number" value="${b.machines||1}"></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <button onclick="saveBankEdit('${b.id}')" style="flex:2;padding:10px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:7px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;text-transform:uppercase">Save</button>
+          <button onclick="toggleEditBank('${b.id}')" style="flex:1;padding:10px;font-family:'Orbitron',monospace;font-size:9px;border-radius:7px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer">Cancel</button>
+        </div>
+      </div>
+    </div>`).join('')
+}
+
+window.toggleEditBank = function(id) {
+  document.getElementById('bank-edit-' + id)?.classList.toggle('open')
+}
+
+window.saveBankEdit = async function(id) {
+  const name = document.getElementById('be-name-'+id).value.trim()
+  const game = document.getElementById('be-game-'+id).value.trim()
+  const denom = document.getElementById('be-denom-'+id).value.trim()
+  const type = document.getElementById('be-type-'+id).value
+  const start = parseFloat(document.getElementById('be-start-'+id).value) || 0
+  const mach = parseInt(document.getElementById('be-mach-'+id).value) || 1
+  if (!name || !game) { alert('Name and game required'); return }
+  const { error } = await supabase.from('banks').update({ name, game, denom, type, starting_amount: start, machines: mach }).eq('id', id)
+  if (error) { alert('Error: ' + error.message); return }
+  const venueId = document.getElementById('a-venue').value
+  if (venueId) loadABanks()
+}
+
+window.deleteBank = async function(id, btn) {
+  const name = btn.closest('.row').querySelector('.row-name').textContent.trim()
+  if (!confirm('Delete ' + name + '?')) return
+  await supabase.from('banks').update({ active: false }).eq('id', id)
+  const venueId = document.getElementById('a-venue').value
+  if (venueId) loadABanks()
+}
+
+window.an = function(k) {
+  if (k === 'CLR') amtStr = ''
+  else if (k === '⌫') amtStr = amtStr.slice(0,-1)
+  else if (k === '.') { if (!amtStr.includes('.')) amtStr += '.' }
+  else { if (amtStr.replace('.','').length < 8) amtStr += k }
+  const p = amtStr.split('.')
+  document.getElementById('a-disp').textContent = amtStr ? '$' + parseInt(p[0]||'0').toLocaleString() + (amtStr.includes('.') ? '.' + (p[1]||'') : '') : '$0'
+  const val = parseFloat(amtStr) || 0
+  const st = val >= 2400 ? 'fire' : val >= 1500 ? 'heating' : 'rising'
+  const cols = { fire:'#ff1744', heating:'#ffd700', rising:'#00ff41' }
+  const grads = { fire:'linear-gradient(90deg,#ff6d00,#ff1744)', heating:'linear-gradient(90deg,#884400,#ffd700)', rising:'linear-gradient(90deg,#003300,#00ff41)' }
+  const wids = { fire:'88%', heating:'55%', rising:'24%' }
+  const labs = { fire:'🔥 ON FIRE', heating:'⚡ HEATING UP', rising:'🎯 ON THE RISE' }
+  const meter = document.getElementById('a-meter')
+  if (meter && amtStr) {
+    meter.innerHTML = `<div class="card" style="margin-bottom:0">
+      <div style="font-size:8px;color:#ccc;letter-spacing:2px;margin-bottom:6px">JACKPOT METER PREVIEW</div>
+      <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:${cols[st]};margin-bottom:6px">${labs[st]}</div>
+      <div class="meter-bar"><div style="height:100%;width:${wids[st]};background:${grads[st]};border-radius:3px"></div></div>
+    </div>`
+  } else if (meter) meter.innerHTML = ''
+  const btn = document.getElementById('a-btn')
+  if (btn) { btn.style.background = amtStr ? 'linear-gradient(135deg,#ffd700,#ff9500)' : '#1a1a1a'; btn.style.color = amtStr ? '#080808' : '#666'; btn.textContent = amtStr ? 'Save Amount' : 'Enter Amount First' }
+}
+
+window.saveAmt = async function() {
+  const bankId = document.getElementById('a-bank').value
+  if (!bankId || !amtStr) { msg('a-msg', 'Select bank and enter amount', false); return }
+  const val = parseFloat(amtStr)
+  const { data: bankData } = await supabase.from('banks').select('starting_amount').eq('id', bankId).single()
+  const startAmt = bankData?.starting_amount || 0
+  const pct = startAmt > 0 ? ((val - startAmt) / startAmt) * 100 : (val >= 2400 ? 100 : val >= 1500 ? 50 : 10)
+  const st = pct >= 80 ? 'fire' : pct >= 40 ? 'heating' : 'rising'
+  const { error } = await supabase.from('banks').update({ amount: val, status: st }).eq('id', bankId)
+  if (error) { msg('a-msg', 'Error: ' + error.message, false); return }
+  await supabase.from('progressives').insert({ bank_id: bankId, amount: val, status: st, badge_type: 'verified', anonymous: false, approved: true })
+  msg('a-msg', '✓ Amount saved!', true)
+  amtStr = ''
+  document.getElementById('a-disp').textContent = '$0'
+  const meter = document.getElementById('a-meter')
+  if (meter) meter.innerHTML = ''
+  const btn = document.getElementById('a-btn')
+  if (btn) { btn.style.background = '#1a1a1a'; btn.style.color = '#666'; btn.textContent = 'Enter Amount First' }
+  loadABanks()
+}
+
+window.addBank = async function() {
+  const venueId = document.getElementById('b-venue').value
+  const name = document.getElementById('b-name').value.trim()
+  const game = document.getElementById('b-game').value.trim()
+  const denom = document.getElementById('b-denom').value.trim()
+  const type = document.getElementById('b-type').value
+  const start = parseFloat(document.getElementById('b-start').value) || 0
+  const amt = parseFloat(document.getElementById('b-amt').value) || 0
+  const machines = parseInt(document.getElementById('b-mach').value) || 1
+  if (!venueId || !name || !game) { msg('b-msg', 'Venue, name and game required', false); return }
+  const pct3 = start > 0 ? ((amt - start) / start) * 100 : (amt >= 2400 ? 100 : amt >= 1500 ? 50 : 10)
+  const st = pct3 >= 80 ? 'fire' : pct3 >= 40 ? 'heating' : 'rising'
+  const { error } = await supabase.from('banks').insert({ venue_id: venueId, name, game, denom, type, starting_amount: start, amount: amt || null, status: amt ? st : null, machines, approved: true, active: true })
+  if (error) { msg('b-msg', 'Error: ' + error.message, false); return }
+  msg('b-msg', '✓ Bank added!', true)
+  ;['b-name','b-game','b-denom','b-start','b-amt','b-mach'].forEach(id => { const el = document.getElementById(id); if (el) el.value = '' })
+  if (document.getElementById('a-venue').value === venueId) loadABanks()
+}
+
+// ── USERS ──
+async function loadUsers() {
+  await refreshVenues()
+  const { data: users } = await supabase.from('users').select('*').order('created_at', { ascending: false })
+  const el = document.getElementById('u-list')
+  if (!el) return
+  if (!users || users.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#ccc;padding:10px 0">No users yet</div>'; return }
+  el.innerHTML = users.map(u => {
+    const isInsider = u.role === 'insider'
+    const isAdmin = u.role === 'admin'
+    const tierClass = isAdmin ? 'badge-admin' : isInsider ? 'badge-insider' : u.tier === 'junkie' ? 'badge-junkie' : u.tier === 'trusted' ? 'badge-trusted' : u.restricted ? 'badge-flagged' : 'badge-community'
+    const venueName = isInsider && u.venue_id ? venues.find(v => v.id === u.venue_id)?.name : null
+    const tierLabel = isAdmin ? '👑 Admin' : isInsider ? '✓ Insider' + (venueName ? ' · ' + venueName : '') : u.tier === 'junkie' ? '🎰 Junkie' : u.tier === 'trusted' ? '⭐ Trusted' : u.restricted ? '⚠ Restricted' : '👤 Community'
+    return `<div class="row" style="flex-wrap:wrap">
+      <div style="font-size:20px">👤</div>
+      <div style="flex:1;min-width:120px">
+        <div class="row-name">${u.username || u.email?.split('@')[0] || 'Unknown'}</div>
+        <div class="row-detail">${u.submission_count||0} submissions · ${u.accuracy_score||100}% accuracy</div>
+        <div style="font-size:9px;color:#aaa;margin-top:2px">${u.email||''}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end">
+        <div class="badge ${tierClass}">${tierLabel}</div>
+        <div style="display:flex;gap:5px">
+          <div class="action-btn ab-purple" onclick="openPromoteModal('${u.id}','${(u.username||u.email||'').replace(/'/g,"\\'")}')">↑ Promote</div>
+          <div class="action-btn ab-grey" onclick="restrictUser('${u.id}',${!u.restricted})">${u.restricted?'✓ Restore':'⊘ Restrict'}</div>
+          <div class="action-btn ab-red" onclick="deleteUser('${u.id}','${(u.username||u.email||'').replace(/'/g,"\\'")}')">🗑</div>
+        </div>
+      </div>
+    </div>`
+  }).join('')
+}
+
+window.addTrusted = async function() {
+  const name = document.getElementById('u-name').value.trim()
+  const phone = document.getElementById('u-phone').value.trim()
+  if (!name || !phone) { msg('u-msg', 'Name and phone required', false); return }
+  msg('u-msg', '✓ ' + name + ' added — invite sent to ' + phone, true)
+  document.getElementById('u-name').value = ''
+  document.getElementById('u-phone').value = ''
+  document.getElementById('u-notes').value = ''
+}
+
+// ── PROMOTE MODAL ──
+window.openPromoteModal = async function(userId, userName) {
+  promoteUserId = userId
+  promoteRole = null
+  document.getElementById('promote-user-name').textContent = 'Promoting: ' + userName
+  document.getElementById('insider-venue-select').style.display = 'none'
+  document.getElementById('promote-confirm-btn').style.display = 'none'
+  document.querySelectorAll('.promote-option').forEach(o => o.style.borderColor = '#1a1a2a')
+  await refreshVenues()
+  document.getElementById('promote-overlay').classList.add('show')
+}
+
+window.closePromoteModal = function() {
+  document.getElementById('promote-overlay').classList.remove('show')
+}
+
+window.selectPromoteRole = function(role) {
+  promoteRole = role
+  document.querySelectorAll('.promote-option').forEach(o => o.style.borderColor = '#1a1a2a')
+  event.currentTarget.style.borderColor = '#aa44ff'
+  if (role === 'insider') {
+    document.getElementById('insider-venue-select').style.display = 'block'
+  } else {
+    document.getElementById('insider-venue-select').style.display = 'none'
+  }
+  document.getElementById('promote-confirm-btn').style.display = 'block'
+}
+
+window.confirmPromotion = async function() {
+  if (!promoteUserId || !promoteRole) return
+  const venueId = promoteRole === 'insider' ? document.getElementById('promote-venue-id').value : null
+  if (promoteRole === 'insider' && !venueId) { alert('Please select a venue for this insider'); return }
+  
+  const updates = { tier: promoteRole === 'trusted' ? 'trusted' : promoteRole === 'junkie' ? 'junkie' : 'community' }
+  if (promoteRole === 'insider') { updates.role = 'insider'; updates.venue_id = venueId }
+  if (promoteRole === 'admin') { updates.role = 'admin' }
+  
+  const { error } = await supabase.from('users').update(updates).eq('id', promoteUserId)
+  if (error) { alert('Error: ' + error.message); return }
+  
+  closePromoteModal()
+  await loadUsers()
+}
+
+window.restrictUser = async function(id, restrict) {
+  await supabase.from('users').update({ restricted: restrict }).eq('id', id)
+  await loadUsers()
+}
+
+window.deleteUser = async function(id, name) {
+  if (!confirm('Delete user ' + name + '? This cannot be undone.')) return
+  await supabase.from('users').delete().eq('id', id)
+  // Also delete from Supabase Auth via admin API
+  const { error } = await supabase.auth.admin.deleteUser(id)
+  if (error) console.log('Auth delete note:', error.message)
+  await loadUsers()
+}
+
+// ── PROGRESSIVES ──
 async function loadProgressives() {
   await refreshVenues()
   const { data: banks } = await supabase.from('banks').select('*').eq('active', true).order('created_at', { ascending: false })
@@ -402,14 +774,14 @@ async function loadProgressives() {
           <option value="other" ${b.type==='other'?'selected':''}>Other / High Limit</option>
         </select>
         <label class="lbl">Current Amount</label>
-        <input class="inp" id="pe-amt-${b.id}" type="number" value="${b.amount||0}" placeholder="Current amount">
+        <input class="inp" id="pe-amt-${b.id}" type="number" value="${b.amount||0}">
         <label class="lbl">Starting Amount</label>
         <input class="inp" id="pe-start-${b.id}" type="number" value="${b.starting_amount||0}">
         <label class="lbl">Machines</label>
         <input class="inp" id="pe-mach-${b.id}" type="number" value="${b.machines||1}">
         <div style="display:flex;gap:8px;margin-top:6px">
           <button onclick="saveProgEdit('${b.id}')" style="flex:2;padding:11px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:7px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;text-transform:uppercase">Save Changes</button>
-          <button onclick="deleteProg('${b.id}','${b.name}')" style="flex:1;padding:11px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:1px;border-radius:7px;border:1px solid #ff174444;background:#ff174410;color:#ff1744;cursor:pointer;text-transform:uppercase">🗑 Delete</button>
+          <button onclick="deleteProg('${b.id}', this)" style="flex:1;padding:11px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:1px;border-radius:7px;border:1px solid #ff174444;background:#ff174410;color:#ff1744;cursor:pointer;text-transform:uppercase">🗑 Delete</button>
         </div>
         <button onclick="toggleProgEdit('${b.id}')" style="width:100%;padding:9px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;border-radius:7px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;text-transform:uppercase;margin-top:6px">Cancel</button>
       </div>
@@ -418,8 +790,7 @@ async function loadProgressives() {
 }
 
 window.toggleProgEdit = function(id) {
-  const form = document.getElementById('prog-edit-' + id)
-  if (form) form.classList.toggle('open')
+  document.getElementById('prog-edit-' + id)?.classList.toggle('open')
 }
 
 window.saveProgEdit = async function(id) {
@@ -431,343 +802,20 @@ window.saveProgEdit = async function(id) {
   const start = parseFloat(document.getElementById('pe-start-'+id).value) || 0
   const mach = parseInt(document.getElementById('pe-mach-'+id).value) || 1
   if (!name || !game) { alert('Name and game required'); return }
-  const st = amt >= 2400 ? 'fire' : amt >= 1500 ? 'heating' : 'rising'
+  const { data: bd } = await supabase.from('banks').select('starting_amount').eq('id', id).single()
+  const sa = bd?.starting_amount || start || 0
+  const pct = sa > 0 ? ((amt - sa) / sa) * 100 : (amt >= 2400 ? 100 : amt >= 1500 ? 50 : 10)
+  const st = pct >= 80 ? 'fire' : pct >= 40 ? 'heating' : 'rising'
   const { error } = await supabase.from('banks').update({ name, game, denom, type, amount: amt||null, status: amt?st:null, starting_amount: start, machines: mach }).eq('id', id)
   if (error) { alert('Error: ' + error.message); return }
   await loadProgressives()
 }
 
-window.deleteProg = async function(id, name) {
-  if (!confirm('Delete ' + name + '? This cannot be undone.')) return
+window.deleteProg = async function(id, btn) {
+  const name = btn.closest('div[style]').querySelector('div[style*="font-size:13px"]')?.textContent?.trim() || 'this progressive'
+  if (!confirm('Delete ' + name + '?')) return
   await supabase.from('banks').update({ active: false }).eq('id', id)
   await loadProgressives()
-}
-
-// ── QR CODE ──
-function loadQR() {
-  const el = document.getElementById('qr-display')
-  if (!el || el.innerHTML !== '') return
-  new QRCode(el, {
-    text: 'https://vegasjackpotjunkies.com',
-    width: 220, height: 220,
-    colorDark: '#070709', colorLight: '#ffffff',
-    correctLevel: QRCode.CorrectLevel.H
-  })
-}
-
-window.shareApp = function() {
-  if (navigator.share) {
-    navigator.share({
-      title: 'Vegas Jackpot Junkies',
-      text: 'Track live progressive jackpots across Vegas — know before you go 🎰',
-      url: 'https://vegasjackpotjunkies.com'
-    })
-  } else {
-    navigator.clipboard.writeText('https://vegasjackpotjunkies.com')
-    alert('Link copied! Share it anywhere.')
-  }
-}
-
-// ── VENUES ──
-async function loadVenues() {
-  await refreshVenues()
-  const el = document.getElementById('v-list')
-  if (!el) return
-  el.innerHTML = venues.length === 0
-    ? '<div style="font-size:10px;color:#ccc;padding:10px 0">No venues yet</div>'
-    : venues.map(v => `
-      <div class="row" style="border-color:${v.partner?'#ffd70033':'#1a1a2a'};flex-wrap:wrap;gap:8px">
-        <div style="font-size:22px">🎰</div>
-        <div style="flex:1;min-width:120px">
-          <div class="row-name">${v.name} ${v.partner?'<span class="badge badge-junkie">★ Partner</span>':''}</div>
-          <div class="row-detail">${v.area} · ${v.address}</div>
-        </div>
-        <div style="display:flex;gap:6px">
-          <div class="action-btn ab-gold" onclick="jumpToAddBank('${v.id}','${v.name}')">+ Bank</div>
-          <div class="action-btn ab-purple" onclick="editVenue('${v.id}')">✏ Edit</div>
-          <div class="action-btn ab-red" onclick="deactivateVenue('${v.id}',this)">✕</div>
-        </div>
-      </div>`).join('')
-}
-
-async function refreshVenues() {
-  const { data } = await supabase.from('venues').select('*').eq('active', true).order('name')
-  venues = data || []
-  const ids = ['a-venue','b-venue','u-venue','pr-venue']
-  ids.forEach(id => {
-    const el = document.getElementById(id)
-    if (!el) return
-    const cur = el.value
-    el.innerHTML = '<option value="">Select venue</option>' + venues.map(v => `<option value="${v.id}"${v.id===cur?' selected':''}>${v.name} · ${v.area}</option>`).join('')
-  })
-}
-
-window.addVenue = async function() {
-  const name = document.getElementById('v-name').value.trim()
-  const address = document.getElementById('v-address').value.trim()
-  const area = document.getElementById('v-area').value
-  const phone = document.getElementById('v-phone').value.trim()
-  const partner = document.getElementById('v-ptog').classList.contains('on')
-  if (!name || !address) { msg('v-msg', 'Name and address required', false); return }
-
-  if (editingVenueId) {
-    const { error } = await supabase.from('venues').update({ name, address, area, phone, partner }).eq('id', editingVenueId)
-    if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
-    msg('v-msg', '✓ ' + name + ' updated!', true)
-    editingVenueId = null
-    document.getElementById('v-submit-btn').textContent = '+ Add Venue'
-  } else {
-    const { error } = await supabase.from('venues').insert({ name, address, area, phone, partner, approved: true, active: true })
-    if (error) { msg('v-msg', 'Error: ' + error.message, false); return }
-    msg('v-msg', '✓ ' + name + ' added!', true)
-  }
-  document.getElementById('v-name').value = ''
-  document.getElementById('v-address').value = ''
-  document.getElementById('v-phone').value = ''
-  loadVenues()
-}
-
-window.editVenue = async function(id) {
-  const { data: v } = await supabase.from('venues').select('*').eq('id', id).single()
-  if (!v) return
-  const name = v.name
-  const address = v.address
-  const area = v.area
-  const phone = v.phone || ''
-  const partner = v.partner
-  editingVenueId = id
-  document.getElementById('v-name').value = name
-  document.getElementById('v-address').value = address
-  document.getElementById('v-area').value = area
-  document.getElementById('v-phone').value = phone
-  const ptog = document.getElementById('v-ptog')
-  ptog.className = 'tog ' + (partner ? 'on' : 'off')
-  document.getElementById('v-submit-btn').textContent = '✓ Update Venue'
-  msg('v-msg', 'Editing ' + name + ' — update details above', true)
-  document.getElementById('s-venues').scrollTop = 0
-}
-
-window.deactivateVenue = async function(id, btn) {
-  const name = btn.closest('.row').querySelector('.row-name').textContent.trim()
-  if (!confirm('Remove ' + name + ' from the app?')) return
-  await supabase.from('venues').update({ active: false }).eq('id', id)
-  loadVenues()
-}
-
-window.jumpToAddBank = function(venueId, venueName) {
-  showTab('amounts', document.querySelectorAll('.tab')[2])
-  setTimeout(() => {
-    const sel = document.getElementById('b-venue')
-    if (sel) { sel.value = venueId; }
-    msg('b-msg', 'Adding bank for ' + venueName, true)
-  }, 300)
-}
-
-// ── AMOUNTS ──
-async function loadAmtVenues() { await refreshVenues() }
-
-window.loadABanks = async function() {
-  const venueId = document.getElementById('a-venue').value
-  const sel = document.getElementById('a-bank')
-  if (!sel || !venueId) return
-  sel.innerHTML = '<option>Loading...</option>'
-  const { data } = await supabase.from('banks').select('*').eq('venue_id', venueId).eq('active', true)
-  if (!data || data.length === 0) { sel.innerHTML = '<option value="">No banks — add below</option>'; }
-  else { sel.innerHTML = '<option value="">Select bank</option>' + data.map(b => `<option value="${b.id}">${b.name} · ${b.game}${b.denom?' · '+b.denom:''} · $${Number(b.amount||0).toLocaleString()}</option>`).join('') }
-  renderBanksList(venueId, data || [])
-}
-
-function renderBanksList(venueId, banks) {
-  const el = document.getElementById('banks-list')
-  if (!el) return
-  if (banks.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#ccc;padding:10px 0">No banks yet for this venue</div>'; return }
-  el.innerHTML = banks.map(b => `
-    <div class="row" style="flex-wrap:wrap;gap:8px" id="bank-row-${b.id}">
-      <div style="flex:1;min-width:150px">
-        <div class="row-name">${b.name} · ${b.game}${b.denom?' · '+b.denom:''}</div>
-        <div class="row-detail">${b.amount ? '$'+Number(b.amount).toLocaleString('en-US',{minimumFractionDigits:2}) : 'No amount yet'} · ${b.type||'poker'}</div>
-      </div>
-      <div style="display:flex;gap:6px">
-        <div class="action-btn ab-purple" onclick="toggleEditBank('${b.id}','${b.name}','${b.game}','${b.denom||''}','${b.type||'poker'}',${b.starting_amount||0},${b.amount||0},${b.machines||1})">✏ Edit</div>
-        <div class="action-btn ab-red" onclick="deleteBank('${b.id}','${b.name}')">🗑 Delete</div>
-      </div>
-      <div class="edit-form" id="bank-edit-${b.id}">
-        <label class="lbl">Bank Name</label>
-        <input class="inp" id="be-name-${b.id}" value="${b.name}">
-        <label class="lbl">Game</label>
-        <input class="inp" id="be-game-${b.id}" value="${b.game}">
-        <label class="lbl">Denomination</label>
-        <input class="inp" id="be-denom-${b.id}" value="${b.denom||''}">
-        <label class="lbl">Type</label>
-        <select class="inp" id="be-type-${b.id}">
-          <option value="poker" ${b.type==='poker'?'selected':''}>Video Poker</option>
-          <option value="keno" ${b.type==='keno'?'selected':''}>Keno</option>
-          <option value="other" ${b.type==='other'?'selected':''}>Other / High Limit</option>
-        </select>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <div><label class="lbl">Starting Amount</label><input class="inp" id="be-start-${b.id}" type="number" value="${b.starting_amount||0}"></div>
-          <div><label class="lbl">Machines</label><input class="inp" id="be-mach-${b.id}" type="number" value="${b.machines||1}"></div>
-        </div>
-        <div style="display:flex;gap:8px;margin-top:4px">
-          <button onclick="saveBankEdit('${b.id}')" style="flex:2;padding:10px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;border-radius:7px;border:none;cursor:pointer;background:linear-gradient(135deg,#aa44ff,#6622cc);color:#fff;text-transform:uppercase">Save Changes</button>
-          <button onclick="toggleEditBank('${b.id}')" style="flex:1;padding:10px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:1px;border-radius:7px;border:1px solid #333;background:transparent;color:#ccc;cursor:pointer;text-transform:uppercase">Cancel</button>
-        </div>
-      </div>
-    </div>`).join('')
-}
-
-window.toggleEditBank = function(id) {
-  const form = document.getElementById('bank-edit-' + id)
-  if (form) form.classList.toggle('open')
-}
-
-window.saveBankEdit = async function(id) {
-  const name = document.getElementById('be-name-'+id).value.trim()
-  const game = document.getElementById('be-game-'+id).value.trim()
-  const denom = document.getElementById('be-denom-'+id).value.trim()
-  const type = document.getElementById('be-type-'+id).value
-  const start = parseFloat(document.getElementById('be-start-'+id).value) || 0
-  const mach = parseInt(document.getElementById('be-mach-'+id).value) || 1
-  if (!name || !game) { alert('Name and game required'); return }
-  const { error } = await supabase.from('banks').update({ name, game, denom, type, starting_amount: start, machines: mach }).eq('id', id)
-  if (error) { alert('Error: ' + error.message); return }
-  const venueId = document.getElementById('a-venue').value
-  if (venueId) loadABanks()
-}
-
-window.deleteBank = async function(id, name) {
-  if (!confirm('Delete ' + name + '? This cannot be undone.')) return
-  await supabase.from('banks').update({ active: false }).eq('id', id)
-  const venueId = document.getElementById('a-venue').value
-  if (venueId) loadABanks()
-}
-
-window.an = function(k) {
-  if (k === 'CLR') amtStr = ''
-  else if (k === '⌫') amtStr = amtStr.slice(0,-1)
-  else if (k === '.') { if (!amtStr.includes('.')) amtStr += '.' }
-  else { if (amtStr.replace('.','').length < 8) amtStr += k }
-  const p = amtStr.split('.')
-  const display = amtStr ? '$' + parseInt(p[0]||'0').toLocaleString() + (amtStr.includes('.') ? '.' + (p[1]||'') : '') : '$0'
-  document.getElementById('a-disp').textContent = display
-  const val = parseFloat(amtStr) || 0
-  const st = val >= 2400 ? 'fire' : val >= 1500 ? 'heating' : 'rising'
-  const cols = { fire:'#ff1744', heating:'#ffd700', rising:'#00ff41' }
-  const grads = { fire:'linear-gradient(90deg,#ff6d00,#ff1744)', heating:'linear-gradient(90deg,#884400,#ffd700)', rising:'linear-gradient(90deg,#003300,#00ff41)' }
-  const wids = { fire:'88%', heating:'55%', rising:'24%' }
-  const labs = { fire:'🔥 ON FIRE', heating:'⚡ HEATING UP', rising:'🎯 ON THE RISE' }
-  const meter = document.getElementById('a-meter')
-  if (meter && amtStr) {
-    meter.innerHTML = `<div class="card" style="margin-bottom:0">
-      <div style="font-size:8px;color:#ccc;letter-spacing:2px;margin-bottom:6px">JACKPOT METER PREVIEW</div>
-      <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:${cols[st]};margin-bottom:6px">${labs[st]}</div>
-      <div class="meter-bar"><div style="height:100%;width:${wids[st]};background:${grads[st]};border-radius:3px"></div></div>
-    </div>`
-  } else if (meter) meter.innerHTML = ''
-  const btn = document.getElementById('a-btn')
-  if (btn) {
-    btn.style.background = amtStr ? 'linear-gradient(135deg,#ffd700,#ff9500)' : '#1a1a1a'
-    btn.style.color = amtStr ? '#080808' : '#666'
-    btn.textContent = amtStr ? 'Save Amount' : 'Enter Amount First'
-  }
-}
-
-window.saveAmt = async function() {
-  const bankId = document.getElementById('a-bank').value
-  if (!bankId || !amtStr) { msg('a-msg', 'Select bank and enter amount', false); return }
-  const val = parseFloat(amtStr)
-  const { data: bankData } = await supabase.from('banks').select('starting_amount').eq('id', bankId).single()
-const startAmt = bankData?.starting_amount || 0
-const pct = startAmt > 0 ? ((val - startAmt) / startAmt) * 100 : (val >= 2400 ? 100 : val >= 1500 ? 50 : 10)
-const st = pct >= 80 ? 'fire' : pct >= 40 ? 'heating' : 'rising'
-  const { error } = await supabase.from('banks').update({ amount: val, status: st }).eq('id', bankId)
-  if (error) { msg('a-msg', 'Error: ' + error.message, false); return }
-  await supabase.from('progressives').insert({ bank_id: bankId, amount: val, status: st, badge_type: 'verified', anonymous: false, approved: true })
-  msg('a-msg', '✓ Amount saved!', true)
-  amtStr = ''
-  document.getElementById('a-disp').textContent = '$0'
-  const meter = document.getElementById('a-meter')
-  if (meter) meter.innerHTML = ''
-  const btn = document.getElementById('a-btn')
-  if (btn) { btn.style.background = '#1a1a1a'; btn.style.color = '#666'; btn.textContent = 'Enter Amount First' }
-  loadABanks()
-}
-
-window.addBank = async function() {
-  const venueId = document.getElementById('b-venue').value
-  const name = document.getElementById('b-name').value.trim()
-  const game = document.getElementById('b-game').value.trim()
-  const denom = document.getElementById('b-denom').value.trim()
-  const type = document.getElementById('b-type').value
-  const start = parseFloat(document.getElementById('b-start').value) || 0
-  const amt = parseFloat(document.getElementById('b-amt').value) || 0
-  const machines = parseInt(document.getElementById('b-mach').value) || 1
-  if (!venueId || !name || !game) { msg('b-msg', 'Venue, name and game required', false); return }
-  
-const pct3 = start > 0 ? ((amt - start) / start) * 100 : (amt >= 2400 ? 100 : amt >= 1500 ? 50 : 10)
-const st = pct3 >= 80 ? 'fire' : pct3 >= 40 ? 'heating' : 'rising'
-  const { error } = await supabase.from('banks').insert({ venue_id: venueId, name, game, denom, type, starting_amount: start, amount: amt || null, status: amt ? st : null, machines, approved: true, active: true })
-  if (error) { msg('b-msg', 'Error: ' + error.message, false); return }
-  msg('b-msg', '✓ Bank added!', true)
-  ;['b-name','b-game','b-denom','b-start','b-amt','b-mach'].forEach(id => { const el = document.getElementById(id); if (el) el.value = '' })
-  if (document.getElementById('a-venue').value === venueId) loadABanks()
-}
-
-// ── USERS ──
-async function loadUsers() {
-  await refreshVenues()
-  const { data: users } = await supabase.from('users').select('*').order('created_at', { ascending: false })
-  const el = document.getElementById('u-list')
-  if (!el) return
-  if (!users || users.length === 0) { el.innerHTML = '<div style="font-size:10px;color:#ccc;padding:10px 0">No users yet</div>'; return }
-  el.innerHTML = users.map(u => {
-    const tierClass = u.role==='insider'?'badge-insider':u.tier==='junkie'?'badge-junkie':u.tier==='trusted'?'badge-trusted':u.restricted?'badge-flagged':'badge-community'
-    const tierLabel = u.role==='insider'?'✓ Insider':u.tier==='junkie'?'🎰 Junkie':u.tier==='trusted'?'⭐ Trusted':u.restricted?'⚠ Restricted':'👤 Community'
-    return `<div class="row" style="flex-wrap:wrap;gap:8px">
-      <div style="font-size:20px">👤</div>
-      <div style="flex:1;min-width:120px">
-        <div class="row-name">${u.username || u.email?.split('@')[0] || 'Unknown'}</div>
-        <div class="row-detail">${u.submission_count||0} submissions · ${u.accuracy_score||100}% accuracy</div>
-        <div style="font-size:9px;color:#aaa;margin-top:2px">${u.email||''}</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end">
-        <div class="badge ${tierClass}">${tierLabel}</div>
-        <div style="display:flex;gap:5px">
-          <div class="action-btn ab-purple" onclick="promoteUser('${u.id}','${u.tier||'community'}')">↑ Promote</div>
-          <div class="action-btn ab-grey" onclick="restrictUser('${u.id}',${!u.restricted})">${u.restricted?'✓ Restore':'⊘ Restrict'}</div>
-          <div class="action-btn ab-red" onclick="deleteUser('${u.id}','${u.username||u.email}')">🗑</div>
-        </div>
-      </div>
-    </div>`
-  }).join('')
-}
-
-window.addTrusted = async function() {
-  const name = document.getElementById('u-name').value.trim()
-  const phone = document.getElementById('u-phone').value.trim()
-  if (!name || !phone) { msg('u-msg', 'Name and phone required', false); return }
-  msg('u-msg', '✓ ' + name + ' added — invite sent to ' + phone, true)
-  document.getElementById('u-name').value = ''
-  document.getElementById('u-phone').value = ''
-  document.getElementById('u-notes').value = ''
-}
-
-window.promoteUser = async function(id, currentTier) {
-  const tiers = ['community','trusted','junkie']
-  const next = tiers[Math.min(tiers.indexOf(currentTier)+1, tiers.length-1)]
-  await supabase.from('users').update({ tier: next }).eq('id', id)
-  await loadUsers()
-}
-
-window.restrictUser = async function(id, restrict) {
-  await supabase.from('users').update({ restricted: restrict }).eq('id', id)
-  await loadUsers()
-}
-
-window.deleteUser = async function(id, name) {
-  if (!confirm('Delete user ' + name + '? This cannot be undone.')) return
-  await supabase.from('users').delete().eq('id', id)
-  await loadUsers()
 }
 
 // ── PROMOS ──
@@ -799,10 +847,7 @@ async function loadPromos() {
         const vn = venues.find(v => v.id === p.venue_id)?.name || 'Unknown'
         return `<div class="row">
           <div style="font-size:20px">🎰</div>
-          <div style="flex:1">
-            <div class="row-name">${vn} — ${p.title}</div>
-            <div class="row-detail">Active · ${p.type}</div>
-          </div>
+          <div style="flex:1"><div class="row-name">${vn} — ${p.title}</div><div class="row-detail">Active · ${p.type}</div></div>
           <div class="action-btn ab-red" onclick="deactivatePromo('${p.id}')">✕ End</div>
         </div>`}).join('')
 }
@@ -884,8 +929,7 @@ async function loadOverview() {
 // ── HELPERS ──
 window.flipTog = function(id) {
   const el = document.getElementById(id)
-  if (!el) return
-  el.className = 'tog ' + (el.classList.contains('on') ? 'off' : 'on')
+  if (el) el.className = 'tog ' + (el.classList.contains('on') ? 'off' : 'on')
 }
 
 function msg(id, text, ok) {
